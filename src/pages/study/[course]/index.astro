@@ -1,0 +1,86 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Container from '../../../components/Container.astro';
+import Button from '../../../components/Button.astro';
+import Tag from '../../../components/Tag.astro';
+
+export const getStaticPaths = (async () => {
+  const courses = await getCollection('courses');
+  const lessons = await getCollection('lessons');
+  return courses
+    .filter((c) => (import.meta.env.PROD ? !c.data.draft : true))
+    .map((course) => {
+      const courseLessons = lessons
+        .filter((l) => l.data.course === course.id && (import.meta.env.PROD ? !l.data.draft : true))
+        .sort((a, b) => a.data.order - b.data.order);
+      return { params: { course: course.id }, props: { course, courseLessons } };
+    });
+}) satisfies GetStaticPaths;
+
+const { course, courseLessons } = Astro.props;
+const d = course.data;
+const { Content } = await render(course);
+const first = courseLessons[0];
+---
+
+<BaseLayout title={d.title} description={d.description}>
+  <Container class="py-12 sm:py-16">
+    <a href="/study" class="inline-flex items-center gap-1.5 text-sm text-mute hover:text-ink">
+      <span aria-hidden="true">←</span> All courses
+    </a>
+
+    <div class="mt-6 grid gap-12 lg:grid-cols-[1.5fr_1fr]">
+      <!-- Overview -->
+      <div>
+        <div class="flex items-center gap-2.5">
+          {d.exam && <Tag variant="feature">{d.exam}</Tag>}
+          <span class="t-caption">{courseLessons.length} chapters</span>
+        </div>
+        <h1 class="mt-4 t-display-md">{d.title}</h1>
+        <p class="mt-4 t-body-lg">{d.description}</p>
+
+        <div class="prose mt-8">
+          <Content />
+        </div>
+
+        {
+          first && (
+            <div class="mt-8">
+              <Button href={`/study/${course.id}/${first.id}`} variant="dark" size="lg">
+                Start chapter 1 →
+              </Button>
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Contents -->
+      <aside class="lg:sticky lg:top-24 lg:self-start">
+        <div class="rounded-lg border border-hairline bg-surface-soft p-6">
+          <h2 class="text-xs font-semibold uppercase tracking-wider text-stone">Contents</h2>
+          {
+            courseLessons.length > 0 ? (
+              <ol class="mt-4 space-y-1">
+                {courseLessons.map((l, i) => (
+                  <li>
+                    <a
+                      href={`/study/${course.id}/${l.id}`}
+                      class="flex gap-3 rounded-md px-3 py-2.5 transition-colors hover:bg-canvas"
+                    >
+                      <span class="t-caption tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                      <span class="text-sm text-ink">{l.data.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <p class="mt-4 text-sm text-mute">Chapters are being added.</p>
+            )
+          }
+        </div>
+      </aside>
+    </div>
+  </Container>
+</BaseLayout>

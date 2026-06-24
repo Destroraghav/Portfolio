@@ -1,0 +1,48 @@
+---
+import Tag from './Tag.astro';
+
+interface Props {
+  href: string;
+  eyebrow?: string;
+  title: string;
+  description: string;
+  date?: Date;
+  tags?: string[];
+  badge?: string; // e.g. "In progress"
+}
+const { href, eyebrow, title, description, date, tags = [], badge } = Astro.props;
+const dateStr = date
+  ? date.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })
+  : undefined;
+---
+
+<a
+  href={href}
+  class="group flex h-full flex-col rounded-lg border border-hairline bg-canvas p-7 transition-colors hover:bg-surface-soft"
+>
+  <div class="flex items-center justify-between gap-3">
+    <div class="flex items-center gap-2.5">
+      {eyebrow && <span class="t-eyebrow text-stone">{eyebrow}</span>}
+      {dateStr && <time class="t-caption">{dateStr}</time>}
+    </div>
+    {badge && <Tag variant="feature">{badge}</Tag>}
+  </div>
+
+  <h3 class="mt-3 t-heading-sm group-hover:text-primary">{title}</h3>
+  <p class="mt-2 flex-1 text-[0.95rem] leading-relaxed text-mute">{description}</p>
+
+  {
+    tags.length > 0 && (
+      <ul class="mt-4 flex flex-wrap gap-1.5">
+        {tags.slice(0, 4).map((t) => (
+          <li><Tag variant="outline">{t}</Tag></li>
+        ))}
+      </ul>
+    )
+  }
+
+  <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ink" aria-hidden="true">
+    Read
+    <span class="transition-transform group-hover:translate-x-0.5">→</span>
+  </span>
+</a>

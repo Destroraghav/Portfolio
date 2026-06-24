@@ -1,0 +1,53 @@
+# Cloudflare Pages — security response headers.
+# Format: a path pattern line (no indent) followed by indented "Name: value"
+# header lines. "/*" applies to every route on the site.
+#
+# This is a fully static, self-hosted site (fonts + CSS are local, no external
+# CDNs, no third-party scripts/embeds), which lets the CSP be quite strict.
+
+/*
+  # Stop browsers from MIME-sniffing a response away from its declared type.
+  X-Content-Type-Options: nosniff
+
+  # Send origin (no path/query) on cross-origin nav; full URL same-origin.
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Disallow framing entirely (clickjacking). Mirrored by CSP frame-ancestors.
+  X-Frame-Options: DENY
+
+  # Deny powerful features we never use; interest-cohort opts out of FLoC.
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+
+  # Force HTTPS for 2 years incl. subdomains; preload-list eligible.
+  # NOTE: only submit to the HSTS preload list once the FINAL apex domain is
+  # live and every subdomain is HTTPS — preload is hard to roll back.
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # Content-Security-Policy. Tailored to this site's surface:
+  #  - default-src 'self'              everything same-origin unless overridden.
+  #  - img-src 'self' data:            local images + small inlined data: URIs
+  #                                    (e.g. inline SVG/AVIF placeholders).
+  #  - style-src 'self' 'unsafe-inline' self-hosted CSS PLUS inline styles.
+  #                                    'unsafe-inline' is required because Astro
+  #                                    + Tailwind v4 may inline small critical
+  #                                    stylesheets (build.inlineStylesheets:
+  #                                    'auto') and emit element style="" attrs.
+  #                                    Style injection is low-risk; CSP can't
+  #                                    hash arbitrary build-time inline styles.
+  #  - font-src 'self'                 self-hosted fonts only.
+  #  - script-src 'self'               The only JS is the Nav mobile-menu toggle
+  #                                    in src/components/Nav.astro. It is a
+  #                                    hoisted (non-`is:inline`) <script>, so
+  #                                    Astro bundles it to an external
+  #                                    /_astro/*.js module that 'self' covers —
+  #                                    NO 'unsafe-inline' needed for scripts.
+  #                                    TODO: if a future build starts emitting an
+  #                                    inline bootstrap/loader, switch this to a
+  #                                    per-build sha256-... hash (preferred) and
+  #                                    re-verify in the built dist/ output.
+  #  - connect-src 'self'              no third-party XHR/fetch/beacons.
+  #  - base-uri 'self' / form-action 'self'  lock <base> and form posts.
+  #  - frame-ancestors 'none'         no embedding (matches X-Frame-Options).
+  #  - object-src 'none'              no <object>/<embed>/Flash.
+  #  - upgrade-insecure-requests      rewrite any stray http:// subresource.
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests

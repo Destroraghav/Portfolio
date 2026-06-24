@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import { SITE, fullName } from '../consts';
+
+// NOTE: first-person starter copy — replace with your own words.
+const pillars = [
+  {
+    label: 'Blog',
+    href: '/blog',
+    title: 'Tax, from the ground up',
+    body: 'Plain-English notes on the fundamentals — the concepts I’m learning, explained simply.',
+  },
+  {
+    label: 'Projects',
+    href: '/projects',
+    title: 'Things I’m building',
+    body: 'Real work and case studies I take on as I go — uploaded as I finish them.',
+  },
+  {
+    label: 'Study Material',
+    href: '/study',
+    title: 'Learn alongside me',
+    body: 'Chapter-by-chapter courses (Enrolled Agent, corporate finance, transfer pricing) you can study too.',
+  },
+];
+---
+
+<BaseLayout>
+  <!-- ===================== HERO (me-first, light) ===================== -->
+  <section>
+    <Container class="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <Eyebrow>Hi, I’m {SITE.firstName}</Eyebrow>
+        <h1 class="mt-4 t-display-xl text-balance">
+          I’m learning tax in the open — and building as I go.
+        </h1>
+        <p class="mt-6 max-w-xl t-body-lg">
+          An early-career tax person in Paris, working toward a career in Luxembourg tax. I write up
+          what I learn, share the projects I take on, and turn my exam prep into courses anyone can
+          follow.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href="/projects" variant="dark" size="lg">See my work</Button>
+          <Button href="/about" variant="soft" size="lg">Read my story</Button>
+        </div>
+      </div>
+
+      <!-- Portrait -->
+      <div class="order-first lg:order-last">
+        <div class="mx-auto aspect-square w-40 max-w-xs overflow-hidden rounded-xl border border-hairline bg-surface-soft sm:w-auto sm:max-w-sm">
+          <img
+            src={SITE.photo}
+            alt={`Portrait of ${fullName}`}
+            width="728"
+            height="728"
+            class="h-full w-full object-cover object-center"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ===================== PILLAR TEASERS ===================== -->
+  <section class="py-12 sm:py-16">
+    <Container>
+      <div class="grid gap-5 md:grid-cols-3">
+        {
+          pillars.map((p) => (
+            <a
+              href={p.href}
+              class="group flex h-full flex-col rounded-lg border border-hairline bg-canvas p-8 transition-colors hover:bg-surface-soft"
+            >
+              <span class="t-eyebrow text-stone">{p.label}</span>
+              <h2 class="mt-3 t-heading-sm">{p.title}</h2>
+              <p class="mt-2 flex-1 text-[0.95rem] leading-relaxed text-mute">{p.body}</p>
+              <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
+                Explore
+                <span class="transition-transform group-hover:translate-x-0.5">→</span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- ===================== STORY STRIP (soft band) ===================== -->
+  <section class="bg-surface-soft py-20 sm:py-24">
+    <Container>
+      <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <Eyebrow>My story so far</Eyebrow>
+        <div class="max-w-2xl">
+          <p class="t-heading-md text-ink">
+            I started in US tax — R&amp;D credits and IRS compliance — then moved to Paris for a
+            master’s in corporate finance.
+          </p>
+          <p class="mt-5 t-body-lg">
+            Now I’m pointing everything toward international and Luxembourg tax: transfer pricing,
+            Pillar Two, and fund structures. This site is me doing that in public — learning,
+            writing it down, and helping others prepare for the same exams.
+          </p>
+          <div class="mt-7">
+            <Button href="/about" variant="outline">More about me</Button>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ===================== BLACK BAND (the Revolut punch) ===================== -->
+  <section class="bg-canvas-dark text-on-dark">
+    <Container class="py-20 text-center sm:py-28">
+      <p class="mx-auto max-w-3xl t-display-md text-on-dark">
+        Working toward a tax role in Luxembourg — and documenting every step.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button href="/contact" variant="white" size="lg">Get in touch</Button>
+        <Button href={SITE.cvPath} variant="outline-dark" size="lg" download>Download CV</Button>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

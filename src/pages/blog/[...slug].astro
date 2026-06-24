@@ -1,0 +1,137 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import Tag from '../../components/Tag.astro';
+import { SITE, fullName } from '../../consts';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog');
+  return posts
+    .filter((e) => (import.meta.env.PROD ? !e.data.draft : true))
+    .map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+
+const site = Astro.site ?? new URL(SITE.url);
+const canonical = new URL(`/blog/${entry.id}`, site).toString();
+const fmt = (date: Date) =>
+  date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+const pub = fmt(d.pubDate);
+const upd = d.updatedDate ? fmt(d.updatedDate) : undefined;
+const section = d.category ?? d.topic;
+
+// --- Structured data (JSON-LD) for SEO + AI Overview citations ---
+const blogPostingLd = {
+  '@context': 'https://schema.org',
+  '@type': d.schema?.type ?? 'BlogPosting',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.pubDate.toISOString(),
+  dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
+  author: {
+    '@type': 'Person',
+    name: d.author ?? fullName,
+    url: d.authorUrl ? new URL(d.authorUrl, site).toString() : undefined,
+    jobTitle: d.authorTitle,
+  },
+  publisher: { '@type': 'Organization', name: 'Analyse with Jai', url: site.toString() },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+  articleSection: d.schema?.articleSection ?? d.category,
+  keywords: d.schema?.keywords ?? (d.tags.length ? d.tags.join(', ') : undefined),
+  image: d.image?.src ? new URL(d.image.src, site).toString() : undefined,
+  inLanguage: 'en',
+};
+
+const faqLd = d.faq.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: d.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer },
+      })),
+    }
+  : null;
+---
+
+<BaseLayout title={d.title} description={d.description} image={d.image?.src} article>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(blogPostingLd)} />
+    {faqLd && <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />}
+  </Fragment>
+
+  <Container class="py-12 sm:py-16">
+    <a href="/blog" class="inline-flex items-center gap-1.5 text-sm text-mute hover:text-ink">
+      <span aria-hidden="true">←</span> All posts
+    </a>
+
+    <article class="mx-auto mt-6 max-w-[72ch]">
+      <div class="flex flex-wrap items-center gap-2.5">
+        <Tag variant="default">{section}</Tag>
+        {d.series && <span class="t-caption">{d.series} · Part {d.seriesOrder}</span>}
+      </div>
+
+      <h1 class="mt-5 t-display-md text-balance">{d.title}</h1>
+      <p class="mt-4 t-body-lg">{d.description}</p>
+
+      <!-- Byline (E-E-A-T) -->
+      <div class="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-mute">
+        <span>
+          By {' '}
+          {
+            d.authorUrl ? (
+              <a href={d.authorUrl} class="font-medium text-ink hover:text-primary">
+                {d.author ?? fullName}
+              </a>
+            ) : (
+              <span class="font-medium text-ink">{d.author ?? fullName}</span>
+            )
+          }
+        </span>
+        {d.authorTitle && <span class="text-stone">· {d.authorTitle}</span>}
+      </div>
+      <div class="mt-1 flex flex-wrap items-center gap-x-2 text-sm text-stone">
+        <time datetime={d.pubDate.toISOString()}>{pub}</time>
+        {upd && <span>· updated {upd}</span>}
+        {d.readingTime && <span>· {d.readingTime} read</span>}
+      </div>
+
+      {
+        d.image?.src && (
+          <img
+            src={d.image.src}
+            alt={d.image.alt ?? d.title}
+            width="1536"
+            height="1024"
+            class="mt-8 w-full rounded-xl border border-hairline"
+            loading="eager"
+          />
+        )
+      }
+
+      <hr class="mt-8 border-hairline" />
+
+      <div class="prose mt-8">
+        <Content />
+      </div>
+
+      {
+        d.tags.length > 0 && (
+          <ul class="mt-10 flex flex-wrap gap-1.5 border-t border-hairline pt-6">
+            {d.tags.map((t) => (
+              <li>
+                <Tag variant="outline">{t}</Tag>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </article>
+  </Container>
+</BaseLayout>

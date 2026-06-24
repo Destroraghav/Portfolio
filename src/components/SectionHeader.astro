@@ -1,0 +1,24 @@
+---
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center';
+  onDark?: boolean;
+  class?: string;
+}
+const { eyebrow, title, description, align = 'left', onDark = false, class: className = '' } =
+  Astro.props;
+---
+
+<div class:list={['max-w-2xl', align === 'center' && 'mx-auto text-center', className]}>
+  {eyebrow && <Eyebrow class={onDark ? 'text-stone' : ''}>{eyebrow}</Eyebrow>}
+  <h2 class:list={['t-display-md', onDark && 'text-on-dark', eyebrow && 'mt-3']}>{title}</h2>
+  {
+    description && (
+      <p class:list={['t-body-lg mt-4', onDark && 'text-on-dark-mute']}>{description}</p>
+    )
+  }
+</div>

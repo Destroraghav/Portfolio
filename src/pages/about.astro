@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Tag from '../components/Tag.astro';
+import { SITE, fullName } from '../consts';
+
+// NOTE: first-person starter copy — replace with your own words.
+const experience = [
+  {
+    role: 'M2, Corporate Finance',
+    org: 'EMLV Business School, Paris',
+    period: '2024 — 2026',
+    points: [
+      'Specialising in corporate finance with a focus on international and cross-border taxation.',
+      'Self-directed study in OECD Pillar Two, transfer pricing, and Luxembourg fund structures.',
+    ],
+  },
+  {
+    role: 'US Tax Associate',
+    org: 'Public accounting / tax practice',
+    period: '~2 years',
+    points: [
+      'R&D tax credit engagements under IRC §41 — the four-part test and qualified research expenses.',
+      'IRS compliance and federal filing support across client engagements.',
+    ],
+  },
+];
+
+const languages = [
+  { lang: 'English', level: 'Fluent' },
+  { lang: 'French', level: 'Professional working (Paris)' },
+  { lang: 'Hindi', level: 'Native / bilingual' },
+];
+
+const skills = [
+  'Transfer pricing',
+  'OECD Pillar Two',
+  'US R&D credit (IRC §41)',
+  'Luxembourg fund tax',
+  'Corporate finance',
+  'Financial statement analysis',
+  'Excel modelling',
+];
+---
+
+<BaseLayout title="About" description={`About ${fullName} — learning and working toward Luxembourg tax.`}>
+  <Container class="py-16 sm:py-20">
+    <div class="grid gap-12 lg:grid-cols-[1.6fr_1fr]">
+      <!-- Narrative -->
+      <div>
+        <Eyebrow>About me</Eyebrow>
+        <h1 class="mt-3 t-display-lg">From US tax to cross-border — learning in the open.</h1>
+
+        <div class="prose mt-8">
+          <p>
+            I’m {fullName}, a corporate-finance master’s student in Paris with about two years of
+            US tax experience behind me. Early on I worked on R&amp;D tax credits under IRC §41 —
+            the four-part test, qualified research expenses, and the IRS compliance that backs it up.
+          </p>
+          <p>
+            I’m now redirecting that foundation toward <strong>international and Luxembourg tax</strong>:
+            transfer pricing, OECD Pillar Two, and the taxation of funds and holding structures. I
+            learn best by writing things down and teaching them — so this site is where I do that in
+            public.
+          </p>
+          <p>
+            My goal is simple: a tax role in Luxembourg, and a body of work that shows how I think
+            along the way.
+          </p>
+        </div>
+
+        <!-- Experience -->
+        <h2 class="mt-12 t-heading-lg">Experience</h2>
+        <div class="mt-6 space-y-4">
+          {
+            experience.map((e) => (
+              <div class="rounded-lg border border-hairline bg-canvas p-6">
+                <div class="flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 class="text-base font-semibold text-ink">{e.role}</h3>
+                  <span class="t-caption">{e.period}</span>
+                </div>
+                <p class="mt-0.5 text-sm text-primary">{e.org}</p>
+                <ul class="mt-3 space-y-2">
+                  {e.points.map((p) => (
+                    <li class="flex gap-2.5 text-sm leading-relaxed text-mute">
+                      <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-stone" />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Skills -->
+        <h2 class="mt-12 t-heading-lg">What I work with</h2>
+        <ul class="mt-5 flex flex-wrap gap-2">
+          {skills.map((s) => <li><Tag variant="default">{s}</Tag></li>)}
+        </ul>
+      </div>
+
+      <!-- At-a-glance sidebar -->
+      <aside class="lg:sticky lg:top-24 lg:self-start">
+        <div class="rounded-lg border border-hairline bg-surface-soft p-6">
+          <h2 class="text-xs font-semibold uppercase tracking-wider text-stone">At a glance</h2>
+          <dl class="mt-4 space-y-4 text-sm">
+            <div>
+              <dt class="t-caption">Location</dt>
+              <dd class="text-ink">{SITE.location}</dd>
+            </div>
+            <div>
+              <dt class="t-caption">Focus</dt>
+              <dd class="text-ink">Corporate tax · Transfer pricing · Fund tax</dd>
+            </div>
+            <div>
+              <dt class="t-caption">Goal</dt>
+              <dd class="text-ink">A tax role in Luxembourg</dd>
+            </div>
+            <div>
+              <dt class="t-caption mb-1.5">Languages</dt>
+              <dd class="space-y-1">
+                {
+                  languages.map((l) => (
+                    <div class="flex justify-between gap-3 text-ink">
+                      <span>{l.lang}</span>
+                      <span class="text-mute">{l.level}</span>
+                    </div>
+                  ))
+                }
+              </dd>
+            </div>
+          </dl>
+          <div class="mt-6 flex flex-col gap-2">
+            <Button href={SITE.cvPath} variant="dark" class="w-full" download>Download CV</Button>
+            <Button href={SITE.linkedin} variant="outline" class="w-full" rel="noopener noreferrer" target="_blank">LinkedIn</Button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </Container>
+</BaseLayout>

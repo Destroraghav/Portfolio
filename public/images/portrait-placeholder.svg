@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Portrait placeholder">
+  <rect width="800" height="1000" fill="#f4f4f4"/>
+  <!-- simple silhouette -->
+  <circle cx="400" cy="400" r="150" fill="#e2e2e7"/>
+  <path d="M180 880 C180 700 270 600 400 600 C530 600 620 700 620 880 Z" fill="#e2e2e7"/>
+  <rect x="0" y="0" width="800" height="1000" fill="none" stroke="#e2e2e7" stroke-width="2"/>
+  <text x="400" y="945" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="500" fill="#8d969e" text-anchor="middle">Your photo here</text>
+  <text x="400" y="980" font-family="Inter, system-ui, sans-serif" font-size="18" fill="#c9c9cd" text-anchor="middle">drop /public/images/jairaghav.jpg</text>
+</svg>

@@ -1,0 +1,34 @@
+---
+/**
+ * TL;DR summary block — high-value for AI Overviews (Gemini/Perplexity/ChatGPT
+ * pull early summary blocks). Rendered as a clean bordered callout.
+ */
+interface Props {
+  headline?: string;
+  points: string[];
+}
+const { headline = 'TL;DR', points } = Astro.props;
+---
+
+<aside class="not-prose my-8 rounded-lg border border-hairline bg-surface-soft p-6 sm:p-8">
+  <p class="t-eyebrow text-primary">{headline}</p>
+  <ul class="mt-4 space-y-3">
+    {
+      points.map((point) => (
+        <li class="flex gap-3 text-[0.975rem] leading-relaxed text-body">
+          <svg
+            class="mt-1 h-4 w-4 shrink-0 text-primary"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true"
+          >
+            <path d="M4 10.5l4 4 8-9" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span set:html={point} />
+        </li>
+      ))
+    }
+  </ul>
+</aside>

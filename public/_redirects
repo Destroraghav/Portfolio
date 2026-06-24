@@ -1,0 +1,7 @@
+# Cloudflare Pages / Netlify redirects.
+# Preserve inbound links to the two legacy WordPress posts once the domain
+# points here. The old /archive/* section was removed in the redesign, so
+# these now land on the Blog index. Add more lines as further slugs migrate.
+
+/profit-meets-purpose-can-ethical-investing-be-financially-profitable-in-india/   /blog        301
+/tatas-acquisition-of-iveco-a-simple-breakdown-of-the-deal/                       /blog        301

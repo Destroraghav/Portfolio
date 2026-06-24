@@ -1,0 +1,104 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Container from '../../../components/Container.astro';
+
+export const getStaticPaths = (async () => {
+  const courses = await getCollection('courses');
+  const lessons = await getCollection('lessons');
+  return courses.flatMap((course) => {
+    const courseLessons = lessons
+      .filter((l) => l.data.course === course.id && (import.meta.env.PROD ? !l.data.draft : true))
+      .sort((a, b) => a.data.order - b.data.order);
+    return courseLessons.map((lesson, i) => ({
+      params: { course: course.id, lesson: lesson.id },
+      props: {
+        course,
+        lesson,
+        courseLessons,
+        index: i,
+        prev: courseLessons[i - 1] ?? null,
+        next: courseLessons[i + 1] ?? null,
+      },
+    }));
+  });
+}) satisfies GetStaticPaths;
+
+const { course, lesson, courseLessons, index, prev, next } = Astro.props;
+const { Content } = await render(lesson);
+---
+
+<BaseLayout title={`${lesson.data.title} — ${course.data.title}`} description={lesson.data.description} article>
+  <Container class="py-12 sm:py-16">
+    <a href={`/study/${course.id}`} class="inline-flex items-center gap-1.5 text-sm text-mute hover:text-ink">
+      <span aria-hidden="true">←</span> {course.data.title}
+    </a>
+
+    <div class="mt-6 grid gap-12 lg:grid-cols-[1fr_2.2fr] lg:items-start">
+      <!-- Contents sidebar -->
+      <aside class="lg:sticky lg:top-24 lg:order-last lg:self-start">
+        <div class="rounded-lg border border-hairline bg-surface-soft p-6">
+          <h2 class="text-xs font-semibold uppercase tracking-wider text-stone">{course.data.title}</h2>
+          <ol class="mt-4 space-y-1">
+            {
+              courseLessons.map((l, i) => {
+                const current = l.id === lesson.id;
+                return (
+                  <li>
+                    <a
+                      href={`/study/${course.id}/${l.id}`}
+                      aria-current={current ? 'page' : undefined}
+                      class:list={[
+                        'flex gap-3 rounded-md px-3 py-2 transition-colors',
+                        current ? 'bg-canvas font-medium text-ink' : 'text-mute hover:bg-canvas hover:text-ink',
+                      ]}
+                    >
+                      <span class="t-caption tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                      <span class="text-sm">{l.data.title}</span>
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ol>
+        </div>
+      </aside>
+
+      <!-- Lesson body -->
+      <article class="min-w-0">
+        <p class="t-eyebrow text-stone">Chapter {index + 1}</p>
+        <h1 class="mt-2 t-display-md text-balance">{lesson.data.title}</h1>
+        <p class="mt-4 t-body-lg">{lesson.data.description}</p>
+
+        <hr class="mt-8 border-hairline" />
+
+        <div class="prose mt-8">
+          <Content />
+        </div>
+
+        <!-- Prev / next -->
+        <nav class="mt-14 grid gap-3 border-t border-hairline pt-8 sm:grid-cols-2" aria-label="Chapter navigation">
+          {
+            prev ? (
+              <a href={`/study/${course.id}/${prev.id}`} class="rounded-lg border border-hairline p-4 transition-colors hover:bg-surface-soft">
+                <span class="t-caption">← Previous</span>
+                <span class="mt-1 block text-sm font-medium text-ink">{prev.data.title}</span>
+              </a>
+            ) : (
+              <span />
+            )
+          }
+          {
+            next && (
+              <a href={`/study/${course.id}/${next.id}`} class="rounded-lg border border-hairline p-4 text-right transition-colors hover:bg-surface-soft sm:col-start-2">
+                <span class="t-caption">Next →</span>
+                <span class="mt-1 block text-sm font-medium text-ink">{next.data.title}</span>
+              </a>
+            )
+          }
+        </nav>
+      </article>
+    </div>
+  </Container>
+</BaseLayout>

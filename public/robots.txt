@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO(deploy): update host to the final domain.
+Sitemap: https://analysewithjai.com/sitemap-index.xml

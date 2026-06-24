@@ -1,0 +1,55 @@
+---
+/**
+ * Button / CTA — Revolut pills (rounded-full), 48px tall, Inter 600 +0.24px.
+ * On a light page the PRIMARY action is `dark` (black pill on white).
+ * `white` is for the black bands. Cobalt `primary` stays scarce.
+ */
+interface Props {
+  href?: string;
+  variant?: 'dark' | 'white' | 'soft' | 'outline' | 'outline-dark' | 'primary';
+  size?: 'md' | 'lg';
+  class?: string;
+  type?: 'button' | 'submit';
+  download?: boolean | string;
+  [key: string]: unknown;
+}
+
+const {
+  href,
+  variant = 'dark',
+  size = 'md',
+  class: className = '',
+  type = 'button',
+  download,
+  ...rest
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 rounded-full font-semibold leading-none tracking-[0.01em] transition-colors duration-150 select-none whitespace-nowrap';
+
+const sizes: Record<string, string> = {
+  md: 'text-[0.95rem] px-6 py-3 min-h-[48px]',
+  lg: 'text-base px-7 py-3.5 min-h-[52px]',
+};
+
+const variants: Record<string, string> = {
+  dark: 'bg-canvas-dark text-on-dark hover:bg-[#1f2226]',
+  white: 'bg-canvas text-ink hover:bg-faint',
+  soft: 'bg-surface-soft text-ink hover:bg-hairline',
+  outline: 'bg-transparent text-ink border border-hairline-strong hover:bg-surface-soft',
+  'outline-dark': 'bg-transparent text-on-dark border border-on-dark hover:bg-white/10',
+  primary: 'bg-primary text-on-primary hover:bg-primary-bright',
+};
+
+const cls = [base, sizes[size], variants[variant], className].join(' ');
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  class={cls}
+  {...href ? { href } : { type }}
+  {...download !== undefined ? { download } : {}}
+  {...rest}
+>
+  <slot />
+</Tag>

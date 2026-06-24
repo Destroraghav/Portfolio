@@ -1,0 +1,13 @@
+---
+/** Max-width content container (~1280px) with responsive gutters. */
+interface Props {
+  class?: string;
+  as?: string;
+}
+const { class: className = '', as = 'div' } = Astro.props;
+const Tag = as as any;
+---
+
+<Tag class={`mx-auto w-full max-w-[1200px] px-5 sm:px-8 ${className}`}>
+  <slot />
+</Tag>

@@ -1,0 +1,9 @@
+---
+/** Section eyebrow — positive-tracked lavender taxonomy label. */
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<p class={`t-eyebrow ${className}`}><slot /></p>

@@ -3,21 +3,21 @@
 // ---------------------------------------------------------------------------
 
 export const SITE = {
-  /** First name — the brand. */
+  /** First name - the brand. */
   firstName: 'Jairaghav',
-  /** Surname — used in the wordmark + <title>. */
+  /** Surname - used in the wordmark + <title>. */
   lastName: 'Thummala',
   /** Short brand mark shown in the nav. */
   wordmark: 'Jairaghav',
   /** One-line positioning, used in meta + footer. */
   tagline: 'Learning and working in cross-border & Luxembourg tax.',
-  /** TODO(deploy): final domain. Keep in sync with `site` in astro.config.mjs. */
-  url: 'https://analysewithjai.com',
+  /** Live site URL. Keep in sync with `site` in astro.config.mjs. */
+  url: 'https://jairaghav.netlify.app',
   description:
-    "I'm Jairaghav — an early-career tax person working toward Luxembourg tax. I share tax fundamentals, real projects, and chapter-by-chapter study material.",
+    "I'm Jairaghav - an early-career tax person working toward Luxembourg tax. I share tax fundamentals, real projects, and chapter-by-chapter study material.",
   /** Public contact email. */
   email: 'jairaghavthummala@gmail.com',
-  linkedin: 'https://www.linkedin.com/', // TODO: real profile URL
+  linkedin: 'https://www.linkedin.com/in/jairaghavthummala/',
   /** Path to the downloadable CV (drop the PDF in /public/cv/). */
   cvPath: '/cv/Jairaghav-CV.pdf',
   /** Hero portrait (professional B&W headshot). */
@@ -27,7 +27,7 @@ export const SITE = {
 
 export const fullName = `${SITE.firstName}${SITE.lastName ? ' ' + SITE.lastName : ''}`;
 
-/** Primary navigation — the three content pillars + about/contact. */
+/** Primary navigation - the three content pillars + about/contact. */
 export const NAV_LINKS: { label: string; href: string }[] = [
   { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },

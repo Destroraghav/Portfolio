@@ -12,14 +12,14 @@ const posts = (await getCollection('blog'))
 
 <BaseLayout
   title="Blog"
-  description="Plain-English notes on tax fundamentals — the concepts I'm learning, explained simply."
+  description="Plain-English notes on tax fundamentals - the concepts I'm learning, explained simply."
 >
   <Container class="py-16 sm:py-20">
     <div class="max-w-2xl">
       <Eyebrow>Blog</Eyebrow>
       <h1 class="mt-3 t-display-lg">Tax, from the ground up.</h1>
       <p class="mt-5 t-body-lg">
-        Plain-English notes on the fundamentals — the concepts I’m learning, written down and
+        Plain-English notes on the fundamentals - the concepts I’m learning, written down and
         explained as simply as I can.
       </p>
     </div>
@@ -35,6 +35,8 @@ const posts = (await getCollection('blog'))
               description={p.data.description}
               date={p.data.pubDate}
               tags={p.data.tags}
+              image={p.data.image?.src ?? p.data.heroImage}
+              imageAlt={p.data.image?.alt}
             />
           ))}
         </div>

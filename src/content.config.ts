@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 /**
- * BLOG — tax fundamentals / basic concepts. Published from .docx via /publish.
+ * BLOG - tax fundamentals / basic concepts. Published from .docx via /publish.
  */
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
@@ -55,7 +55,7 @@ const blog = defineCollection({
 });
 
 /**
- * PROJECTS — real work, uploaded over time.
+ * PROJECTS - real work, uploaded over time.
  */
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
@@ -72,7 +72,7 @@ const projects = defineCollection({
 });
 
 /**
- * COURSES — Study Material. A course groups ordered lessons (see `lessons`).
+ * COURSES - Study Material. A course groups ordered lessons (see `lessons`).
  * e.g. exam: 'Enrolled Agent'. Listed by `order`.
  */
 const courses = defineCollection({
@@ -89,7 +89,7 @@ const courses = defineCollection({
 });
 
 /**
- * LESSONS — chapters within a course. `course` is the course entry id (slug);
+ * LESSONS - chapters within a course. `course` is the course entry id (slug);
  * `order` sets chapter position (drives the contents list + prev/next nav).
  */
 const lessons = defineCollection({

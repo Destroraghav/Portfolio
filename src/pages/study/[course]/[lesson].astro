@@ -29,7 +29,7 @@ const { course, lesson, courseLessons, index, prev, next } = Astro.props;
 const { Content } = await render(lesson);
 ---
 
-<BaseLayout title={`${lesson.data.title} — ${course.data.title}`} description={lesson.data.description} article>
+<BaseLayout title={`${lesson.data.title} - ${course.data.title}`} description={lesson.data.description} article>
   <Container class="py-12 sm:py-16">
     <a href={`/study/${course.id}`} class="inline-flex items-center gap-1.5 text-sm text-mute hover:text-ink">
       <span aria-hidden="true">←</span> {course.data.title}

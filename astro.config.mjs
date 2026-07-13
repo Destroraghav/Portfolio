@@ -7,9 +7,8 @@ import remarkHeadingId from 'remark-heading-id';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO(deploy): change to the final domain (e.g. https://jairaghav.com).
-  // Kept in sync with SITE.url in src/consts.ts.
-  site: 'https://analysewithjai.com',
+  // Live site URL. Kept in sync with SITE.url in src/consts.ts.
+  site: 'https://jairaghav.netlify.app',
   // Supports `## Heading {#custom-id}` anchors used by in-post Tables of Contents.
   // MDX inherits this markdown config (extendMarkdownConfig defaults true).
   markdown: {

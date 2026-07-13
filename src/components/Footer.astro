@@ -12,6 +12,7 @@ const columns = [
       { label: 'LinkedIn', href: SITE.linkedin },
       { label: 'Email', href: `mailto:${SITE.email}` },
       { label: 'Download CV', href: SITE.cvPath },
+      { label: 'RSS feed', href: '/rss.xml' },
     ],
   },
 ];
@@ -22,7 +23,7 @@ const columns = [
     <div class="grid gap-12 md:grid-cols-[1.6fr_repeat(2,1fr)]">
       <!-- Brand block -->
       <div>
-        <a href="/" class="flex items-center gap-2.5" aria-label={`${fullName} — home`}>
+        <a href="/" class="flex items-center gap-2.5" aria-label={`${fullName} - home`}>
           <span
             class="grid h-7 w-7 place-items-center rounded-md bg-primary text-on-primary text-sm font-semibold leading-none"
             aria-hidden="true">J</span

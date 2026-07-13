@@ -1,5 +1,5 @@
 ---
-/** Small pill tag/badge — Revolut style (rounded-full). Light by default. */
+/** Small pill tag/badge - Revolut style (rounded-full). Light by default. */
 interface Props {
   variant?: 'default' | 'feature' | 'success' | 'outline' | 'on-dark';
   class?: string;
@@ -8,7 +8,7 @@ const { variant = 'default', class: className = '' } = Astro.props;
 
 const variants: Record<string, string> = {
   default: 'bg-surface-soft text-charcoal',
-  feature: 'bg-primary text-on-primary', // cobalt — scarce, for "featured"/"new"
+  feature: 'bg-primary text-on-primary', // cobalt - scarce, for "featured"/"new"
   success: 'bg-[color:var(--color-accent-green)]/12 text-[color:var(--color-accent-green)]',
   outline: 'bg-transparent text-mute border border-hairline',
   'on-dark': 'bg-white/10 text-on-dark-mute',

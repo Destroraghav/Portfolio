@@ -24,3 +24,6 @@ pnpm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# Nested empty GitHub clone (from an earlier publish attempt)
+Jairaghav/

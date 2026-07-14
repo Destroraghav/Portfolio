@@ -23,6 +23,8 @@ export const SITE = {
   /** Hero portrait (professional B&W headshot). */
   photo: '/images/jairaghav.jpg',
   location: 'Paris, France',
+  /** Google Search Console verification token. */
+  googleVerification: 'SeAIV09VEIZMqguOha1KAew5H4HYycRZULKV0FTbuvs',
 } as const;
 
 export const fullName = `${SITE.firstName}${SITE.lastName ? ' ' + SITE.lastName : ''}`;

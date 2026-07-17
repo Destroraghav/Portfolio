@@ -1,0 +1,73 @@
+---
+title: "Functional Analysis: Finding Out Who Actually Deserves the Profit"
+description: "FAR, mapping each entity's functions, assets, and risks, and how it decides who earns the margin, from a limited-risk distributor to a full-fledged one."
+course: "transfer-pricing"
+module: "1-introduction"
+slug: "functional-analysis"
+order: 4
+readTimeMinutes: 6
+draft: false
+tldr: >-
+  Functional analysis, often shortened to FAR, is the process of mapping out what each
+  entity in a controlled transaction actually does (functions), what it owns (assets),
+  and what it risks (risks). The entity that performs the most complex functions, owns
+  the most valuable assets, and carries the most real risk is the one that should end up
+  with the largest share of the profit. Get the FAR analysis right, and the correct
+  transfer pricing method almost picks itself.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+
+## Why you need this before you can price anything
+
+You can't apply the arm's length principle from the last lesson without first knowing what you're actually comparing. Two distributors can look identical on an org chart, "sells product X in country Y," and still deserve completely different profit margins, because one of them just receives boxes and ships them out, while the other runs local marketing campaigns, carries unsold inventory risk, and builds the customer relationships that make the sales happen in the first place.
+
+Functional analysis is how you tell those two apart. It's built around three questions, the FAR framework:
+
+**Functions**, what does the entity actually do day to day? R&D, product design, manufacturing, marketing, sales, logistics, customer support. Some functions are routine, like warehousing or basic assembly, following a process someone else designed. Others are strategic, sometimes called KERT functions (key entrepreneurial risk-taking), like deciding what products to develop, setting global pricing strategy, or choosing which markets to enter. Strategic functions are worth more, because they involve real decision-making, not just execution.
+
+**Assets**, what does the entity own and use to generate income? This covers physical assets like factories and equipment, but increasingly matters more for intangible assets, patents, trademarks, proprietary know-how, customer relationships. Ownership on paper matters less than which entity actually developed, funded, and controls the asset in practice.
+
+**Risks**, what can go wrong, and who actually bears the financial consequence if it does? Market risk (demand drops), inventory risk (unsold stock loses value), credit risk (a customer doesn't pay), foreign exchange risk, product liability. The OECD's test for who "bears" a risk isn't just who's named in a contract. It's who has the operational control to make decisions about that risk, and the financial capacity to actually absorb the loss if it materializes. A subsidiary that's contractually "responsible" for inventory risk but whose parent quietly reimburses every write-off isn't really bearing that risk at all.
+
+The general rule that ties all three together: **more functions, more valuable assets, and more risk should mean a higher, and often more volatile, profit margin.** Less complexity, less risk, should mean a lower but more stable margin.
+
+## The two ends of the spectrum
+
+Distribution entities are a useful place to see this play out, because they show up in almost every multinational group. At one end sits the **limited risk distributor (LRD)**: it buys finished goods from a related manufacturer and resells them, but headquarters sets the prices, guarantees to buy back any unsold stock, and covers bad debts if customers don't pay. The LRD executes; it doesn't decide. It should earn a modest, stable margin, because it's barely exposed to anything going wrong.
+
+At the other end sits the **full-fledged distributor (FFD)**: it negotiates its own purchase terms, sets its own local prices, funds its own marketing, carries its own inventory risk, and eats the loss if a big customer doesn't pay. It's making real business decisions and absorbing real consequences, so it should be entitled to a higher margin, one that can also swing lower in a bad year, because that volatility is the flip side of real risk.
+
+Most real distributors sit somewhere between the two, which is exactly why this analysis has to be done carefully rather than assumed from a job title. A country manager with the word "Director" in their title but who needs headquarters sign-off for any expense over a few hundred euros is functionally closer to an LRD than their title suggests.
+
+## Worked example: is Meridian France an LRD or an FFD?
+
+Meridian France, the sales subsidiary from Lesson 1.1, buys finished headphones from Meridian's Polish factory and resells them to electronics retailers across France. Here's what the FAR analysis turns up:
+
+- **Functions:** Meridian France runs its own regional marketing campaigns and negotiates listing terms directly with major French retailers. Product design and manufacturing decisions are made entirely by the German parent and the Polish factory.
+- **Assets:** Meridian France owns its own warehouse and holds inventory on its balance sheet. It doesn't own any patents or the Meridian brand itself, that sits with the German parent.
+- **Risks:** Meridian France carries its own inventory risk (no buy-back guarantee from the parent) and its own credit risk on unpaid retailer invoices. It doesn't set global pricing strategy or make R&D decisions.
+
+Putting it together: Meridian France sits closer to the full-fledged end of the spectrum. It's not a routine order-taker, it manages real functions (local marketing, retailer negotiation), owns and finances its own inventory, and carries real financial risk if a retailer doesn't pay or products don't sell. It should be entitled to a meaningfully higher, and more variable, margin than a bare-bones LRD would get, though still less than the German parent, which owns the brand and drives the group's overall strategy.
+
+## Try it yourself
+
+A distributor, RetailCo, is registered as an independent limited company. On paper, it takes on inventory risk and sets its own resale prices. In practice: the parent company dictates the maximum resale price every quarter, and any unsold stock older than 90 days is automatically bought back by the parent at full cost. RetailCo's staff have no authority to negotiate purchase terms and simply relay headquarters' instructions to customers.
+
+1. Based on functions, assets, and risks, is RetailCo really operating as an LRD or an FFD, regardless of what its contract says?
+2. What's the one-sentence reason?
+
+<CollapsibleAnswer>
+1. LRD, despite the contract language. 2. It has no real pricing autonomy, no genuine inventory risk (the buy-back guarantee removes it), and no negotiating function, its contractual "risk" doesn't match what actually happens operationally.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Functional analysis (FAR):** the process of identifying the functions performed, assets used, and risks assumed by each party to a controlled transaction.
+- **KERT functions (key entrepreneurial risk-taking):** strategic decision-making functions, like R&D direction or global pricing strategy, that typically justify a higher profit share.
+- **Limited risk distributor (LRD):** a distribution entity with minimal functions, assets, and risk, typically earning a modest, stable margin.
+- **Full-fledged distributor (FFD):** a distribution entity that performs complex functions and carries substantial risk, typically earning a higher, more variable margin.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines for Multinational Enterprises and Tax Administrations, Chapter I, Section D (Guidance for Applying the Arm's Length Principle)

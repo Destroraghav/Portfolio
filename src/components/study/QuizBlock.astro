@@ -1,0 +1,112 @@
+---
+/**
+ * Interactive knowledge-check. Renders a multiple-choice quiz; on "Check answers"
+ * it reveals correct/incorrect, shows explanations, and a score. No backend.
+ * The hoisted <script> is bundled by Astro (served from 'self', CSP-safe).
+ */
+export interface QuizItem {
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation?: string;
+}
+interface Props {
+  quiz: QuizItem[];
+  title?: string;
+}
+const { quiz, title = 'Knowledge check' } = Astro.props;
+---
+
+<section class="quizblock not-prose my-4">
+  <h2 class="t-heading-lg">{title}</h2>
+  <p class="mt-2 text-sm text-mute">
+    Pick an answer for each question, then check yourself. {quiz.length} questions.
+  </p>
+
+  <div class="mt-6 space-y-6">
+    {
+      quiz.map((q, qi) => (
+        <fieldset data-question data-correct={q.correctIndex} class="rounded-lg border border-hairline bg-canvas p-5 sm:p-6">
+          <legend class="float-none mb-3 flex gap-2 text-[0.975rem] font-semibold text-ink">
+            <span class="text-primary tabular-nums">{qi + 1}.</span>
+            <span>{q.question}</span>
+          </legend>
+          <div class="space-y-2">
+            {q.options.map((opt, oi) => (
+              <label
+                data-opt
+                data-idx={oi}
+                class="flex cursor-pointer items-start gap-3 rounded-md border border-hairline px-4 py-3 text-[0.95rem] text-body transition-colors hover:bg-surface-soft"
+              >
+                <input
+                  type="radio"
+                  name={`q-${qi}`}
+                  value={oi}
+                  class="mt-0.5 shrink-0"
+                  style="accent-color: var(--color-primary)"
+                />
+                <span>{opt}</span>
+              </label>
+            ))}
+          </div>
+          <p data-feedback class="mt-3 hidden text-sm leading-relaxed text-mute">
+            {q.explanation}
+          </p>
+        </fieldset>
+      ))
+    }
+  </div>
+
+  <div class="mt-6 flex flex-wrap items-center gap-4">
+    <button
+      type="button"
+      data-check
+      class="inline-flex items-center justify-center gap-2 rounded-full bg-canvas-dark px-6 py-3 text-[0.95rem] font-semibold text-on-dark transition-colors hover:bg-[#1f2226]"
+    >
+      Check answers
+    </button>
+    <p data-score class="hidden text-sm font-semibold text-ink"></p>
+  </div>
+</section>
+
+<style>
+  .quizblock [data-opt][data-state='correct'] {
+    border-color: var(--color-success);
+    background: color-mix(in srgb, var(--color-success) 10%, transparent);
+  }
+  .quizblock [data-opt][data-state='wrong'] {
+    border-color: var(--color-accent-pink);
+    background: color-mix(in srgb, var(--color-accent-pink) 10%, transparent);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.quizblock').forEach((block) => {
+    const checkBtn = block.querySelector<HTMLButtonElement>('[data-check]');
+    const scoreEl = block.querySelector<HTMLElement>('[data-score]');
+    const questions = block.querySelectorAll<HTMLElement>('[data-question]');
+
+    checkBtn?.addEventListener('click', () => {
+      let score = 0;
+      questions.forEach((q) => {
+        const correct = Number(q.dataset.correct);
+        const opts = q.querySelectorAll<HTMLElement>('[data-opt]');
+        opts.forEach((opt) => opt.removeAttribute('data-state'));
+
+        const chosen = q.querySelector<HTMLInputElement>('input:checked');
+        opts[correct]?.setAttribute('data-state', 'correct');
+        if (chosen) {
+          const chosenIdx = Number(chosen.value);
+          if (chosenIdx === correct) score++;
+          else opts[chosenIdx]?.setAttribute('data-state', 'wrong');
+        }
+        q.querySelector('[data-feedback]')?.classList.remove('hidden');
+      });
+
+      if (scoreEl) {
+        scoreEl.textContent = `You scored ${score} / ${questions.length}.`;
+        scoreEl.classList.remove('hidden');
+      }
+    });
+  });
+</script>

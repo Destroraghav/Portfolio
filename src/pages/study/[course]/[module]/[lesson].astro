@@ -1,0 +1,154 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Container from '../../../../components/Container.astro';
+import TLDRBox from '../../../../components/study/TLDRBox.astro';
+
+export const getStaticPaths = (async () => {
+  const courses = await getCollection('courses');
+  const modules = await getCollection('modules');
+  const lessons = await getCollection('lessons');
+
+  return lessons
+    .filter((l) => (import.meta.env.PROD ? !l.data.draft : true))
+    .map((lesson) => {
+      const course = courses.find((c) => c.id === lesson.data.course)!;
+      const module = modules.find(
+        (m) => m.data.course === lesson.data.course && m.data.slug === lesson.data.module
+      )!;
+      const siblings = lessons
+        .filter(
+          (l) =>
+            l.data.course === lesson.data.course &&
+            l.data.module === lesson.data.module &&
+            (import.meta.env.PROD ? !l.data.draft : true)
+        )
+        .sort((a, b) => a.data.order - b.data.order);
+      const i = siblings.findIndex((l) => l.id === lesson.id);
+      return {
+        params: { course: lesson.data.course, module: lesson.data.module, lesson: lesson.data.slug },
+        props: {
+          course,
+          module,
+          lesson,
+          siblings,
+          index: i,
+          prev: siblings[i - 1] ?? null,
+          next: siblings[i + 1] ?? null,
+        },
+      };
+    });
+}) satisfies GetStaticPaths;
+
+const { course, module, lesson, siblings, index, prev, next } = Astro.props;
+const d = lesson.data;
+const { Content } = await render(lesson);
+const base = `/study/${course.id}/${module.data.slug}`;
+---
+
+<BaseLayout title={`${d.title} - ${course.data.title}`} description={d.description} article>
+  <Container class="py-12 sm:py-16">
+    <a href={base} class="inline-flex items-center gap-1.5 text-sm text-mute hover:text-ink">
+      <span aria-hidden="true">←</span> Module {module.data.order}: {module.data.title}
+    </a>
+
+    <div class="mt-6 grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
+      <!-- Contents sidebar (narrow, right; drops below the lesson on mobile) -->
+      <aside class="order-last lg:sticky lg:top-24 lg:self-start">
+        <div class="rounded-lg border border-hairline bg-surface-soft p-6">
+          <p class="t-caption">Module {module.data.order}</p>
+          <h2 class="mt-0.5 text-sm font-semibold text-ink">{module.data.title}</h2>
+          <ol class="mt-4 space-y-1">
+            {
+              siblings.map((l, i) => {
+                const current = l.id === lesson.id;
+                return (
+                  <li>
+                    <a
+                      href={`${base}/${l.data.slug}`}
+                      aria-current={current ? 'page' : undefined}
+                      class:list={[
+                        'flex gap-3 rounded-md px-3 py-2 transition-colors',
+                        current
+                          ? 'bg-canvas font-medium text-ink'
+                          : 'text-mute hover:bg-canvas hover:text-ink',
+                      ]}
+                    >
+                      <span class="t-caption tabular-nums">
+                        {module.data.order}.{i + 1}
+                      </span>
+                      <span class="text-sm">{l.data.title}</span>
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ol>
+        </div>
+      </aside>
+
+      <!-- Lesson body -->
+      <article class="min-w-0 max-w-[72ch]">
+        <p class="t-eyebrow text-stone">
+          Lesson {module.data.order}.{index + 1}
+          {d.readTimeMinutes && <span class="text-stone"> · {d.readTimeMinutes} min read</span>}
+        </p>
+        <h1 class="mt-2 t-display-md text-balance">{d.title}</h1>
+
+        <div class="mt-8">
+          <TLDRBox text={d.tldr} />
+        </div>
+
+        <div class="prose mt-8">
+          <Content />
+        </div>
+
+        <!-- Prev / next -->
+        <nav
+          class="mt-14 grid gap-3 border-t border-hairline pt-8 sm:grid-cols-2"
+          aria-label="Lesson navigation"
+        >
+          {
+            prev ? (
+              <a
+                href={`${base}/${prev.data.slug}`}
+                class="rounded-lg border border-hairline p-4 transition-colors hover:bg-surface-soft"
+              >
+                <span class="t-caption">← Previous</span>
+                <span class="mt-1 block text-sm font-medium text-ink">{prev.data.title}</span>
+              </a>
+            ) : (
+              <a
+                href={base}
+                class="rounded-lg border border-hairline p-4 transition-colors hover:bg-surface-soft"
+              >
+                <span class="t-caption">← Back</span>
+                <span class="mt-1 block text-sm font-medium text-ink">Module overview</span>
+              </a>
+            )
+          }
+          {
+            next ? (
+              <a
+                href={`${base}/${next.data.slug}`}
+                class="rounded-lg border border-hairline p-4 text-right transition-colors hover:bg-surface-soft sm:col-start-2"
+              >
+                <span class="t-caption">Next →</span>
+                <span class="mt-1 block text-sm font-medium text-ink">{next.data.title}</span>
+              </a>
+            ) : (
+              <a
+                href={base}
+                class="rounded-lg border border-hairline p-4 text-right transition-colors hover:bg-surface-soft sm:col-start-2"
+              >
+                <span class="t-caption">Finish →</span>
+                <span class="mt-1 block text-sm font-medium text-ink">Module quiz</span>
+              </a>
+            )
+          }
+        </nav>
+      </article>
+    </div>
+  </Container>
+</BaseLayout>

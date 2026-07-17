@@ -1,0 +1,14 @@
+---
+/** Lesson TL;DR callout - cobalt-accented, scannable, sits above the lesson body. */
+interface Props {
+  text?: string;
+}
+const { text } = Astro.props;
+---
+
+<aside class="not-prose rounded-lg border border-hairline border-l-4 border-l-primary bg-surface-soft p-5 sm:p-6">
+  <p class="t-eyebrow text-primary">TL;DR</p>
+  <p class="mt-2 text-[0.975rem] leading-relaxed text-body">
+    {text}<slot />
+  </p>
+</aside>

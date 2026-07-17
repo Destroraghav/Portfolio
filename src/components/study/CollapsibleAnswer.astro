@@ -1,0 +1,29 @@
+---
+/**
+ * Practice-answer reveal. Styled <details> so the answer stays hidden until the
+ * learner has tried the exercise. Use inside lesson MDX:
+ *   <CollapsibleAnswer>…answer…</CollapsibleAnswer>
+ */
+interface Props {
+  label?: string;
+}
+const { label = 'Show answer' } = Astro.props;
+---
+
+<details class="not-prose group my-6 rounded-lg border border-hairline bg-canvas">
+  <summary
+    class="flex cursor-pointer items-center justify-between gap-3 rounded-lg px-5 py-3.5 text-sm font-semibold text-ink marker:content-['']"
+  >
+    <span class="inline-flex items-center gap-2">
+      <span
+        class="grid h-5 w-5 place-items-center rounded-full bg-primary/12 text-[0.7rem] font-bold text-primary"
+        aria-hidden="true">?</span
+      >
+      {label}
+    </span>
+    <span class="text-mute transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+  </summary>
+  <div class="border-t border-hairline px-5 py-4 text-[0.95rem] leading-relaxed text-mute">
+    <slot />
+  </div>
+</details>

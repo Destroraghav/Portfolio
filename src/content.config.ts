@@ -82,6 +82,7 @@ const courses = defineCollection({
       title: z.string(),
       description: z.string(),
       exam: z.string().optional(), // e.g. "Enrolled Agent", "Corporate Finance"
+      hook: z.string().optional(), // one-line teaser for the course landing hero
       order: z.number().default(99),
       draft: z.boolean().default(false),
       heroImage: z.string().optional(),
@@ -89,8 +90,26 @@ const courses = defineCollection({
 });
 
 /**
- * LESSONS - chapters within a course. `course` is the course entry id (slug);
- * `order` sets chapter position (drives the contents list + prev/next nav).
+ * MODULES - a course is split into ordered modules; each module groups lessons.
+ * `course` = course id · `slug` = URL segment · `status` gates published vs coming-soon.
+ */
+const modules = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/modules' }),
+  schema: () =>
+    z.object({
+      course: z.string(),
+      slug: z.string(),
+      order: z.number(),
+      title: z.string(),
+      summary: z.string(),
+      status: z.enum(['published', 'coming-soon']).default('coming-soon'),
+      draft: z.boolean().default(false),
+    }),
+});
+
+/**
+ * LESSONS - a lesson belongs to a `module` (by slug) within a `course`. `slug` is
+ * the URL segment; `order` sets position within the module (contents list + prev/next).
  */
 const lessons = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/lessons' }),
@@ -99,9 +118,13 @@ const lessons = defineCollection({
       title: z.string(),
       description: z.string(),
       course: z.string(), // matches a courses entry id
+      module: z.string(), // parent module slug
+      slug: z.string(), // URL segment within the module
       order: z.number(),
+      tldr: z.string(),
+      readTimeMinutes: z.number().optional(),
       draft: z.boolean().default(false),
     }),
 });
 
-export const collections = { blog, projects, courses, lessons };
+export const collections = { blog, projects, courses, modules, lessons };

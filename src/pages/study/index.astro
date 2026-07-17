@@ -9,9 +9,9 @@ const courses = (await getCollection('courses'))
   .filter((e) => (import.meta.env.PROD ? !e.data.draft : true))
   .sort((a, b) => a.data.order - b.data.order);
 
-const allLessons = await getCollection('lessons');
-const lessonCount = (courseId: string) =>
-  allLessons.filter((l) => l.data.course === courseId && (import.meta.env.PROD ? !l.data.draft : true)).length;
+const allModules = await getCollection('modules');
+const moduleCount = (courseId: string) =>
+  allModules.filter((m) => m.data.course === courseId && (import.meta.env.PROD ? !m.data.draft : true)).length;
 ---
 
 <BaseLayout
@@ -38,7 +38,7 @@ const lessonCount = (courseId: string) =>
             >
               <div class="flex items-center gap-2.5">
                 {c.data.exam && <Tag variant="feature">{c.data.exam}</Tag>}
-                <span class="t-caption">{lessonCount(c.id)} chapters</span>
+                <span class="t-caption">{moduleCount(c.id)} modules</span>
               </div>
               <h2 class="mt-3 t-heading-md group-hover:text-primary">{c.data.title}</h2>
               <p class="mt-2 flex-1 text-[0.95rem] leading-relaxed text-mute">{c.data.description}</p>

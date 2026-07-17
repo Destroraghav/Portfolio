@@ -1,0 +1,110 @@
+---
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Container from '../../../../components/Container.astro';
+import Eyebrow from '../../../../components/Eyebrow.astro';
+import QuizBlock from '../../../../components/study/QuizBlock.astro';
+import { quizzes } from '../../../../data/quizzes';
+
+export const getStaticPaths = (async () => {
+  const courses = await getCollection('courses');
+  const modules = await getCollection('modules');
+  const lessons = await getCollection('lessons');
+  return modules
+    .filter((m) => m.data.status === 'published' && (import.meta.env.PROD ? !m.data.draft : true))
+    .map((module) => {
+      const course = courses.find((c) => c.id === module.data.course)!;
+      const moduleLessons = lessons
+        .filter(
+          (l) =>
+            l.data.course === module.data.course &&
+            l.data.module === module.data.slug &&
+            (import.meta.env.PROD ? !l.data.draft : true)
+        )
+        .sort((a, b) => a.data.order - b.data.order);
+      return {
+        params: { course: module.data.course, module: module.data.slug },
+        props: { course, module, moduleLessons },
+      };
+    });
+}) satisfies GetStaticPaths;
+
+const { course, module, moduleLessons } = Astro.props;
+const d = module.data;
+const { Content } = await render(module);
+const quiz = quizzes[`${module.data.course}/${module.data.slug}`] ?? [];
+const first = moduleLessons[0];
+---
+
+<BaseLayout title={`${d.title} - ${course.data.title}`} description={d.summary}>
+  <Container class="py-14 sm:py-20">
+    <a
+      href={`/study/${course.id}`}
+      class="inline-flex items-center gap-1.5 text-sm text-mute hover:text-ink"
+    >
+      <span aria-hidden="true">←</span> {course.data.title}
+    </a>
+
+    <div class="mt-6 max-w-3xl">
+      <Eyebrow>Module {d.order}</Eyebrow>
+      <h1 class="mt-3 t-display-md">{d.title}</h1>
+      <p class="mt-4 t-body-lg">{d.summary}</p>
+    </div>
+
+    <div class="prose mt-8 max-w-3xl">
+      <Content />
+    </div>
+
+    <!-- Lessons -->
+    <h2 class="mt-12 t-heading-lg">Lessons</h2>
+    <ol class="mt-6 max-w-3xl divide-y divide-hairline overflow-hidden rounded-lg border border-hairline">
+      {
+        moduleLessons.map((l, i) => (
+          <li>
+            <a
+              href={`/study/${course.id}/${d.slug}/${l.data.slug}`}
+              class="group flex items-center gap-4 bg-canvas px-5 py-4 transition-colors hover:bg-surface-soft"
+            >
+              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-surface-soft text-sm font-semibold tabular-nums text-charcoal">
+                {d.order}.{i + 1}
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="block text-[0.975rem] font-medium text-ink group-hover:text-primary">
+                  {l.data.title}
+                </span>
+                <span class="mt-0.5 block truncate text-sm text-mute">{l.data.description}</span>
+              </span>
+              {l.data.readTimeMinutes && (
+                <span class="hidden shrink-0 t-caption sm:block">{l.data.readTimeMinutes} min</span>
+              )}
+              <span class="shrink-0 text-mute transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+                &rarr;
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+
+    {
+      first && (
+        <div class="mt-6 max-w-3xl">
+          <a
+            href={`/study/${course.id}/${d.slug}/${first.data.slug}`}
+            class="inline-flex items-center justify-center gap-2 rounded-full bg-canvas-dark px-6 py-3 text-[0.95rem] font-semibold text-on-dark transition-colors hover:bg-[#1f2226]"
+          >
+            Start lesson {d.order}.1 &rarr;
+          </a>
+        </div>
+      )
+    }
+
+    <!-- Quiz -->
+    {quiz.length > 0 && (
+      <div class="mt-16 max-w-3xl border-t border-hairline pt-12">
+        <QuizBlock quiz={quiz} />
+      </div>
+    )}
+  </Container>
+</BaseLayout>

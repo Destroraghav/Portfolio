@@ -1,0 +1,69 @@
+---
+title: "Intra-group Services and the Benefit Test"
+description: "A group can charge a subsidiary for a genuine service only if it delivers real economic benefit the subsidiary would otherwise pay for. Shareholder and duplicative costs can't be charged out at all."
+course: "transfer-pricing"
+module: "7-financing-services"
+slug: "intra-group-services"
+order: 3
+readTimeMinutes: 6
+draft: false
+tldr: >-
+  A group can charge a subsidiary for a genuine service, but only if that service actually
+  provides the subsidiary an economic or commercial benefit it would otherwise pay an outside
+  provider for, or perform itself. Costs tied to being a shareholder, rather than to serving
+  the subsidiary, generally can't be charged out at all.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+
+## The benefit test
+
+Before any intra-group service fee is charged, the question is simple to ask and often hard to answer honestly: would an independent company, in the subsidiary's position, be willing to pay an outside provider for this, or would it have performed the activity itself anyway? If the answer is no to both, there's no real service being provided, and no charge is justified, regardless of how the invoice is labelled.
+
+A few categories consistently fail the benefit test:
+
+| Category | Why it fails | Example |
+| --- | --- | --- |
+| Shareholder activities | Incurred because the parent is a shareholder, not to serve the subsidiary | Preparing consolidated group accounts, the parent's own board meetings |
+| Duplicative services | The subsidiary already performs the function competently itself | A second, redundant legal review over an existing local legal team |
+| Incidental / passive association | A passive benefit nobody actively provided | A reputational lift from belonging to a well-known group |
+
+## Low value-adding services
+
+For genuine, routine support services, common examples: payroll processing, basic IT support, standard HR administration, the OECD offers a simplified approach: these can be charged out at cost plus a modest markup (commonly around 5%), without requiring an extensive, case-by-case benchmarking study, as long as the services genuinely qualify as low value-adding (not part of the group's core value-creating business, not requiring unique or valuable intangibles, and not generating a significant risk).
+
+## Worked example
+
+Meridian's German headquarters runs a shared payroll processing centre for the whole group, a routine administrative function with clear, low-risk, replicable characteristics, allocated fairly across the subsidiaries based on employee headcount.
+
+<CalcSteps
+  title="Low value-adding services approach"
+  steps={[
+    { expr: 'Total cost to run the payroll centre', result: '€800,000' },
+    { expr: 'Charge = cost + 5% markup', result: '€840,000', note: 'Allocated proportionally by headcount, no full benchmarking study needed.' },
+  ]}
+/>
+
+Separately, Meridian's German CFO spends time each quarter preparing the consolidated financial statements required for the parent's own public listing. That's a **shareholder activity**, done because Meridian AG itself must comply with its own reporting obligations, not because any subsidiary needs it, and it should not be charged out to the subsidiaries at all.
+
+## Try it yourself
+
+Meridian's Nordic distributor already employs its own small compliance team that independently monitors Norwegian consumer protection law. Group headquarters also runs a global compliance review each year covering every subsidiary, including a section specifically re-reviewing Norwegian consumer law compliance in detail, duplicating work the local team already does, and wants to charge the Nordic distributor a fee for this portion of the review.
+
+1. Does this specific piece of the charge pass the benefit test?
+2. What's the applicable category?
+
+<CollapsibleAnswer>
+1. Likely not, at least for the duplicated portion. 2. Duplicative services, since the Nordic distributor's own team already performs this exact function competently; charging for a second, redundant review of the same local compliance area doesn't provide an incremental benefit an independent company would pay for.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Benefit test:** the requirement that an intra-group service must provide real economic or commercial value to the recipient to justify a charge.
+- **Shareholder activity:** a cost incurred purely because of an entity's role as shareholder or parent, not chargeable to subsidiaries.
+- **Low value-adding services:** routine, low-risk support services eligible for a simplified cost-plus-modest-markup pricing approach.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter VII (Special Considerations for Intra-Group Services)

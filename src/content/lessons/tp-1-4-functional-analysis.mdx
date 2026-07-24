@@ -17,6 +17,8 @@ tldr: >-
 ---
 
 import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import FARBlocks from '@/components/study/FARBlocks.astro'
+import Spectrum from '@/components/study/Spectrum.astro'
 
 ## Why you need this before you can price anything
 
@@ -30,7 +32,7 @@ Functional analysis is how you tell those two apart. It's built around three que
 
 **Risks**, what can go wrong, and who actually bears the financial consequence if it does? Market risk (demand drops), inventory risk (unsold stock loses value), credit risk (a customer doesn't pay), foreign exchange risk, product liability. The OECD's test for who "bears" a risk isn't just who's named in a contract. It's who has the operational control to make decisions about that risk, and the financial capacity to actually absorb the loss if it materializes. A subsidiary that's contractually "responsible" for inventory risk but whose parent quietly reimburses every write-off isn't really bearing that risk at all.
 
-The general rule that ties all three together: **more functions, more valuable assets, and more risk should mean a higher, and often more volatile, profit margin.** Less complexity, less risk, should mean a lower but more stable margin.
+<FARBlocks />
 
 ## The two ends of the spectrum
 
@@ -38,17 +40,35 @@ Distribution entities are a useful place to see this play out, because they show
 
 At the other end sits the **full-fledged distributor (FFD)**: it negotiates its own purchase terms, sets its own local prices, funds its own marketing, carries its own inventory risk, and eats the loss if a big customer doesn't pay. It's making real business decisions and absorbing real consequences, so it should be entitled to a higher margin, one that can also swing lower in a bad year, because that volatility is the flip side of real risk.
 
+<Spectrum
+  left="Limited Risk Distributor"
+  leftDesc="low functions / assets / risk · modest, stable margin"
+  right="Full-Fledged Distributor"
+  rightDesc="high functions / assets / risk · higher, variable margin"
+/>
+
 Most real distributors sit somewhere between the two, which is exactly why this analysis has to be done carefully rather than assumed from a job title. A country manager with the word "Director" in their title but who needs headquarters sign-off for any expense over a few hundred euros is functionally closer to an LRD than their title suggests.
 
 ## Worked example: is Meridian France an LRD or an FFD?
 
 Meridian France, the sales subsidiary from Lesson 1.1, buys finished headphones from Meridian's Polish factory and resells them to electronics retailers across France. Here's what the FAR analysis turns up:
 
-- **Functions:** Meridian France runs its own regional marketing campaigns and negotiates listing terms directly with major French retailers. Product design and manufacturing decisions are made entirely by the German parent and the Polish factory.
-- **Assets:** Meridian France owns its own warehouse and holds inventory on its balance sheet. It doesn't own any patents or the Meridian brand itself, that sits with the German parent.
-- **Risks:** Meridian France carries its own inventory risk (no buy-back guarantee from the parent) and its own credit risk on unpaid retailer invoices. It doesn't set global pricing strategy or make R&D decisions.
+<FARBlocks
+  functions={['Runs its own regional marketing', 'Negotiates terms with French retailers', 'No say in design or manufacturing']}
+  assets={['Owns its warehouse', 'Holds inventory on its balance sheet', 'Does not own patents or the brand']}
+  risks={['Inventory risk (no buy-back)', 'Credit risk on unpaid invoices', 'No pricing-strategy or R&D risk']}
+/>
 
 Putting it together: Meridian France sits closer to the full-fledged end of the spectrum. It's not a routine order-taker, it manages real functions (local marketing, retailer negotiation), owns and finances its own inventory, and carries real financial risk if a retailer doesn't pay or products don't sell. It should be entitled to a meaningfully higher, and more variable, margin than a bare-bones LRD would get, though still less than the German parent, which owns the brand and drives the group's overall strategy.
+
+<Spectrum
+  left="LRD"
+  leftDesc="bare-bones reseller"
+  right="FFD"
+  rightDesc="full decision-maker"
+  markerPercent={68}
+  markerLabel="Meridian France"
+/>
 
 ## Try it yourself
 

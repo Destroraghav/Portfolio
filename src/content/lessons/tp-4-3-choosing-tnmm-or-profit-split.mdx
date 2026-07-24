@@ -1,0 +1,48 @@
+---
+title: "Choosing Between TNMM and Profit Split: Five Quick Diagnoses"
+description: "Method selection starts with one question: is one side routine, or does the deal only make sense because both sides bring something unique? Five scenarios to build the instinct."
+course: "transfer-pricing"
+module: "4-profit-methods"
+slug: "choosing-tnmm-or-profit-split"
+order: 3
+readTimeMinutes: 5
+draft: false
+tldr: >-
+  In practice, picking a method starts with one question: does one side of the transaction
+  look routine, or does the transaction only make sense because both sides bring something
+  genuinely unique? This lesson works through five short scenarios to build that instinct.
+---
+
+import MethodChooser from '@/components/study/MethodChooser.astro'
+
+## Five scenarios
+
+1. **A financing arrangement.** Meridian's Luxembourg finance subsidiary lends money to Meridian France at a set interest rate, following standard group treasury policy. *Diagnosis:* routine, standardised function on the lender's side. Not a Profit Split scenario, this is priced by comparing to market lending rates (Module 7), or TNMM/Cost Plus if being tested as a service function.
+
+2. **A struggling local retailer.** Meridian's Mexican distributor, fighting aggressive local competitors, has invested heavily in new showrooms and extended warranties, and reports a net loss for the year, even as the wider Meridian Group posts record global profit. *Diagnosis:* needs investigation before picking a method. If the distributor is truly a routine, limited-risk entity, a persistent loss while the group is highly profitable is a red flag calling for a TNMM benchmark against independent distributors, who rarely sustain losses for long. If it's genuinely taking on strategic risk to build a new market, that needs separate justification, not automatically a shift to Profit Split.
+
+3. **Joint R&D risk.** A US parent funds 100% of an eight-year R&D programme run by its Korean subsidiary, guaranteeing the subsidiary a flat return on costs regardless of outcome. After eight years, the R&D succeeds and promises significant future profit. *Diagnosis:* the subsidiary bore no real financial risk (it was guaranteed a return regardless of success or failure), so despite doing the technical work, its compensation was already fixed by that guarantee. This leans toward Cost Plus for the subsidiary rather than Profit Split, since one side (the funder bearing the risk) is where the profit potential should sit, unless the facts show the subsidiary secretly bore more real risk than the paperwork suggests.
+
+4. **Two genuinely unique contributions.** As in Lesson 4.2's Arctic headphone example, both R&D and distribution made distinctive, hard-to-replicate contributions to the same product's success. *Diagnosis:* Profit Split, no single tested party captures both sides' genuine contribution.
+
+5. **A brand-driven price jump.** Meridian France's net profit margin jumps sharply after a Meridian product goes viral on social media in France specifically, well above its historical range and its peer group's typical margin. *Diagnosis:* needs a careful look at why. If Meridian France's own local marketing and retail relationships (its own functions) drove the viral moment, part of that extra profit may legitimately belong to it, and the analysis should ask whether its usual TNMM benchmark range still fits, or whether the year was a genuine outlier requiring more investigation before assuming any transfer price is wrong.
+
+## The five-second method check
+
+<MethodChooser
+  title="Which profit method fits?"
+  rules={[
+    { when: 'One side is routine and benchmarkable', method: 'TNMM' },
+    { when: 'Both sides bring something genuinely unique', method: 'Profit Split' },
+    { when: 'Persistent losses at a supposedly routine entity', method: 'Investigate first' },
+  ]}
+/>
+
+## Key terms
+
+- **Routine function:** an activity that can reasonably be benchmarked against independent companies performing the same task, pointing toward TNMM, RPM, or Cost Plus.
+- **Unique contribution:** a function, asset, or risk distinctive enough that no independent comparable exists, pointing toward Profit Split.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter II, Part III (Transactional Profit Methods, general guidance on method selection)

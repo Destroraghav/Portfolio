@@ -1,0 +1,76 @@
+---
+title: "The Cost Plus Method"
+description: "Cost Plus adds an arm's length markup to a supplier's cost base. The natural fit for manufacturers, assemblers, and routine service providers, and the mirror image of RPM."
+course: "transfer-pricing"
+module: "2-traditional-methods"
+slug: "cost-plus-method"
+order: 3
+readTimeMinutes: 5
+draft: false
+tldr: >-
+  Cost Plus starts from the supplier's own costs and adds a markup that an independent
+  supplier performing the same functions would expect to earn. It's the natural fit for
+  manufacturers, assemblers, and low-risk service providers, the mirror image of RPM,
+  which works from the buyer's side instead.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import FormulaCard from '@/components/study/FormulaCard.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+import MethodChooser from '@/components/study/MethodChooser.astro'
+
+## Why Cost Plus exists
+
+Where RPM looks at what an independent distributor keeps after buying and reselling, Cost Plus looks at what an independent manufacturer or service provider needs to charge above its own costs to make a reasonable return. It fits naturally with entities that make or assemble something (or provide a routine service) rather than simply reselling it, because their economics are driven by production cost, not resale price.
+
+<FormulaCard label="Cost Plus Method">Transfer Price = Cost Base × (1 + Markup%)</FormulaCard>
+
+The markup percentage comes from what comparable independent manufacturers or service providers earn on their costs. Getting the cost base right matters as much as getting the markup right. It should generally include the direct and indirect costs of production, but exclude costs unrelated to the function being priced (a factory's random legal settlement or a one-off asset write-down doesn't belong in a routine manufacturing cost base).
+
+## Worked example
+
+Meridian's Polish factory incurs €35 in direct production costs (materials, labour) and €5 in allocated factory overhead per unit of headphones, a cost base of €40. A benchmarking study of independent contract manufacturers in the consumer electronics sector shows they typically earn a cost-plus markup of 8% to 12% on their full production cost.
+
+<CalcSteps
+  title="Applying Cost Plus at a 10% markup"
+  steps={[
+    { expr: 'Transfer Price = €40 × 1.10', result: '€44' },
+    { expr: "If actual price is €41: markup = 41/40 − 1", result: '2.5%', note: 'well below the 8-12% benchmark' },
+  ]}
+/>
+
+That's the kind of gap that draws attention: too little profit is landing with the Polish manufacturer relative to what an unrelated contract manufacturer would insist on.
+
+## Try it yourself
+
+Meridian is considering opening a small in-house customer support call centre serving its European retail partners, run by a subsidiary, Meridian Support Services. The subsidiary's costs are €18 per support ticket handled. Comparable independent outsourced support providers earn a cost-plus markup of 5% to 8% on their costs.
+
+1. What's the arm's length price range per ticket, using Cost Plus?
+2. If group headquarters wants to charge retail partners a flat €25 per ticket and pay Meridian Support Services only €19 per ticket for its work, is that internal price within the arm's length range?
+
+<CollapsibleAnswer>
+1. €18 × 1.05 = €18.90 to €18 × 1.08 = €19.44. 2. Yes, €19 falls just inside the €18.90-€19.44 range, so this internal price is defensible as arm's length. What headquarters charges the external retail partners (€25) is irrelevant to this test, Cost Plus only benchmarks what Meridian Support Services should be paid for its function, not the group's overall external pricing strategy.
+</CollapsibleAnswer>
+
+## Choosing between the three traditional methods
+
+<MethodChooser
+  title="Which traditional method fits?"
+  rules={[
+    { when: 'A near-identical product with a real market price', method: 'CUP' },
+    { when: 'A simple reseller / distributor', method: 'RPM' },
+    { when: 'A simple producer or routine service provider', method: 'Cost Plus' },
+  ]}
+/>
+
+The underlying question is always the same: which side of the transaction is simplest to benchmark?
+
+## Key terms
+
+- **Cost Plus method (CPM):** prices a controlled transaction by adding an arm's length markup to the supplier's cost base.
+- **Cost base:** the direct and indirect costs properly attributable to the function being priced.
+- **Markup:** the percentage added to the cost base, benchmarked against independent comparables performing similar functions.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter II, Part II, Section C (Cost Plus Method)

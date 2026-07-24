@@ -1,0 +1,71 @@
+---
+title: "The Resale Price Method (RPM)"
+description: "RPM works backward from a distributor's resale price, subtracting an arm's length gross margin to find the transfer price. The go-to method for simple resellers."
+course: "transfer-pricing"
+module: "2-traditional-methods"
+slug: "resale-price-method"
+order: 2
+readTimeMinutes: 5
+draft: false
+tldr: >-
+  RPM starts at the price a distributor resells a product for to an independent customer,
+  then subtracts a gross margin that an independent distributor would need to cover its
+  costs and make a reasonable profit. Whatever's left is treated as the arm's length
+  purchase price. It's the go-to method for distributors that buy finished goods and
+  resell them without changing them much.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import FormulaCard from '@/components/study/FormulaCard.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+
+## Why RPM exists
+
+CUP needs a near-identical product transaction to compare against, which is often impossible to find once a product carries any real branding or customisation. RPM sidesteps that problem for distribution businesses by not comparing the product's price directly at all. Instead, it compares the margin a distributor earns, since gross distribution margins for a given type of business (electronics, apparel, groceries) tend to cluster in a predictable range regardless of exactly which product is being resold.
+
+This makes RPM well suited to distributors that add limited value: they buy finished goods and resell them essentially as-is, without meaningfully transforming, rebranding, or engineering the product further. The less a distributor changes the product, the more reliable RPM tends to be, because the margin comparison isn't distorted by extra functions the benchmark companies don't perform.
+
+<FormulaCard label="Resale Price Method">Transfer Price = Resale Price × (1 − Gross Margin%)</FormulaCard>
+
+The gross margin percentage comes from what comparable independent distributors earn in the same type of business.
+
+## Worked example
+
+Meridian France buys finished headphones from Meridian's Polish factory and resells them to French electronics retailers for €90 per unit (the resale price to an independent customer). A benchmarking study of independent electronics distributors performing a similar function finds they typically earn a gross margin of 35% on resale price.
+
+<CalcSteps
+  title="Applying RPM"
+  steps={[
+    { expr: 'Transfer Price = €90 × (1 − 0.35)', result: '€58.50' },
+  ]}
+/>
+
+If Meridian's actual intercompany purchase price is €70, that leaves Meridian France with only a much thinner margin:
+
+<CalcSteps
+  steps={[
+    { expr: 'Actual margin = (90 − 70) / 90', result: '22%', note: 'below the 35% benchmark' },
+  ]}
+/>
+
+That's a signal worth investigating: either Meridian France is overpaying its Polish factory for the goods (shifting profit toward Poland), or there's a real functional difference that justifies the lower margin, and that difference needs to be identified and explained.
+
+## Try it yourself
+
+Meridian's Nordic distributor buys headphones from the Polish factory and resells them to Norwegian retailers for kr 950 per unit. Comparable independent Nordic electronics distributors earn a gross margin of 30%.
+
+1. Calculate the arm's length transfer price using RPM.
+2. If Meridian's actual intercompany price is kr 640, is the Nordic distributor's margin above or below the benchmark, and what would that suggest?
+
+<CollapsibleAnswer>
+1. 950 × (1 − 0.30) = kr 665. 2. Actual margin = (950 − 640)/950 = 32.6%, which is above the 30% benchmark. That's not automatically a problem (being within or near the range is generally fine), but a margin noticeably above the top of an independent range would prompt a closer look at whether the distributor is earning more than its functions justify.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Resale price method (RPM):** prices a controlled purchase by working backward from the resale price to an independent customer, minus an arm's length gross margin.
+- **Gross margin:** resale price minus cost of goods sold, expressed as a percentage of resale price.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter II, Part II, Section B (Resale Price Method)

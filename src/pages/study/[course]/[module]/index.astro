@@ -6,6 +6,7 @@ import Container from '../../../../components/Container.astro';
 import Eyebrow from '../../../../components/Eyebrow.astro';
 import QuizBlock from '../../../../components/study/QuizBlock.astro';
 import { quizzes } from '../../../../data/quizzes';
+import { moduleHeroImage } from '../../../../lib/studyHero';
 
 export const getStaticPaths = (async () => {
   const courses = await getCollection('courses');
@@ -35,6 +36,7 @@ const d = module.data;
 const { Content } = await render(module);
 const quiz = quizzes[`${module.data.course}/${module.data.slug}`] ?? [];
 const first = moduleLessons[0];
+const heroImage = moduleHeroImage(course.id, d.order, d.heroImage);
 ---
 
 <BaseLayout title={`${d.title} - ${course.data.title}`} description={d.summary}>
@@ -45,6 +47,19 @@ const first = moduleLessons[0];
     >
       <span aria-hidden="true">←</span> {course.data.title}
     </a>
+
+    {
+      heroImage && (
+        <div class="mt-6 max-w-3xl overflow-hidden rounded-lg border border-hairline">
+          <img
+            src={heroImage}
+            alt=""
+            class="aspect-[16/6] w-full object-cover"
+            loading="eager"
+          />
+        </div>
+      )
+    }
 
     <div class="mt-6 max-w-3xl">
       <Eyebrow>Module {d.order}</Eyebrow>

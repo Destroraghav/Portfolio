@@ -1,0 +1,66 @@
+---
+title: "The Benchmarking Process"
+description: "How a defensible peer set is actually built: a database search, then qualitative screening on independence, activity, geography, and data quality, until a small usable set remains."
+course: "transfer-pricing"
+module: "3-comparability-benchmarking"
+slug: "benchmarking-process"
+order: 2
+readTimeMinutes: 5
+draft: false
+tldr: >-
+  Benchmarking means systematically searching for independent companies that look like the
+  tested party, then narrowing that list down through screening criteria until you're left
+  with a defensible peer set. It's part database search, part judgment call.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+
+## Where the data comes from
+
+In practice, this starts with a commercial financial database, tools like Bureau van Dijk's Orbis or Amadeus are the industry standard in Europe, which hold financial statements and business descriptions for millions of companies. A search typically starts with an industry classification code (like a NACE or SIC code roughly matching the tested party's activity) and a country or region filter matching where genuinely comparable independent companies would realistically operate.
+
+That first pass almost always returns a messy list: holding companies with no real operations, companies that are actually part of a larger group (and therefore not independent at all), companies whose business description sounds close but turns out to be a different activity entirely. This is expected. The database search is a starting point, not the answer.
+
+## Screening the list
+
+From there, the list gets narrowed with a mix of quantitative and qualitative filters:
+
+- **Independence.** Exclude companies that are themselves majority-owned by another company, since they might not be pricing at arm's length either.
+- **Activity match.** Read the actual business description, not just the industry code, and exclude anything whose real activity doesn't match the tested party's function.
+- **Geographic comparability.** A distributor's margins in a mature Western European market usually aren't comparable to one operating in a very different economic environment, unless a reliable adjustment is made.
+- **Data availability and quality.** Companies with incomplete financials, or persistent losses unrelated to normal business cycles, are usually excluded, since a company that's been loss-making for years often isn't behaving like a typical independent business either.
+
+This qualitative pass is where a lot of judgment comes in, and it's also where disputes between taxpayers and tax authorities most often start: two analysts can run the same initial database search and reasonably disagree about which companies survive the qualitative screen.
+
+## Worked example
+
+Searching for independent comparables to Meridian's Polish contract manufacturing operation, an initial database search on "electronics assembly, Central/Eastern Europe" returns **40 companies**. After screening:
+
+| Screen | Companies excluded |
+| --- | --- |
+| Majority-owned by a larger group (not independent) | 12 |
+| Actually do R&D or own significant IP (not a routine manufacturer) | 9 |
+| Incomplete financial data over the review period | 6 |
+| Persistent, unexplained losses | 2 |
+| **Final peer set** | **11 of 40** |
+
+That leaves 11 companies as the final peer set, roughly a quarter of where the search started. This kind of attrition rate, ending up with a small fraction of the initial hit list, is completely normal.
+
+## Try it yourself
+
+An initial search for "distribution, consumer electronics" comparables to Meridian France returns a company whose business description reads: "Wholesale distribution of consumer electronics; in-house design of proprietary charging accessories sold under own brand."
+
+Should this company be included in Meridian France's peer set? Why or why not?
+
+<CollapsibleAnswer>
+Likely excluded, or at least flagged for a closer look. It performs a genuine design/IP function and sells under its own brand, functions Meridian France doesn't perform, since Meridian France distributes products designed and branded by its German parent. Including it risks comparing a full-fledged, brand-owning distributor against a simpler resale-focused one.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Benchmarking:** the process of identifying and financially analysing a set of independent comparable companies or transactions.
+- **Screening criteria:** the qualitative and quantitative filters (independence, activity match, geography, data quality) used to narrow an initial database search into a defensible peer set.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter III, Section A (Comparability Analysis process)

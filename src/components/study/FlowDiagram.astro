@@ -1,0 +1,54 @@
+---
+/**
+ * A left-to-right (stacks on mobile) flow of steps with arrows between them.
+ * Good for transaction/value flows. Usage:
+ *   <FlowDiagram steps={[
+ *     { label: "Poland (cost)", value: "€40" },
+ *     { label: "Transfer price", value: "€45", accent: true },
+ *     { label: "France resale", value: "€90" },
+ *   ]} caption="Only the internal price (€45) is a choice — it decides where profit lands." />
+ */
+interface Step {
+  label: string;
+  value?: string;
+  sublabel?: string;
+  accent?: boolean;
+}
+interface Props {
+  steps: Step[];
+  caption?: string;
+}
+const { steps, caption } = Astro.props;
+---
+
+<figure class="not-prose my-6">
+  <div class="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
+    {
+      steps.map((s, i) => (
+        <>
+          <div
+            class:list={[
+              'flex-1 rounded-lg border p-4 text-center',
+              s.accent ? 'border-primary bg-primary/8' : 'border-hairline bg-canvas',
+            ]}
+          >
+            <p class="text-xs font-medium uppercase tracking-wide text-stone">{s.label}</p>
+            {s.value && (
+              <p class:list={['mt-1 font-mono text-lg font-semibold', s.accent ? 'text-primary' : 'text-ink']}>
+                {s.value}
+              </p>
+            )}
+            {s.sublabel && <p class="mt-0.5 text-xs text-mute">{s.sublabel}</p>}
+          </div>
+          {i < steps.length - 1 && (
+            <span class="mx-auto text-mute sm:mx-0" aria-hidden="true">
+              <span class="hidden sm:inline">&rarr;</span>
+              <span class="sm:hidden">&darr;</span>
+            </span>
+          )}
+        </>
+      ))
+    }
+  </div>
+  {caption && <figcaption class="mt-3 text-center text-sm text-mute">{caption}</figcaption>}
+</figure>

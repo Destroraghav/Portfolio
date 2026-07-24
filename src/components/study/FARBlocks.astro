@@ -1,0 +1,52 @@
+---
+/**
+ * The FAR framework as three blocks (Functions / Assets / Risks) with the core rule.
+ * Optionally pass example items for each. Usage:
+ *   <FARBlocks functions={["R&D","Marketing"]} assets={["Factory","Patents"]} risks={["Inventory","Credit"]} />
+ */
+interface Props {
+  functions?: string[];
+  assets?: string[];
+  risks?: string[];
+}
+const { functions = [], assets = [], risks = [] } = Astro.props;
+const cols = [
+  { key: 'F', label: 'Functions', hint: 'what it does', items: functions },
+  { key: 'A', label: 'Assets', hint: 'what it owns', items: assets },
+  { key: 'R', label: 'Risks', hint: 'what it bears', items: risks },
+];
+---
+
+<div class="not-prose my-6">
+  <div class="grid gap-3 sm:grid-cols-3">
+    {
+      cols.map((c) => (
+        <div class="rounded-lg border border-hairline bg-canvas p-5">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-full bg-primary/12 text-sm font-bold text-primary">
+              {c.key}
+            </span>
+            <div>
+              <p class="text-sm font-semibold text-ink">{c.label}</p>
+              <p class="t-caption">{c.hint}</p>
+            </div>
+          </div>
+          {c.items.length > 0 && (
+            <ul class="mt-3 space-y-1.5">
+              {c.items.map((it) => (
+                <li class="flex gap-2 text-sm text-mute">
+                  <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-stone" />
+                  <span>{it}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))
+    }
+  </div>
+  <p class="mt-3 rounded-lg bg-surface-soft px-4 py-3 text-center text-sm text-body">
+    More complexity, more valuable assets, and more real risk
+    <span class="font-semibold text-primary"> &rarr; a higher, more variable margin.</span>
+  </p>
+</div>

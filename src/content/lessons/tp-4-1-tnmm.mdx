@@ -1,0 +1,83 @@
+---
+title: "The Transactional Net Margin Method (TNMM)"
+description: "TNMM benchmarks a company's net profit margin against comparable independents. The most widely used method in the world, because it tolerates imperfect comparables."
+course: "transfer-pricing"
+module: "4-profit-methods"
+slug: "tnmm"
+order: 1
+readTimeMinutes: 6
+draft: false
+tldr: >-
+  TNMM compares a company's overall net profit margin, not its price or gross margin, to
+  what independent companies performing similar functions earn. It's the most commonly used
+  transfer pricing method in the world today, largely because it tolerates the kind of
+  imperfect comparables that real benchmarking studies actually produce.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CaseCard from '@/components/study/CaseCard.astro'
+import FormulaCard from '@/components/study/FormulaCard.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+import IQRChart from '@/components/study/IQRChart.astro'
+
+## A 9.8 billion dollar reminder of why net margin comparisons matter
+
+<CaseCard title="Coca-Cola Co. v Commissioner, US Tax Court" year="2020" outcome="~$9.8bn adjustment upheld">
+The Coca-Cola Company's foreign bottling and manufacturing affiliates, in countries including Ireland, Egypt, and Swaziland, paid The Coca-Cola Company royalties for the right to use its trademarks, secret formulas, and other IP to produce and sell branded beverages. In 2015, the IRS challenged how those royalties were calculated for 2007 through 2009, and reallocated more than nine billion dollars of income back to the US parent.
+
+The US Tax Court largely sided with the IRS in its November 2020 decision. Its reasoning leaned heavily on a net-margin-style comparison (the "comparable profits method," the US equivalent of TNMM): the Court found that Coca-Cola's foreign supply points functioned essentially as contract manufacturers that didn't own the valuable brand and formula intangibles driving the profit, so their return should look like what an independent contract manufacturer earns, a modest, fairly stable margin, not a share of the extraordinary profits the Coca-Cola brand generates. The Court upheld roughly 9.8 billion dollars of the adjustment, offset by 1.8 billion in dividend credits Coca-Cola successfully argued for.
+</CaseCard>
+
+The scale is unusual, but the underlying logic is exactly what this lesson is about: once you've identified who owns the valuable intangibles (Module 1's functional analysis) and who's just executing a routine function around them, TNMM asks whether that routine entity's net profit looks like what an unrelated company doing the same routine job actually earns.
+
+## How TNMM works
+
+Rather than comparing a single transaction's price, TNMM looks at a net profit level indicator (PLI), most often operating margin, and compares it to the same ratio earned by independent companies performing comparable functions.
+
+<FormulaCard label="Most common PLI: operating margin">Operating Margin = Operating Profit ÷ Net Sales</FormulaCard>
+
+Because it works at the net profit level rather than the gross margin or price level, TNMM tolerates more product-level and even some functional differences between the tested party and its comparables than CUP, RPM, or Cost Plus can, which is exactly why it's used so widely: reliable gross-margin or price-level comparables are often impossible to find, but reasonably comparable net margins are more attainable.
+
+Common PLIs besides operating margin: return on total costs (used often for manufacturers and service providers), and return on assets (used when capital intensity, not sales volume, is the more relevant driver of profit, which is exactly what the Coca-Cola case turned on for its supply points).
+
+## Worked example
+
+Building on Module 3's benchmarking study: Meridian France's peer set of independent distributors produced an interquartile range of 3.1% to 5.05% operating margin, with a median of 4.1%. Meridian France's actual results for the year: Net Sales €18,000,000, Cost of Goods Sold €13,500,000, Operating Expenses €3,780,000.
+
+<CalcSteps
+  steps={[
+    { expr: 'Operating Profit = 18,000,000 − 13,500,000 − 3,780,000', result: '€720,000' },
+    { expr: 'Operating Margin = 720,000 / 18,000,000', result: '4.0%' },
+  ]}
+/>
+
+4.0% falls inside the interquartile range from Module 3, so Meridian France's transfer pricing for the year is supported as arm's length under TNMM, no adjustment needed:
+
+<IQRChart
+  data={[2.1, 2.8, 3.4, 3.9, 4.3, 4.6, 5.5, 7.2]}
+  tested={4.0}
+  unit="%"
+  caption="Meridian France's 4.0% operating margin sits inside the peer group's arm's length band."
+/>
+
+## Try it yourself
+
+Meridian's Nordic distributor reports Net Sales kr 40,000,000, Cost of Goods Sold kr 31,000,000, Operating Expenses kr 8,600,000, against a peer group interquartile range of 1.8% to 4.2% operating margin (median 3.0%).
+
+1. Calculate the Nordic distributor's operating margin.
+2. Is it arm's length? If not, what adjustment would typically apply?
+
+<CollapsibleAnswer>
+1. Operating profit = 40,000,000 − 31,000,000 − 8,600,000 = kr 400,000. Margin = 400,000/40,000,000 = 1.0%. 2. Below the 1.8% Q1 threshold, not arm's length as reported. The standard adjustment would bring it up to the median, 3.0%, implying additional taxable operating profit of kr 800,000 (3.0% × 40,000,000 − 400,000 actual).
+</CollapsibleAnswer>
+
+## Key terms
+
+- **TNMM (Transactional Net Margin Method):** benchmarks a tested party's net profit margin against comparable independent companies.
+- **Profit level indicator (PLI):** the specific ratio used for comparison, most commonly operating margin, return on total costs, or return on assets.
+
+## Sources
+
+- Mondaq, "IRS Wins Big In The Coca-Cola Company & Subs. v. Commissioner" (2020)
+- Business Valuation Resources, "2020's Most Important Transfer Pricing Case, Coca-Cola"
+- OECD Transfer Pricing Guidelines, Chapter II, Part III, Section B (TNMM)

@@ -1,0 +1,61 @@
+---
+title: "The Five Comparability Factors and the Tested Party"
+description: "How to decide what 'comparable' means for a transaction (the five OECD factors), and which related party you actually test, always the simpler one."
+course: "transfer-pricing"
+module: "3-comparability-benchmarking"
+slug: "tested-party-and-factors"
+order: 1
+readTimeMinutes: 5
+draft: false
+tldr: >-
+  Before comparing anything, you need to decide what "comparable" means for this specific
+  transaction (five OECD factors), and which of the two related parties you're actually
+  going to test (the "tested party," always the simpler one).
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import MeridianDiagram from '@/components/study/MeridianDiagram.astro'
+
+## The five comparability factors
+
+The OECD identifies five factors that determine whether a transaction or company is genuinely comparable to the one being tested:
+
+1. **Characteristics of the property or services.** A generic wireless earbud and a noise-cancelling premium earbud with proprietary software are not comparable products, even if they're technically in the same category, because their features differ in ways that plausibly affect price.
+2. **Functional analysis.** Covered in Module 1: what functions, assets, and risks does each party bring? A distributor that runs its own marketing isn't comparable to one that doesn't.
+3. **Contractual terms.** Payment terms, volume commitments, exclusivity, warranty obligations. Two transactions with identical products can still differ in price for purely contractual reasons.
+4. **Economic circumstances.** The same product sold in a mature, saturated market and a fast-growing emerging market shouldn't be expected to carry the same margin.
+5. **Business strategies.** A company deliberately pricing low to break into a new market (a market penetration strategy) will look different financially from an established player defending share, even performing identical functions.
+
+None of these need to match perfectly. What matters is whether any difference is significant enough to affect price or profit, and if so, whether it can be adjusted for with reasonable reliability. If it can't, the "comparable" isn't usable.
+
+## Picking the tested party
+
+In most controlled transactions, one side is simple (a routine distributor, a contract manufacturer) and the other is complex (an entity holding valuable IP, making strategic decisions, running R&D). The OECD guidance is to always test the least complex party, called the tested party, and here's the practical reason why: it's far easier to find independent companies that look like a routine distributor than it is to find independent companies that look like a global brand owner managing a proprietary technology platform. Complex, unique entities rarely have real-world twins. Simple, routine entities usually do.
+
+## Worked example
+
+In the Meridian Group transaction between the Polish factory and Meridian France, who's the tested party? The Polish factory performs contract manufacturing to specifications set by German headquarters, doesn't own the Meridian brand or any patents, and bears limited risk (it doesn't decide what to produce or where to sell it). Meridian France, per Lesson 1.4, actually leans toward the full-fledged end of the spectrum, with real marketing and inventory risk. But the German parent, which owns the brand, sets strategy, and holds the IP, is the most complex party in the whole group by far.
+
+<MeridianDiagram highlight={['pl']} caption="Between the factory and France, the Polish factory is the simpler, easier-to-benchmark party, so it's the tested party for that leg." />
+
+Between the Polish factory and Meridian France specifically, the factory is the simpler entity: it's easier to find independent contract manufacturers in the electronics sector than to find distributors with Meridian France's exact mix of functions. So the Polish factory would typically be the tested party for that leg of the supply chain, benchmarked against independent contract manufacturers using Cost Plus or TNMM (Module 4).
+
+## Try it yourself
+
+Meridian's Luxembourg finance subsidiary lends money to Meridian France. The finance subsidiary performs a fairly standardised treasury function, following group policy on interest rates and loan terms set by a small treasury team. Meridian France, as established, runs real local marketing and carries real inventory and credit risk.
+
+1. Which entity is likely the tested party for this loan transaction, and why?
+2. What kind of independent companies would you look for as comparables?
+
+<CollapsibleAnswer>
+1. The Luxembourg finance subsidiary is more likely the tested party here specifically because standardised treasury/lending functions following a fixed policy are easier to benchmark against independent comparables than Meridian France's broader distribution role. 2. Independent entities performing similar treasury or lending functions, or more commonly for a loan specifically, comparable loan pricing data (bond yields, credit spreads for similarly-rated borrowers), covered further in Module 7.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Comparability factors:** the five OECD criteria (property/service characteristics, functional analysis, contractual terms, economic circumstances, business strategies) used to judge whether a transaction is a valid comparable.
+- **Tested party:** the entity in a controlled transaction selected for benchmarking, normally the least complex party, because reliable comparables are easier to find for it.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter I, Section D.1 (The Process of Identifying and Testing Comparables)

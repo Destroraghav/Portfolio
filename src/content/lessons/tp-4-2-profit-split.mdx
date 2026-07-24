@@ -1,0 +1,63 @@
+---
+title: "The Profit Split Method"
+description: "When both related parties bring something genuinely unique, Profit Split divides the combined profit by the relative value each side actually contributed."
+course: "transfer-pricing"
+module: "4-profit-methods"
+slug: "profit-split"
+order: 2
+readTimeMinutes: 5
+draft: false
+tldr: >-
+  Profit Split doesn't pick one "simple" party to test against outside comparables. Instead,
+  it takes the combined profit earned by both related parties on a transaction and divides it
+  between them based on the relative value of what each one actually contributed. It's reserved
+  for situations where both sides bring something unique to the table, most often, where both
+  sides own valuable intangibles.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+
+## Why you can't always pick a "tested party"
+
+Every method so far assumes one side of the transaction is routine enough to benchmark against independent comparables. Profit Split exists for the cases where that assumption fails, both parties are doing something genuinely unique, so there's no obvious "simple" side and no real independent company that looks like either of them. Highly integrated global value chains, joint development of valuable IP, or two entities each holding a distinct, hard-to-replicate intangible, all point toward Profit Split.
+
+There are two common approaches:
+
+- **Contribution analysis:** divide the combined profit based on the relative value of each party's functions, assets, and risks, essentially, how much did each side's contribution matter to the profit generated?
+- **Residual analysis:** first pay each party a routine return for its ordinary functions (using TNMM or Cost Plus), then split whatever profit is left over, the "residual," based on each party's contribution of unique, valuable intangibles.
+
+## Worked example
+
+Meridian AG's R&D centre and Meridian's Nordic distributor jointly develop a limited-edition "Meridian Arctic" headphone line: the R&D centre designs a genuinely new cold-weather battery technology (a real technical innovation, not routine engineering), and the Nordic distributor invests heavily in a unique regional marketing campaign and secures exclusive placement with major Nordic retailers, both unusual, valuable contributions beyond their normal roles.
+
+The Arctic line generates a combined operating profit of €2,000,000 across both entities in its first year. Using contribution analysis, an independent valuation estimates the relative value of each side's contribution: the R&D centre's battery innovation is judged to represent 60% of the value driving the product's success (a genuine technical differentiator), and the Nordic distributor's exclusive retail access and campaign represent 40% (a real but comparatively smaller driver, since cold-weather battery life was the primary purchase reason cited in customer research).
+
+<CalcSteps
+  title="Splitting €2,000,000 by contribution"
+  steps={[
+    { expr: "R&D centre = 60% × €2,000,000", result: '€1,200,000' },
+    { expr: 'Nordic distributor = 40% × €2,000,000', result: '€800,000' },
+  ]}
+/>
+
+## Try it yourself
+
+Meridian's Polish factory and Meridian's German parent jointly develop a proprietary manufacturing process that cuts production defects significantly, a genuine process innovation from the factory's engineering team, layered on top of a battery chemistry improvement from German R&D. Combined profit attributable to the improvement: €900,000. An independent study estimates the factory's process innovation represents 35% of the value, and Germany's chemistry work represents 65%.
+
+1. How much profit should each entity receive under contribution analysis?
+2. Why would Profit Split be a more defensible method here than simply testing the Polish factory with Cost Plus, as in Module 2?
+
+<CollapsibleAnswer>
+1. Factory: 35% × 900,000 = €315,000. Germany: 65% × 900,000 = €585,000. 2. Because the factory isn't just executing routine manufacturing here, it made a genuine, valuable technical contribution of its own. Testing it with a routine Cost Plus markup would understate its contribution and misallocate profit toward Germany that the factory's own innovation actually earned.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Profit Split Method:** divides the combined profit from a transaction between related parties based on the relative value of their contributions.
+- **Contribution analysis:** splits combined profit based on the relative value of each party's functions, assets, and risks.
+- **Residual analysis:** pays each party a routine return first, then splits the remaining profit based on unique intangible contributions.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter II, Part III, Section C (Transactional Profit Split Method)

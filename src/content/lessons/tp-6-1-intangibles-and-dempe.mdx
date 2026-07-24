@@ -1,0 +1,72 @@
+---
+title: "What Is an Intangible, and Who Owns the Profit From It?"
+description: "Legal ownership of an intangible matters less for transfer pricing than DEMPE: who actually develops, enhances, maintains, protects, and exploits it. Profit follows the functions, not the paperwork."
+course: "transfer-pricing"
+module: "6-intangibles"
+slug: "intangibles-and-dempe"
+order: 1
+readTimeMinutes: 7
+draft: false
+tldr: >-
+  Intangibles include patents, know-how, trademarks, and customer relationships, anything
+  valuable that isn't physical. Legal ownership of an intangible matters less for transfer
+  pricing than DEMPE: who actually develops, enhances, maintains, protects, and exploits it.
+  Profit is supposed to follow DEMPE, not the paperwork.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CaseCard from '@/components/study/CaseCard.astro'
+
+## A $3.5 billion disagreement over what a brand-new platform was worth
+
+<CaseCard title="Amazon v. Commissioner" year="US Tax Court, 2017" outcome="Amazon largely won: its CUT-based method was upheld over the IRS's $3.5B DCF valuation.">
+In 2005 and 2006, Amazon set up a cost-sharing arrangement with a Luxembourg subsidiary: the Luxembourg entity would help fund the future development of Amazon's European technology and business, in exchange for the rights to exploit it across Europe. To join, it made a "buy-in" payment for the existing software, trademarks, and other intangibles Amazon contributed at the outset. Amazon valued that buy-in at **$255 million**. The IRS disagreed by an enormous margin, arguing it should have been roughly **$3.5 billion**, closer to fourteen times Amazon's number, valuing the intangibles as a single indivisible bundle using a discounted cash flow projection of Amazon's future European profits. Amazon argued for valuing the pieces of IP separately using the Comparable Uncontrolled Transaction (CUT) method, essentially CUP applied to intangibles. The Tax Court ruled the IRS's approach "arbitrary, capricious, and unreasonable."
+</CaseCard>
+
+Two things worth sitting with. First, a competent tax authority and a sophisticated company arrived at valuations fourteen times apart on the exact same set of assets, which tells you how genuinely difficult intangible valuation is, this isn't a case of one side being obviously wrong, it's a case of two defensible-sounding methods producing wildly different answers. Second, the case ran through the same Luxembourg cost-sharing structure this course keeps circling back to, precisely the kind of arrangement Module 11 covers from Luxembourg's side of the table.
+
+## What counts as an intangible
+
+The OECD groups intangibles broadly into two categories, though the line between them isn't always sharp:
+
+| Category | What it covers | Built through |
+| --- | --- | --- |
+| Trade intangibles | Patents, technical know-how, trade secrets, proprietary processes and formulas | R&D, used directly in producing goods or services |
+| Marketing intangibles | Trademarks, brand names, customer lists, distribution networks | Market presence rather than technical R&D |
+
+Goodwill and going-concern value (the extra worth of an established, functioning business beyond its identifiable assets) round out the category, though they're notoriously the hardest to isolate and price on their own.
+
+## DEMPE: why legal ownership isn't the end of the story
+
+Before the OECD's post-2015 BEPS reforms, groups could sometimes park legal ownership of valuable IP in a low-tax jurisdiction with a small local team, and route royalties there from operating companies elsewhere, even if almost none of the actual value-creating work happened in that low-tax location. **DEMPE** closed that gap conceptually: it asks which entities actually perform the **D**evelopment, **E**nhancement, **M**aintenance, **P**rotection, and **E**xploitation functions around an intangible, and says the profit from that intangible should follow those functions, not just the name on the patent registration.
+
+An entity that merely holds legal title to a patent, with no scientists, no ongoing R&D spend, and no real decision-making over how the technology gets used or protected, is not entitled to the bulk of the return that patent generates. The entities actually doing the DEMPE work are.
+
+## Worked example
+
+Meridian AG legally owns the patent behind Meridian's noise-cancellation technology. But a closer look at who actually does what: Meridian's German R&D team (60 engineers) developed the original technology and continues to refine it (Development, Enhancement). A small central IP team manages patent filings and defends against infringement globally (Protection). Meridian's Polish factory and various distribution subsidiaries use the technology in their day-to-day products (Exploitation, though largely just executing, not deciding).
+
+Under DEMPE, the German R&D team and central IP function are the ones actually creating and sustaining the patent's value, so Meridian AG (where those functions genuinely sit) is properly entitled to the bulk of the return the patent generates. If, hypothetically, Meridian instead moved the patent's legal title to a shell entity in a low-tax jurisdiction with no scientists and no real IP management activity, DEMPE analysis would say that shell entity isn't entitled to the patent's return just because its name is on the registration, the profit should still follow Germany, where the real DEMPE functions actually happen.
+
+## Try it yourself
+
+Meridian's marketing team in France has spent a decade building strong brand recognition for "Meridian" specifically within the French market, running consistent campaigns, managing local retail partnerships, and building customer loyalty. Legally, the Meridian trademark is registered to the German parent, which licenses it group-wide.
+
+1. Under DEMPE, does the German parent automatically deserve 100% of the value the Meridian brand generates in France?
+2. What would you want to investigate before answering?
+
+<CollapsibleAnswer>
+1. Not necessarily, legal ownership alone doesn't settle it. 2. Whether Meridian France's decade of local marketing investment counts as a genuine "Enhancement" function that added real incremental brand value specific to the French market, distinct from simply using a brand it was handed. If so, Meridian France may be entitled to compensation reflecting that contribution (potentially requiring a Profit Split-style analysis, Module 4), not just to be treated as a routine licensee paying a flat royalty.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Trade intangibles:** patents, know-how, and technical assets developed mainly through R&D.
+- **Marketing intangibles:** trademarks, brand names, and customer relationships that build commercial value.
+- **DEMPE:** Development, Enhancement, Maintenance, Protection, and Exploitation, the functions that determine who's actually entitled to an intangible's return, regardless of legal ownership.
+
+## Sources
+
+- The Tax Adviser, "Amazon wins transfer-pricing case" (2017)
+- Jones Day, "Amazon v. Commissioner: IRS Cost Sharing Buy-In Challenge Rejected Again" (2017)
+- OECD Transfer Pricing Guidelines, Chapter VI (Special Considerations for Intangibles)

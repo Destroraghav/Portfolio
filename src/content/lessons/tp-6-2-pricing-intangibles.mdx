@@ -1,0 +1,74 @@
+---
+title: "How Do You Actually Put a Price on an Intangible?"
+description: "Three main approaches, CUT, relief-from-royalty, and the income/DCF method, plus the OECD's special rule for the genuinely novel intangibles no method prices cleanly."
+course: "transfer-pricing"
+module: "6-intangibles"
+slug: "pricing-intangibles"
+order: 2
+readTimeMinutes: 6
+draft: false
+tldr: >-
+  Three main approaches: find a comparable licensing deal (CUT method), estimate what an
+  independent licensee would pay based on the value the intangible adds (relief-from-royalty),
+  or project the future income it will generate and discount it to today's value (the income/DCF
+  method). For genuinely novel intangibles, none of these are easy, which is exactly why the
+  OECD created a special category for the hardest cases.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+import MethodChooser from '@/components/study/MethodChooser.astro'
+
+## The three approaches
+
+- **Comparable Uncontrolled Transaction (CUT) method.** The intangible equivalent of CUP: find a real licensing or sale agreement for a genuinely comparable intangible between independent parties, and use its royalty rate or price as the benchmark. This was Amazon's winning approach in Lesson 6.1, licensing databases exist that track royalty rates by industry and asset type, though finding a truly comparable deal for something novel is often difficult.
+- **Relief-from-royalty method.** Estimates what an independent company would have to pay in royalties to license a similar intangible, if it didn't already own it, essentially, what cost is the owner "relieved" from by owning the asset outright? This is especially common for valuing trademarks and brands, since royalty rate benchmarks for brand licensing are relatively well documented across industries.
+- **Income method (discounted cash flow).** Projects the future income the intangible is expected to generate, then discounts those future cash flows back to a present value using an appropriate discount rate. This is the method the IRS leaned on in the Amazon case, and it's often necessary when no comparable licensing transaction exists at all, but it's also highly sensitive to the assumptions fed into it (growth rates, discount rate, useful life), which is exactly why Amazon and the IRS landed fourteen times apart using variations of this approach.
+
+<MethodChooser
+  title="Which pricing approach fits?"
+  rules={[
+    { when: 'A comparable licensing deal between independents exists', method: 'CUT method' },
+    { when: 'Valuing a trademark or brand', method: 'Relief-from-royalty' },
+    { when: 'Genuinely novel asset, no comparables anywhere', method: 'Income / DCF method' },
+  ]}
+/>
+
+## Hard-to-value intangibles (HTVI)
+
+Some intangibles are genuinely unique at the time they're transferred, brand-new technology with no market history, no comparable licensing deals, and highly uncertain future prospects. The OECD created a specific rule for these: if the actual outcome, once it's known, turns out to be wildly different from what was projected at the time of the transaction, tax authorities are allowed to treat that outcome as evidence the original valuation was unreliable, and adjust it retroactively (with some exceptions, for example if the difference is modest, or the taxpayer can show the deviation was caused by genuinely unforeseeable events). It's a direct response to exactly the kind of problem the Amazon case surfaced: when even sophisticated parties can be a factor of fourteen apart on day one, actual results become one of the only reliable checks available after the fact.
+
+## Worked example
+
+Meridian AG wants to price a royalty for its noise-cancellation patent, licensed to Meridian's Nordic distributor for a limited local product run. A search for comparable licensing deals turns up several real audio-technology patent licences in the market, with royalty rates clustering between 4% and 6% of net sales of products using the technology.
+
+<CalcSteps
+  title="Applying the CUT method"
+  steps={[
+    { expr: 'Expected net sales of the licensed product line', result: '€5,000,000' },
+    { expr: 'Royalty rate = midpoint of the 4%–6% comparable range', result: '5%' },
+    { expr: 'Royalty payment = 5% × €5,000,000', result: '€250,000' },
+  ]}
+/>
+
+## Try it yourself
+
+Meridian is licensing a genuinely new haptic-feedback technology, developed in-house, with no comparable licensing deals anywhere in the market, to a subsidiary for a limited pilot launch. At the time of licensing, Meridian projects the technology will drive €10,000,000 in incremental sales over three years. In reality, the technology becomes unexpectedly popular and drives €40,000,000 in incremental sales in the same period.
+
+1. Which valuation approach would most likely have been used at the outset, given no comparable deals exist?
+2. Under the HTVI concept, could the large gap between projected and actual results affect the royalty retroactively?
+
+<CollapsibleAnswer>
+1. The income/DCF method, since no CUT or relief-from-royalty benchmark is available for a genuinely novel technology. 2. Yes, potentially, a fourfold gap between projected and actual outcomes is exactly the kind of divergence the HTVI rule targets, and a tax authority could argue the original valuation understated the technology's value, unless Meridian can show the outperformance came from a genuinely unforeseeable event rather than a flawed original projection.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **CUT method:** benchmarks an intangible's price against a comparable licensing or sale transaction between independent parties.
+- **Relief-from-royalty method:** values an intangible based on the royalty an independent party would otherwise have to pay to use it.
+- **Income (DCF) method:** values an intangible based on the discounted present value of the future income it's projected to generate.
+- **Hard-to-value intangibles (HTVI):** intangibles priced under high uncertainty, where a later large gap between projected and actual outcomes can justify a retroactive valuation adjustment.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter VI, Section D (Determining Arm's Length Conditions for Transactions Involving Intangibles) and Section D.4 (Hard-to-Value Intangibles)

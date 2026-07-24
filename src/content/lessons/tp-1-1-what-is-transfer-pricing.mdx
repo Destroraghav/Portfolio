@@ -16,6 +16,9 @@ tldr: >-
 ---
 
 import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CaseCard from '@/components/study/CaseCard.astro'
+import MeridianDiagram from '@/components/study/MeridianDiagram.astro'
+import FlowDiagram from '@/components/study/FlowDiagram.astro'
 
 ## The case that shows why this matters: McDonald's in Luxembourg
 
@@ -23,7 +26,9 @@ In 2009, the Luxembourg tax authorities gave McDonald's two private tax rulings.
 
 Except the US never taxed them either. The branch didn't meet the US definition of a taxable presence, so American authorities had no claim on the income. Luxembourg found out, and in a second ruling in 2012, decided the exemption still applied anyway. The result: several hundred million euros in franchise royalties fell into a gap between two countries' tax systems and were never taxed by either.
 
+<CaseCard title="McDonald's, Luxembourg" year="2015-2018" outcome="No illegal aid found">
 The European Commission opened a formal investigation in December 2015 to check whether this was illegal state aid, meaning Luxembourg had quietly given McDonald's a special deal unavailable to anyone else. Three years later, in September 2018, the Commission concluded it wasn't. Luxembourg had simply applied its own tax law and its treaty with the US correctly. The double non-taxation was a byproduct of the two countries' rules not lining up, not a secret favor. It was the first case of its kind where the Commission's investigation ended without a finding of illegal aid, which made it notable in its own right.
+</CaseCard>
 
 Compare that to Apple's arrangement in Ireland, investigated around the same period. There, the European Commission found that Ireland had allocated the vast majority of Apple's European profits to a head office that existed only on paper, with no staff and no real activity, letting Apple pay a fraction of the tax it should have. After years of appeals, the EU's top court confirmed in September 2024 that this was illegal aid, and ordered Ireland to recover roughly 13 billion euros from Apple.
 
@@ -32,6 +37,8 @@ Same continent, same era, two multinational companies structuring how profit mov
 ## So what exactly is a transfer price?
 
 A multinational enterprise (MNE) is just a group of companies under common ownership, operating in more than one country. Picture a simplified group: a parent company in Germany that designs and owns the brand for wireless headphones, a factory in Poland that assembles them, and a sales company in France that sells them to retailers. We'll follow this group, which we'll call **Meridian Group**, throughout the course.
+
+<MeridianDiagram caption="Meridian Group, the recurring case company we follow across the whole course." />
 
 When the Polish factory sells finished headphones to the French sales company, someone has to put a price on that shipment, even though both companies belong to the same parent and nobody is really "negotiating" in the way two strangers would. That internal price is the transfer price.
 
@@ -43,8 +50,14 @@ That's exactly why tax authorities pay attention. If Meridian's Polish factory s
 
 Say Meridian's Polish factory produces a pair of headphones for 40 euros in materials and labor. It sells that pair to Meridian France for 45 euros. Meridian France then sells it on to retailers for 90 euros.
 
-- Poland's profit on the transaction: 5 euros (45 minus 40)
-- France's profit on the transaction: 45 euros (90 minus 45)
+<FlowDiagram
+  steps={[
+    { label: 'Poland: cost', value: '€40', sublabel: 'to make' },
+    { label: 'Transfer price', value: '€45', accent: true, sublabel: 'the internal choice' },
+    { label: 'France: resale', value: '€90', sublabel: 'to retailers' },
+  ]}
+  caption="Poland's profit: €5 (45 − 40). France's profit: €45 (90 − 45). Only the middle number is a choice."
+/>
 
 If Poland's corporate tax rate is higher than France's, this pricing quietly shifts most of the taxable profit into the lower-tax country. Now imagine Meridian instead charged 70 euros for the same shipment: Poland's profit jumps to 30 euros, France's drops to 20. Nothing about the product changed. Only the internal price did, and with it, where the tax bill lands.
 

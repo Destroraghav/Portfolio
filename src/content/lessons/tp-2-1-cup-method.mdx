@@ -1,0 +1,75 @@
+---
+title: "The Comparable Uncontrolled Price (CUP) Method"
+description: "CUP compares a controlled price directly to a comparable independent price, the most direct method when a truly comparable transaction exists, which is rarer than it sounds."
+course: "transfer-pricing"
+module: "2-traditional-methods"
+slug: "cup-method"
+order: 1
+readTimeMinutes: 6
+draft: false
+tldr: >-
+  CUP compares the price actually charged in a controlled transaction to the price
+  charged in a comparable transaction between independent parties. It's considered the
+  most direct and reliable method when a genuinely comparable price exists, but
+  "genuinely comparable" is a higher bar than it sounds.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CaseCard from '@/components/study/CaseCard.astro'
+
+## A real case that shows how hard "comparable" can be, even for a raw commodity
+
+If any product should make CUP easy, it's a raw commodity with a public reference price. Copper concentrate is about as close as you get: its value is tied to the London Metal Exchange copper price, which anyone can look up.
+
+<CaseCard title="Glencore v Commissioner of Taxation, Australia" year="2019-2020" outcome="Taxpayer won">
+Cobar Management Pty Ltd, an Australian mining company, sold 100% of the copper concentrate from its New South Wales mine to Glencore International AG, a related trading hub based in Zug, Switzerland. The Australian Taxation Office argued the pricing arrangement between them didn't reflect what an independent buyer would have paid, and issued a large transfer pricing adjustment. Glencore challenged it.
+
+The Federal Court of Australia ruled in Glencore's favour in 2019, the Full Federal Court dismissed the tax office's appeal in November 2020, and Australia's High Court refused to hear a further appeal, making the win final. A central issue was exactly the kind of detail CUP requires: even with a public reference price for the underlying metal, the actual contract terms, treatment and refining charges, quality specifications, shipping terms, and the realities of how concentrate is marketed globally, all needed adjustment before a "public price" could function as a true comparable.
+</CaseCard>
+
+The lesson for a beginner: CUP is often described as the gold standard method, and when it works, it works well. But finding a transaction similar enough in product, contract terms, market, and timing to actually be comparable is rarely as simple as looking up a price online. A commodity with a quoted market price still took a multi-year court case to sort out.
+
+## The method itself
+
+There are two versions:
+
+| | Internal CUP | External CUP |
+| --- | --- | --- |
+| Where the price comes from | the company itself sells the same product to an unrelated customer | a price between two unrelated companies elsewhere in the market |
+| Reliability | generally stronger, seller, product, and market are already close | needs more adjustment, you're comparing across different companies |
+
+For CUP to be reliable, the comparable transaction needs to match closely on: product characteristics, contractual terms (payment timing, volume, delivery terms), the market and economic conditions it took place in, and the business strategy behind it. Any difference wide enough to plausibly affect price needs a quantifiable adjustment, or the comparison breaks down.
+
+## Worked example
+
+Meridian's Polish factory sells a specialised audio chipset to Meridian France for use in its headphones, at €12 per unit. In the same quarter, the Polish factory also sells the identical chipset, same specification, same order volume, same payment terms, to an unrelated Belgian electronics company, at €14 per unit.
+
+| Sale | Price per unit |
+| --- | --- |
+| To Meridian France (controlled) | €12 |
+| To unrelated Belgian buyer (a strong internal CUP) | €14 |
+
+This is a strong internal CUP: same seller, same product, same approximate timing and volume. On the face of it, €12 looks low relative to the €14 charged to the independent Belgian buyer, a 14% gap worth investigating. If no legitimate reason explains the difference (e.g. a genuine volume discount, or different payment terms), €14 is the stronger candidate for the arm's length price, and Meridian would be expected to adjust the intercompany price upward or justify the gap.
+
+## Try it yourself
+
+Meridian's Polish factory sells the same chipset to a Japanese distributor, unrelated to the group, at ¥2,200 per unit (roughly €14 at the exchange rate used, matching the Belgian price), but on 90-day payment terms instead of the Belgian buyer's 30-day terms, and in a shipment ten times larger.
+
+1. Can this Japanese transaction be used as an external-style comparable for the France transaction without any adjustment? Why or why not?
+2. What two adjustments would you want to check before using it?
+
+<CollapsibleAnswer>
+1. Not without adjustment, the payment terms and volume both differ meaningfully from the France transaction. 2. A payment-terms adjustment (90-day credit has a financing cost the 30-day buyer doesn't get, which should be reflected in price) and a volume-discount adjustment (a ten-times-larger order often comes with a legitimately lower unit price, unrelated to whether the parties are associated).
+</CollapsibleAnswer>
+
+## Key terms
+
+- **CUP method:** benchmarks a controlled transaction's price directly against a comparable uncontrolled transaction's price.
+- **Internal CUP:** the comparable transaction involves the same company and an unrelated party.
+- **External CUP:** the comparable transaction is between two unrelated third parties.
+
+## Sources
+
+- DLA Piper, "Glencore wins landmark Australian transfer pricing case over ATO" (2020)
+- Allens, "Full Federal Court dismisses Commissioner's transfer pricing appeal against Glencore" (2020)
+- OECD Transfer Pricing Guidelines, Chapter II, Part II (Traditional Transaction Methods)

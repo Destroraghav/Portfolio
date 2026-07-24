@@ -1,0 +1,77 @@
+---
+title: "Steps 3–5: Cleaning the Numbers, Benchmarking, and the Final Price"
+description: "Strip the non-operational intruders, separate the pass-through volume, apply the idle-capacity adjustment, then benchmark the cleaned Return on Total Costs against a real peer set."
+course: "transfer-pricing"
+module: "9-applied-clinic"
+slug: "cleanup-benchmark-price"
+order: 2
+readTimeMinutes: 8
+draft: false
+tldr: >-
+  Before testing anything, clean the numbers: remove non-operational items, separate the
+  pass-through subcontract volume, and apply the idle-capacity adjustment. The factory's
+  cleaned Return on Total Costs of 9.2% lands exactly at Q3 of a 6.1%–9.2% benchmark range,
+  inside the range, no adjustment required.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+import IQRChart from '@/components/study/IQRChart.astro'
+
+## Step 3: Accounting cleanup, finding the true operating profit
+
+Before testing anything, the numbers need cleaning up, exactly the "non-operational intruders" problem from Module 5 and the idle capacity adjustment from Lesson 5.3.
+
+- **Remove non-operational items:** the €600,000 insurance settlement gain and the €350,000 interest expense are both non-operational, they don't reflect the factory's actual manufacturing performance, and both need to be excluded from operating profit.
+- **Separate the subcontracted volume:** strip out the €7,200,000 subcontractor cost and its associated 1% markup revenue (€72,000) from the main manufacturing test, since it's a separate, pass-through function.
+- **Apply the idle capacity adjustment (Lesson 5.3):** the factory ran at 78% of normal capacity, so its €9,000,000 of fixed indirect manufacturing costs are being spread over a shrunken output base. Restating fixed costs at normal capacity: €9,000,000 × 0.78 = €7,020,000 is the fixed cost absorbed into the routine cost base at this year's actual volume; the remaining €1,980,000 is the idle capacity cost, excluded from the routine margin test (a demand-side shortfall outside the factory's control, not its operating efficiency).
+
+<CalcSteps
+  title="Rebuilding the core manufacturing P&L"
+  steps={[
+    { expr: 'Revenue (ex. subcontract pass-through + markup) = €62,000,000 − €7,200,000 − €72,000', result: '€54,728,000' },
+    { expr: 'COGS (ex. subcontractor cost) = €48,000,000 − €7,200,000', result: '€40,800,000' },
+    { expr: 'Indirect manufacturing costs (capacity-adjusted)', result: '€7,020,000' },
+    { expr: 'Operating expenses = €1,400,000 + €900,000', result: '€2,300,000' },
+    { expr: 'Total operating costs = €40,800,000 + €7,020,000 + €2,300,000', result: '€50,120,000' },
+    { expr: 'Operating profit = €54,728,000 − €50,120,000', result: '€4,608,000' },
+    { expr: 'Return on Total Costs = €4,608,000 ÷ €50,120,000', result: '9.2%' },
+  ]}
+/>
+
+## Step 4: Benchmarking
+
+A benchmarking study (Module 3's process) of independent contract manufacturers in the consumer electronics sector, screened for independence, functional comparability, and data quality, returns a peer set with these Return on Total Costs figures: 4.5%, 5.8%, 6.4%, 7.1%, 7.9%, 8.6%, 9.8%, 11.2%.
+
+<IQRChart
+  data={[4.5, 5.8, 6.4, 7.1, 7.9, 8.6, 9.8, 11.2]}
+  tested={9.2}
+  unit="%"
+  caption="Median 7.5%, interquartile range 6.1%–9.2%. The factory's cleaned 9.2% sits exactly at Q3, inside the range."
+/>
+
+## Step 5: Diagnosis and conclusion
+
+The factory's capacity- and cost-cleaned Return on Total Costs is 9.2%, landing exactly at the top edge (Q3) of the 6.1%–9.2% interquartile range. This is a clean result: the Polish factory's manufacturing profitability for the year is arm's length, right at the upper bound but still inside the accepted range, **no adjustment required** for the core manufacturing function.
+
+Separately, the subcontracted volume: €7,200,000 in subcontractor invoices, remunerated at the agreed 1% markup, generating €72,000 in additional revenue for administering the arrangement. This pass-through fee should be benchmarked on its own terms (typically against market rates for similar administrative pass-through or agency arrangements) rather than folded into the main manufacturing test, consistent with the answer in Lesson 9.1.
+
+## Try it yourself
+
+Suppose the benchmarking study instead returned a peer set producing an interquartile range of 4.0% to 7.0% (median 5.5%), rather than 6.1%–9.2%.
+
+1. Where would the factory's 9.2% result fall relative to this range?
+2. What would the standard corrective step be, and what would the resulting profit adjustment look like in principle (describe the mechanics)?
+
+<CollapsibleAnswer>
+1. Above Q3 (7.0%), outside the range on the high side. 2. This is less common than a below-range finding (companies rarely get "flagged" for having too much profit at the manufacturing entity itself, since typically it's the IP-owning principal in Germany that would be expected to hold the excess), but if it did trigger a review, the standard corrective step would still reference the median (5.5%), and the mechanics would involve reducing the factory's recognised operating profit down toward what a 5.5% Return on Total Costs implies on the same cost base, with the difference potentially reallocated to wherever it's determined the additional value was actually created.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Accounting cleanup:** removing non-operational items (one-off gains, financial items) and normalising for distortions like idle capacity or pass-through costs, before benchmarking.
+- **Return on Total Costs:** the PLI used in this case, operating profit divided by total operating costs.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter II, Part III (TNMM) and Chapter III (Comparability Analysis)

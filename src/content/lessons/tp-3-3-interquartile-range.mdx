@@ -1,0 +1,76 @@
+---
+title: "The Interquartile Range"
+description: "How a spread of peer margins becomes a defensible arm's length range: Q1 to Q3. The tool that ultimately decides whether a company's result is accepted or adjusted."
+course: "transfer-pricing"
+module: "3-comparability-benchmarking"
+slug: "interquartile-range"
+order: 3
+readTimeMinutes: 5
+draft: false
+tldr: >-
+  Even a carefully screened peer set won't produce identical results, comparable companies
+  naturally have a spread of profit margins. The interquartile range (IQR) is the standard
+  way of turning that spread into a defensible target range, and it's the tool that
+  ultimately decides whether a company's actual result is considered arm's length or not.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+import IQRChart from '@/components/study/IQRChart.astro'
+
+## Why not just average the peer set?
+
+A simple average is sensitive to outliers. One unusually high- or low-margin company in a peer set of ten can drag the average toward a number that doesn't represent the "typical" independent result at all. The interquartile range solves this by discarding the extreme quarters at each end and focusing on the middle 50% of results, where the bulk of genuinely comparable companies tend to sit.
+
+To calculate it: rank the peer set's results (say, operating margins) from lowest to highest, then find:
+
+- **Q1 (first quartile):** the value below which 25% of the results fall
+- **Median:** the middle value
+- **Q3 (third quartile):** the value below which 75% of the results fall
+
+The range between Q1 and Q3 is the interquartile range, generally accepted under OECD guidance as an appropriate arm's length range when comparability is imperfect (which is almost always).
+
+## Worked example
+
+Meridian France's benchmarking study for its distribution function returns eight comparable companies with these operating margins: 2.1%, 2.8%, 3.4%, 3.9%, 4.3%, 4.6%, 5.5%, 7.2%.
+
+<CalcSteps
+  title="Ranking them, then finding the quartiles"
+  steps={[
+    { expr: 'Median = (3.9 + 4.3) / 2', result: '4.1%' },
+    { expr: 'Q1 = median of the lower half (2.8 + 3.4)/2', result: '3.1%' },
+    { expr: 'Q3 = median of the upper half (4.6 + 5.5)/2', result: '5.05%' },
+  ]}
+/>
+
+The interquartile range is **3.1% to 5.05%**. If Meridian France's actual operating margin for the year is 4.4%, it falls comfortably inside the range and is considered arm's length:
+
+<IQRChart
+  data={[2.1, 2.8, 3.4, 3.9, 4.3, 4.6, 5.5, 7.2]}
+  tested={4.4}
+  unit="%"
+  caption="Each dot is a comparable company. The shaded band is the arm's length range (Q1 to Q3); Meridian France's 4.4% sits inside it."
+/>
+
+If it were, say, 1.8%, it would fall below Q1, and Meridian would likely face a transfer pricing adjustment, typically pushing the result up to the median (4.1%) as the standard corrective benchmark many tax authorities apply.
+
+## Try it yourself
+
+A peer set for Meridian's Polish factory returns six comparable cost-plus markups: 4%, 5%, 6%, 8%, 9%, 11%.
+
+1. Calculate the median.
+2. Calculate Q1 and Q3.
+3. If the Polish factory's actual markup this year was 3%, is it inside or outside the interquartile range, and what would you expect to happen next?
+
+<CollapsibleAnswer>
+1. Median = (6+8)/2 = 7%. 2. Q1 = median of (4,5,6) = 5%. Q3 = median of (8,9,11) = 9%. IQR = 5% to 9%. 3. 3% is below Q1 (5%), so it falls outside the range. The factory would likely face a transfer pricing adjustment, typically corrected up to the median (7%) unless a specific, well-documented reason justifies the lower margin.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Interquartile range (IQR):** the middle 50% of a ranked peer set's results, from the first quartile (Q1) to the third quartile (Q3), used as the accepted arm's length range.
+- **Quartile:** one of the three points that divide a ranked data set into four equal parts.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter III, Section A.6 (Arm's Length Range)

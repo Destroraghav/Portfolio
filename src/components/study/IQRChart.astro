@@ -1,0 +1,85 @@
+---
+/**
+ * Interquartile-range chart. Plots a peer set on a number line, shades the Q1-Q3
+ * band, marks the median, and (optionally) the tested party's result, coloured
+ * green if inside the range, red if outside. Quartiles use the "median of halves"
+ * method (matching the lesson maths).
+ * Usage: <IQRChart data={[2.1,2.8,3.4,3.9,4.3,4.6,5.5,7.2]} tested={4.4} unit="%" />
+ */
+interface Props {
+  data: number[];
+  tested?: number;
+  unit?: string;
+  caption?: string;
+}
+const { data, tested, unit = '', caption } = Astro.props;
+
+const median = (arr: number[]) => {
+  const s = [...arr].sort((a, b) => a - b);
+  const n = s.length;
+  const m = Math.floor(n / 2);
+  return n % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+};
+const sorted = [...data].sort((a, b) => a - b);
+const n = sorted.length;
+const half = Math.floor(n / 2);
+const lower = sorted.slice(0, half);
+const upper = sorted.slice(n % 2 ? half + 1 : half);
+const med = median(sorted);
+const q1 = median(lower);
+const q3 = median(upper);
+
+const inRange = tested != null && tested >= q1 && tested <= q3;
+const fmt = (v: number) => `${Number(v.toFixed(2))}${unit}`;
+
+// axis scale
+const vals = [...data, ...(tested != null ? [tested] : [])];
+const lo = Math.min(...vals);
+const hi = Math.max(...vals);
+const padPct = (hi - lo) * 0.12 || 1;
+const dMin = lo - padPct;
+const dMax = hi + padPct;
+const L = 48;
+const R = 672;
+const x = (v: number) => L + ((v - dMin) / (dMax - dMin)) * (R - L);
+const AX = 90;
+const testColor = inRange ? 'var(--color-success)' : 'var(--color-accent-pink)';
+---
+
+<figure class="not-prose my-6 rounded-lg border border-hairline bg-surface-soft p-4 sm:p-6">
+  <svg viewBox="0 0 720 180" class="block h-auto w-full" role="img" aria-label="Interquartile range chart">
+    <!-- Q1-Q3 band -->
+    <rect x={x(q1)} y="76" width={x(q3) - x(q1)} height="28" rx="4" fill="var(--color-primary)" opacity="0.14" />
+    <rect x={x(q1)} y="76" width={x(q3) - x(q1)} height="28" rx="4" fill="none" stroke="var(--color-primary)" stroke-width="1" opacity="0.5" />
+
+    <!-- axis -->
+    <line x1={L} y1={AX} x2={R} y2={AX} stroke="var(--color-hairline-strong)" stroke-width="1" opacity="0.4" />
+
+    <!-- median -->
+    <line x1={x(med)} y1="68" x2={x(med)} y2="112" stroke="var(--color-primary)" stroke-width="2" />
+    <text x={x(med)} y="60" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="var(--color-primary)">Median {fmt(med)}</text>
+
+    <!-- Q1 / Q3 labels -->
+    <text x={x(q1)} y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="var(--color-mute)">Q1 {fmt(q1)}</text>
+    <text x={x(q3)} y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="var(--color-mute)">Q3 {fmt(q3)}</text>
+
+    <!-- peer dots -->
+    {sorted.map((v) => (
+      <circle cx={x(v)} cy={AX} r="4.5" fill="var(--color-stone)" stroke="var(--color-canvas)" stroke-width="1.5" />
+    ))}
+
+    <!-- tested marker -->
+    {tested != null && (
+      <g>
+        <line x1={x(tested)} y1={AX} x2={x(tested)} y2="150" stroke={testColor} stroke-width="1.5" />
+        <circle cx={x(tested)} cy={AX} r="6" fill={testColor} stroke="var(--color-canvas)" stroke-width="1.5" />
+        <text x={x(tested)} y="166" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill={testColor}>
+          Tested {fmt(tested)} · {inRange ? 'in range' : 'out of range'}
+        </text>
+      </g>
+    )}
+  </svg>
+  <figcaption class="mt-1 text-center text-sm text-mute">
+    {caption ?? 'The shaded band is the arm’s length interquartile range (Q1 to Q3).'}
+  </figcaption>
+</figure>

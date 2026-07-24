@@ -104,6 +104,9 @@ const modules = defineCollection({
       summary: z.string(),
       status: z.enum(['published', 'coming-soon']).default('coming-soon'),
       draft: z.boolean().default(false),
+      // Optional module hero art at public/images/study/transfer-pricing/module-<n>.jpg.
+      // Falls back to a numbered tile when absent, so cards render fine before art lands.
+      heroImage: z.string().optional(),
     }),
 });
 

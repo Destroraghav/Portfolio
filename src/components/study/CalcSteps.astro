@@ -1,0 +1,40 @@
+---
+/**
+ * Worked calculation as a clean sequence of steps instead of a paragraph.
+ * Usage:
+ *   <CalcSteps title="Applying RPM" steps={[
+ *     { expr: "Transfer Price = €90 × (1 − 0.35)", result: "€58.50" },
+ *     { expr: "Meridian France margin = (90 − 70) / 90", result: "22%", note: "below the 35% benchmark" },
+ *   ]} />
+ */
+interface Step {
+  expr: string;
+  result?: string;
+  note?: string;
+}
+interface Props {
+  title?: string;
+  steps: Step[];
+}
+const { title, steps } = Astro.props;
+---
+
+<div class="not-prose my-6 rounded-lg border border-hairline bg-canvas p-5 sm:p-6">
+  {title && <p class="t-eyebrow text-stone">{title}</p>}
+  <ol class:list={['space-y-2.5', title && 'mt-4']}>
+    {
+      steps.map((s) => (
+        <li class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span class="font-mono text-[0.9rem] text-body">{s.expr}</span>
+          {s.result && (
+            <span class="inline-flex items-center gap-1.5 font-mono text-[0.95rem] font-semibold text-primary">
+              <span aria-hidden="true" class="text-stone">=</span>
+              {s.result}
+            </span>
+          )}
+          {s.note && <span class="text-sm text-mute">({s.note})</span>}
+        </li>
+      ))
+    }
+  </ol>
+</div>

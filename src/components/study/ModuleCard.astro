@@ -8,8 +8,9 @@ interface Props {
   href?: string; // omitted for coming-soon modules
   lessonCount?: number;
   status: 'published' | 'coming-soon';
+  heroImage?: string; // optional module art; falls back to the numbered badge
 }
-const { number, title, summary, href, lessonCount, status } = Astro.props;
+const { number, title, summary, href, lessonCount, status, heroImage } = Astro.props;
 const published = status === 'published' && href;
 const Tag2 = published ? 'a' : 'div';
 ---
@@ -24,15 +25,26 @@ const Tag2 = published ? 'a' : 'div';
   ]}
   aria-disabled={published ? undefined : 'true'}
 >
-  <span
-    class:list={[
-      'grid h-10 w-10 shrink-0 place-items-center rounded-full text-sm font-semibold tabular-nums',
-      published ? 'bg-primary text-on-primary' : 'bg-hairline text-stone',
-    ]}
-    aria-hidden="true"
-  >
-    {String(number).padStart(2, '0')}
-  </span>
+  {
+    heroImage ? (
+      <span class="relative grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-lg bg-surface-soft">
+        <img src={heroImage} alt="" loading="lazy" class="h-full w-full object-cover" />
+        <span class="absolute bottom-0 right-0 rounded-tl-md bg-primary px-1.5 py-0.5 text-[0.7rem] font-semibold tabular-nums text-on-primary">
+          {String(number).padStart(2, '0')}
+        </span>
+      </span>
+    ) : (
+      <span
+        class:list={[
+          'grid h-10 w-10 shrink-0 place-items-center rounded-full text-sm font-semibold tabular-nums',
+          published ? 'bg-primary text-on-primary' : 'bg-hairline text-stone',
+        ]}
+        aria-hidden="true"
+      >
+        {String(number).padStart(2, '0')}
+      </span>
+    )
+  }
 
   <div class="min-w-0 flex-1">
     <div class="flex flex-wrap items-center gap-2">

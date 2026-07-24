@@ -1,0 +1,80 @@
+---
+title: "Luxembourg's Legal Framework, and the Intra-group Financing Rules"
+description: "Luxembourg's arm's length principle is codified in Articles 56 and 56bis LITL. Its most distinctive guidance addresses intra-group financing companies, including a ~2% routine intermediary benchmark."
+course: "transfer-pricing"
+module: "11-luxembourg"
+slug: "legal-framework-financing"
+order: 2
+readTimeMinutes: 7
+draft: false
+tldr: >-
+  Luxembourg's arm's length principle is codified in Articles 56 and 56bis of its Income Tax
+  Law (LITL), directly built on the OECD framework this whole course has covered. Its most
+  distinctive piece of guidance addresses intra-group financing companies specifically,
+  including a notable minimum remuneration benchmark for simple financing intermediaries.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import FormulaCard from '@/components/study/FormulaCard.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+import MethodChooser from '@/components/study/MethodChooser.astro'
+
+## The legislative backbone
+
+Luxembourg's domestic transfer pricing rules rest on two pillars: the general tax procedure law's cooperation obligations, and **Articles 56 and 56bis of the LITL**, which explicitly incorporate the arm's length principle into Luxembourg tax law and align it with the OECD Transfer Pricing Guidelines this course has referenced throughout (Module 1's Article 9 of the OECD Model Tax Convention is the international parallel to Luxembourg's own Articles 56/56bis). In practice, this means everything covered in Modules 1 through 10, comparability, the five methods, functional analysis, is directly applicable under Luxembourg domestic law, not just as international guidance.
+
+## The intra-group financing circular
+
+Because financing companies are such a common feature of Luxembourg structures, the Luxembourg tax administration issued specific administrative guidance addressing them directly (an administrative circular tied to Articles 56/56bis). Two ideas are worth knowing well:
+
+- **Equity at risk.** A financing company that borrows from one group entity and on-lends to another isn't automatically entitled to keep the full spread between what it pays and what it receives, unless it's genuinely acting like an intra-group bank, with real capacity to bear credit risk. The guidance requires identifying how much "equity at risk" the financing company is genuinely exposed to, based on a credit risk analysis of the entity it's lending to, and pricing its remuneration based on that risk exposure, not simply on the size of the loan passing through it.
+- **The routine intermediary benchmark.** For a financing company that functions more like a simple administrative intermediary than a real risk-bearing intra-group bank, the guidance sets out that its arm's length remuneration should generally correspond to a return of around 2% (after tax) on the assets it finances, unless the company prepares a full transfer pricing study under OECD methodology showing a different return is more appropriate.
+
+<FormulaCard label="Routine intermediary benchmark">
+Arm's length remuneration ≈ 2% (after tax) × assets financed
+</FormulaCard>
+
+<MethodChooser
+  title="Which approach for a Luxembourg financing company?"
+  rules={[
+    { when: 'Routine administrative intermediary, no real credit risk', method: '~2% benchmark' },
+    { when: 'Genuine risk-bearing intra-group bank', method: 'Full TP study' },
+  ]}
+/>
+
+## Worked example
+
+Meridian's Luxembourg finance subsidiary, Meridian Finance S.à r.l., receives €20,000,000 in funding from Meridian AG (Germany) and on-lends the same amount to Meridian France for its warehouse expansion (first introduced in Lesson 1.1). A functional analysis (Module 1) shows Meridian Finance doesn't perform independent credit assessment, doesn't have discretion to reject the German parent's funding instructions, and has no capacity to absorb a loss if Meridian France couldn't repay, all of that risk effectively sits with the German parent. Meridian Finance is, in substance, a routine administrative intermediary.
+
+<CalcSteps
+  title="Applying the routine intermediary benchmark"
+  steps={[
+    { expr: 'Assets financed', result: '€20,000,000' },
+    { expr: 'Arm’s length remuneration ≈ 2% (after tax) × €20,000,000', result: '€400,000', note: 'Before grossing up for Luxembourg corporate tax, a detail a real engagement works through precisely.' },
+    { expr: 'Compare: retaining a 4-pt spread (borrow 3%, lend 7%) on €20m', result: '€800,000', note: 'Far above the routine floor, needs a full study justifying real risk-bearing, or a repricing down.' },
+  ]}
+/>
+
+If Meridian Finance is currently retaining a much larger spread than the benchmark, that's a strong signal the structure needs either a proper transfer pricing study justifying the larger spread based on real risk-bearing, or a repricing down toward the routine benchmark.
+
+## Try it yourself
+
+A second Luxembourg financing entity, Meridian Treasury Solutions, does perform independent credit analysis on the group entities it lends to, has genuine discretion to decline a funding request it judges too risky, and has its own capital base at risk if a borrower defaults.
+
+1. Would the 2% routine intermediary benchmark be an appropriate way to price its remuneration?
+2. What would be more appropriate instead?
+
+<CollapsibleAnswer>
+1. No, the 2% benchmark is specifically for routine intermediaries that don't bear real credit risk. 2. A full transfer pricing study reflecting its genuine risk-bearing function, likely benchmarked against independent lenders or intra-group banking comparables, similar in spirit to the credit-rating-based approach from Module 7's Chevron discussion, since this entity is functionally closer to a real financial institution than a pass-through administrator.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Articles 56 and 56bis LITL:** the Luxembourg Income Tax Law provisions codifying the arm's length principle domestically.
+- **Equity at risk:** the portion of a financing company's capital genuinely exposed to credit risk, central to pricing its remuneration under Luxembourg's financing guidance.
+- **Routine intermediary benchmark:** the administrative guidance's reference point of roughly 2% after-tax return on financed assets for financing companies that don't genuinely bear credit risk.
+
+## Sources
+
+- OECD, Luxembourg Transfer Pricing Country Profile (updated May 2025)
+- Luxembourg Administrative Circular L.I.R. n° 56/1 – 56bis/1 (on intra-group financing transactions)

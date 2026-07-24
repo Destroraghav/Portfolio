@@ -1,0 +1,32 @@
+---
+/**
+ * A "which method fits?" decision guide: a list of situation -> method rows.
+ * Usage: <MethodChooser rules={[{ when: "A near-identical product with a real market price", method: "CUP" }, ...]} />
+ */
+interface Rule {
+  when: string;
+  method: string;
+}
+interface Props {
+  title?: string;
+  rules: Rule[];
+}
+const { title = 'Which method fits?', rules } = Astro.props;
+---
+
+<div class="not-prose my-6 rounded-lg border border-hairline bg-canvas p-5 sm:p-6">
+  <p class="t-eyebrow text-stone">{title}</p>
+  <ul class="mt-4 space-y-2.5">
+    {
+      rules.map((r) => (
+        <li class="flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-md bg-surface-soft px-4 py-3">
+          <span class="flex-1 text-sm text-body">{r.when}</span>
+          <span aria-hidden="true" class="text-stone">&rarr;</span>
+          <span class="inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-semibold text-on-primary">
+            {r.method}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+</div>

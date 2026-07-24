@@ -1,0 +1,69 @@
+---
+title: "The Case, and Steps 1–2: Characterisation and Method Selection"
+description: "A realistic manufacturing case from the top: characterise the Polish factory, identify the tested party, and select the method and profit level indicator before touching a single number."
+course: "transfer-pricing"
+module: "9-applied-clinic"
+slug: "case-characterisation"
+order: 1
+readTimeMinutes: 7
+draft: false
+tldr: >-
+  A single realistic case, worked start to finish. This lesson covers Steps 1 and 2:
+  characterise the Polish factory (FAR analysis), identify it as the tested party, and select
+  TNMM with a Return on Total Costs profit level indicator, before any numbers are touched.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import FlowDiagram from '@/components/study/FlowDiagram.astro'
+
+<FlowDiagram
+  steps={[
+    { label: 'Step 1', sublabel: 'Characterise (FAR)' },
+    { label: 'Step 2', sublabel: 'Method + PLI' },
+    { label: 'Step 3', sublabel: 'Clean the numbers' },
+    { label: 'Step 4', sublabel: 'Benchmark' },
+    { label: 'Step 5', sublabel: 'Diagnose + price' },
+  ]}
+  caption="The five-step method every real transfer pricing analysis runs. This lesson covers 1–2; Lesson 9.2 finishes 3–5."
+/>
+
+## The situation
+
+It's early 2026. Meridian Manufacturing Sp. z o.o. (the Polish factory introduced back in Module 1) has had a rough year. A key electronics component supplier in the region suffered its own production issues, forcing Meridian's factory to outsource 18% of its normal assembly volume to a third-party subcontractor in Slovakia for several months while the supply issue was resolved. On top of that, overall group demand softened slightly, and the factory operated at just 78% of its normal production capacity for the year.
+
+**Financial data for the year:**
+
+- Revenue from sales to Meridian France and other Meridian distribution entities: **€62,000,000**
+- Cost of Goods Sold: **€48,000,000**, of which €7,200,000 relates to invoices from the Slovak subcontractor for the outsourced volume
+- Indirect manufacturing costs (fixed): **€9,000,000**
+- Operating expenses: Plant management €1,400,000; local HR and finance €900,000; a one-off warehouse flood insurance settlement received (non-operational) €600,000 gain; interest expense on a working-capital bank loan (financial item, non-operational) €350,000
+- Operating assets: Net book value of plant and machinery €14,000,000; inventory and receivables €6,000,000
+
+**Additional facts:** Normal capacity utilisation is 100%; this year's 78% is a genuine, temporary shortfall. Per Meridian's group policy (consistent with market practice for pass-through subcontracting arrangements), subcontracted volume that the factory administers but doesn't meaningfully add value to is remunerated with a 1% markup on the subcontractor's invoice.
+
+## Step 1: Characterisation (FAR analysis)
+
+Applying Module 1's framework: the Polish factory buys its own raw materials and manages day-to-day production, but builds strictly to German headquarters' specifications, doesn't own any of the underlying IP, and doesn't decide what gets produced, in what volumes, or for which markets, those decisions sit with Germany. Per Module 5's manufacturing spectrum, this is a **contract (routine) manufacturer**.
+
+The tested party (Module 3): since the factory is the less complex party in its transactions with the German parent and the distribution subsidiaries, it's the tested party. Testing the complex, IP-owning German parent instead would fail for the same reason it always does, there's no real independent comparable for an entity like that.
+
+## Step 2: Method and profit level indicator selection
+
+Given the routine manufacturing profile, **TNMM** (Module 4) is the appropriate method, gross-margin methods like Cost Plus are harder to apply reliably here because the subcontracting arrangement and the capacity disruption both distort the cost base in ways that need cleaning up before a margin comparison means anything (Step 3 handles this). For the profit level indicator, **Return on Total Costs** (operating profit ÷ total operating costs) is the standard choice for a manufacturer, since a manufacturer's economics are driven primarily by its cost base rather than by capital employed.
+
+## Try it yourself
+
+Before moving to Step 3, make your own call: should the €7,200,000 of subcontracted volume be tested using the same Return on Total Costs benchmark as the factory's normal manufacturing activity, or treated separately?
+
+<CollapsibleAnswer>
+Treated separately. The factory adds essentially no value to the subcontracted volume, it's just administering a pass-through arrangement per group policy, so lumping it into the same cost base as genuine manufacturing activity (which does add real value) would distort the margin test for both. This is exactly the kind of situation Module 5's Berry ratio logic was built for, a large pass-through cost that doesn't reflect the entity's real value-adding effort.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Contract (routine) manufacturer:** recap from Module 5, owns inventory, follows the principal's specifications, doesn't own IP.
+- **Return on Total Costs:** operating profit divided by total operating costs, a common PLI for manufacturers under TNMM.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapters I–III (Functional Analysis, Method Selection, Comparability)

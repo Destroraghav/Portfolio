@@ -1,0 +1,66 @@
+---
+title: "Cash Pooling and Financial Guarantees"
+description: "Pooling saves a group real money, and that saving must be shared fairly among participants, not captured by whoever runs the pool. Guarantees need their own fee whenever they deliver a measurable credit benefit."
+course: "transfer-pricing"
+module: "7-financing-services"
+slug: "cash-pooling-guarantees"
+order: 2
+readTimeMinutes: 6
+draft: false
+tldr: >-
+  Cash pooling lets a group net out its internal cash surpluses and deficits to borrow and
+  lend less externally, saving real money, and that saving needs to be shared fairly among
+  participants, not captured entirely by whichever entity runs the pool. Guarantees need their
+  own arm's length fee whenever they provide a real, measurable credit benefit.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+
+## Cash pooling
+
+Instead of every subsidiary separately managing its own bank borrowing and deposits, a group can run a cash pool: a central treasury entity nets out each subsidiary's daily cash position, subsidiaries with surplus cash effectively lend to the pool, subsidiaries with a shortfall effectively borrow from it, and the group only needs to borrow or invest externally the net amount left over after pooling everyone's balances together.
+
+This creates a genuine **synergy benefit**: pooled borrowing is usually cheaper than each entity borrowing separately, and pooled deposits often earn a better rate than scattered small balances would individually. The transfer pricing question is how that saved cost gets divided. A pool leader that simply pockets the entire benefit, paying participants a below-market deposit rate and charging them an above-market borrowing rate, is capturing value that arguably belongs to the group members whose cash actually created the saving in the first place. Arm's length practice generally expects the synergy benefit to be shared reasonably among participants, with the pool leader compensated only for the treasury function it actually performs (which is often a fairly routine service, priced with Cost Plus).
+
+## Financial guarantees
+
+When a parent formally guarantees a subsidiary's external borrowing, the subsidiary can typically borrow at a lower rate than it would achieve on its own credit standing, because the lender's risk is reduced. That reduction in borrowing cost is real economic value, and the guarantor is generally entitled to a fee for providing it.
+
+The standard way to size a guarantee fee: estimate what the subsidiary would have paid to borrow without the guarantee (its standalone rate), estimate what it actually pays with the guarantee in place, and the difference, the interest saving the guarantee created, is the pool of value to be priced, with the guarantee fee typically set at some portion of that saving.
+
+An important limit, echoing Lesson 7.1: if a subsidiary would already borrow cheaply due to implicit group support even without a formal guarantee, the guarantee's incremental benefit, and therefore its fee, is smaller than if the subsidiary would otherwise be a genuinely weak standalone credit.
+
+## Worked example
+
+Meridian's Nordic distributor would borrow externally at 6.5% on a standalone basis. With a formal guarantee from Meridian AG, it borrows at 4.0% instead, on a €10,000,000 loan.
+
+<CalcSteps
+  title="Sizing the guarantee fee"
+  steps={[
+    { expr: 'Interest saving = 6.5% − 4.0%', result: '2.5 pts' },
+    { expr: 'Annual saving = 2.5% × €10,000,000', result: '€250,000' },
+    { expr: 'Guarantee fee = 30% × €250,000', result: '€75,000/yr', note: 'Benchmarks suggest a guarantor captures ~30% of the saving; the rest benefits the distributor.' },
+  ]}
+/>
+
+## Try it yourself
+
+Meridian's cash pool nets €40,000,000 in daily balances across five subsidiaries. Standalone, those subsidiaries would collectively pay an estimated €600,000 more per year in external borrowing costs and earn €150,000 less in deposit interest than they do through the pool, a combined annual synergy benefit of €750,000. The pool leader currently keeps the entire €750,000 and pays participants nothing beyond its own routine treasury fee.
+
+1. Is this arrangement likely to be considered arm's length?
+2. What would a more defensible arrangement look like?
+
+<CollapsibleAnswer>
+1. Unlikely, the pool leader is capturing 100% of a benefit that was created by the participants' own cash balances. 2. The €750,000 synergy benefit should generally be shared among the participating subsidiaries in some reasonable, defensible way (for example, in proportion to each one's contribution to the pool), with the pool leader compensated separately, and more modestly, for the routine treasury function it performs.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Cash pooling:** netting multiple group entities' cash balances to reduce external borrowing and improve deposit returns.
+- **Synergy benefit:** the cost saving created by pooling, which should be shared among participants rather than captured entirely by the pool leader.
+- **Guarantee fee:** compensation paid to a guarantor for the real, measurable reduction in borrowing cost its guarantee provides.
+
+## Sources
+
+- OECD Transfer Pricing Guidance on Financial Transactions (2020), Chapter A (Financial Guarantees) and Chapter C (Cash Pooling)

@@ -5,6 +5,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Container from '../../../components/Container.astro';
 import Eyebrow from '../../../components/Eyebrow.astro';
 import ModuleCard from '../../../components/study/ModuleCard.astro';
+import { moduleHeroImage } from '../../../lib/studyHero';
 
 export const getStaticPaths = (async () => {
   const courses = await getCollection('courses');
@@ -86,6 +87,7 @@ const publishedCount = courseModules.filter((m) => m.data.status === 'published'
             status={m.data.status}
             href={m.data.status === 'published' ? `/study/${course.id}/${m.data.slug}` : undefined}
             lessonCount={lessonCount(m.data.slug)}
+            heroImage={moduleHeroImage(course.id, m.data.order, m.data.heroImage)}
           />
         ))
       }

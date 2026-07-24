@@ -1,0 +1,67 @@
+---
+title: "Pricing Intra-group Loans"
+description: "An intra-group loan's arm's length rate depends on the borrower's real-world credit standing, group context included, not a fictional standalone entity. A $340M Australian case turned on exactly this."
+course: "transfer-pricing"
+module: "7-financing-services"
+slug: "intra-group-loans"
+order: 1
+readTimeMinutes: 6
+draft: false
+tldr: >-
+  An intra-group loan's arm's length interest rate depends heavily on the borrower's real-world
+  credit standing, and "real-world credit standing" is more complicated than it sounds once
+  you're part of a powerful corporate group. A $340 million Australian court case turned on
+  exactly this question.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CaseCard from '@/components/study/CaseCard.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+
+## The $340 million question: whose credit rating actually applies?
+
+<CaseCard title="Chevron Australia Holdings v Commissioner of Taxation" year="Full Federal Court, 2017" outcome="Chevron lost unanimously; a ~$340M tax bill was upheld. Its 9% intercompany rate was well above an arm's length rate reflecting the borrower's real group context.">
+Chevron Australia Holdings (CAHPL) borrowed roughly US$2.5 billion from a related US financing subsidiary to help fund a major gas project off Western Australia, paying around 9% interest and deducting that expense against its Australian income. The Australian Taxation Office argued an unrelated lender wouldn't price CAHPL as an orphaned, isolated company, it would factor in the near-certainty that Chevron's AA-rated global parent had every reason to keep the subsidiary solvent, and would price closer to what a well-supported borrower could obtain, far below 9%. Chevron argued for a standalone basis. The court found the 9% rate well above what CAHPL would have secured on terms reflecting its real position within a strong global group.
+</CaseCard>
+
+**The practical lesson.** You can't justify an artificially high intercompany interest rate by treating a subsidiary as if its powerful parent doesn't exist. At the same time, this doesn't mean a subsidiary automatically gets its parent's full credit rating for free, that's what an explicit, separately-priced guarantee is for (Lesson 7.2). What it does mean: pricing a loan starts with an honest assessment of what an unrelated lender would actually conclude about the borrower's realistic credit profile, group context included, not a fictional standalone entity stripped of every advantage its group membership genuinely provides.
+
+In practice, benchmarking an intra-group loan involves comparing its rate to bond yields or loan pricing data for borrowers with a similar credit rating and similar loan terms (tenor, currency, seniority, covenants), adjusted for the loan's specific features.
+
+## Worked example
+
+Meridian's French sales subsidiary borrows €5,000,000 from Meridian's Luxembourg finance subsidiary for a five-year term. An independent credit assessment, factoring in Meridian France's realistic standalone position within a financially strong global group (similar to the Chevron reasoning, without assuming a full explicit guarantee), estimates Meridian France would credibly borrow at a BBB-equivalent credit spread, implying a market interest rate of 4.2%.
+
+<CalcSteps
+  title="Benchmarking the intercompany rate"
+  steps={[
+    { expr: 'Arm’s length benchmark rate (BBB-equivalent)', result: '4.2%' },
+    { expr: 'Actual intercompany rate charged', result: '7.5%' },
+    { expr: 'Gap', result: '+3.3 pts', note: 'France over-deducts interest; Luxembourg over-receives income. Reprice toward 4.2%.' },
+  ]}
+/>
+
+That gap suggests Meridian France is over-deducting interest expense in France (eroding the French tax base) while Luxembourg over-receives interest income. The loan would likely be repriced closer to the 4.2% benchmark.
+
+## Try it yourself
+
+Meridian's Mexican distributor borrows from the Luxembourg finance subsidiary. A credit assessment puts Meridian Mexico's realistic borrowing rate, given its group context, at 6.0%. The actual intercompany rate charged is 5.5%.
+
+1. Is this loan priced above, below, or in line with the benchmark?
+2. Which country's tax base benefits from the actual pricing, and which one is arguably shortchanged?
+
+<CollapsibleAnswer>
+1. Below the 6.0% benchmark. 2. Mexico's tax base benefits, a lower interest rate means Meridian Mexico deducts less interest, so more profit stays taxable in Mexico. Luxembourg, meanwhile, recognises less interest income than an arm's length 6.0% rate would produce, so less profit is booked in Luxembourg than the benchmark suggests.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Arm's length interest rate:** the rate an unrelated lender would charge, based on the borrower's realistic credit profile and the loan's specific terms.
+- **Standalone credit rating:** a borrower's credit rating assessed in isolation, without any benefit from group membership.
+- **Implicit support:** the real-world market perception that a strong parent is likely to stand behind a subsidiary, even without a formal guarantee, which can affect a lender's pricing.
+
+## Sources
+
+- MinterEllison, "Full Federal Court Decision: Chevron Australia Holdings Pty Ltd v Commissioner of Taxation"
+- KPMG, "Chevron Australia loses Full Federal Court appeal" (2017)
+- OECD Transfer Pricing Guidance on Financial Transactions (2020), Chapter B (Treasury Function, Intra-group Loans)

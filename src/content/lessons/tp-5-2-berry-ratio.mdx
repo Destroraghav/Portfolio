@@ -1,0 +1,77 @@
+---
+title: "Measuring Manufacturing Margins: Cost Plus, TNMM, and the Berry Ratio"
+description: "When an entity's cost base is dominated by pass-through costs that don't reflect the value it adds, the Berry ratio gives a more reliable picture than a sales- or cost-based margin."
+course: "transfer-pricing"
+module: "5-manufacturing-distribution"
+slug: "berry-ratio"
+order: 2
+readTimeMinutes: 5
+draft: false
+tldr: >-
+  Cost Plus and TNMM both work for most factories. But when a manufacturing-adjacent entity's
+  cost base is dominated by pass-through costs that don't reflect the real value it adds, a
+  third tool, the Berry ratio, gives a more reliable picture.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import FormulaCard from '@/components/study/FormulaCard.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+
+## Why sales-based and cost-based margins can mislead
+
+Cost Plus measures markup on cost. TNMM (using operating margin) measures profit relative to sales. Both work well when cost, or sales, is a reasonable proxy for the real economic effort the entity puts in. That assumption breaks down for entities where a large chunk of their cost base, or their reported sales, is essentially a pass-through that has nothing to do with what they actually contribute.
+
+## The Berry ratio
+
+<FormulaCard label="Berry ratio">
+Berry Ratio = Gross Profit ÷ Operating Expenses
+</FormulaCard>
+
+Instead of comparing profit to sales or to total cost, the Berry ratio compares gross profit specifically to the operating expenses the entity actually controls, stripping out the distortion caused by a large, low-margin cost of goods sold that doesn't reflect the entity's real function. It's most useful for entities that resemble intermediaries: procurement agents, low-margin pass-through distributors, or manufacturing-adjacent service functions where the value added shows up in operating activity, not in the raw materials moving through the business.
+
+## Worked example
+
+Meridian operates a small procurement office in Vietnam that sources components on behalf of the Polish factory: it doesn't manufacture anything itself, just negotiates and manages supplier contracts, then passes the components through at cost plus a small handling fee.
+
+The Vietnam procurement office reports a component pass-through cost of €9,000,000, handling revenue on top of €9,270,000 (a 3% markup on pass-through cost), and operating expenses (staff, office, local admin) of €180,000.
+
+<CalcSteps
+  title="Tested on operating margin (TNMM)"
+  steps={[
+    { expr: 'Operating profit = €9,270,000 − €9,000,000 − €180,000', result: '€90,000' },
+    { expr: 'Operating margin = €270,000 gross ÷ €9,270,000 sales', result: '2.9%', note: 'Misleading: the €9m pass-through cost dwarfs the entity and dominates the ratio.' },
+  ]}
+/>
+
+That 2.9% looks unremarkable, but it's misleading, the €9,000,000 pass-through cost dwarfs the entity's actual size and dominates the ratio, even though it reflects components the office never really "processes" in any value-adding sense.
+
+<CalcSteps
+  title="Tested on the Berry ratio instead"
+  steps={[
+    { expr: 'Gross profit = €9,270,000 − €9,000,000', result: '€270,000' },
+    { expr: 'Berry ratio = €270,000 ÷ €180,000 operating expenses', result: '1.5' },
+  ]}
+/>
+
+This measures profit against what the procurement office actually spends to run itself, its real operating footprint, giving a cleaner read on whether it's earning a fair return for the function it performs, independent of how large the pass-through cost happens to be.
+
+## Try it yourself
+
+A different Meridian sourcing office reports: pass-through cost €4,000,000, handling revenue €4,080,000, operating expenses €100,000.
+
+1. Calculate its operating margin (TNMM-style).
+2. Calculate its Berry ratio.
+3. Which one gives a more meaningful picture of whether this office is earning a fair return for its function, and why?
+
+<CollapsibleAnswer>
+1. Operating profit = 80,000. Operating margin = 80,000 / 4,080,000 = 2.0%. 2. Berry ratio = 80,000 / 100,000 = 0.8. 3. The Berry ratio, because the office's actual size and effort are reflected in its operating expenses, not in the pass-through cost of goods it never really transforms, so comparing profit to operating expenses avoids the distortion a huge pass-through cost creates in a sales- or cost-based margin.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Berry ratio:** gross profit divided by operating expenses, used when cost of goods sold or sales don't reliably reflect the entity's actual value-adding activity.
+- **Pass-through cost:** a cost that flows through an entity's accounts without meaningfully being transformed by that entity's own functions.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter II, Annex to Part III (Berry ratio guidance and limitations)

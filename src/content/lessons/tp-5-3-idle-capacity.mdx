@@ -1,0 +1,60 @@
+---
+title: "Idle Capacity and Special Manufacturing Adjustments"
+description: "When a factory runs below normal capacity, its fixed costs spread across fewer units and inflate its cost base. A capacity utilisation adjustment corrects for this before benchmarking."
+course: "transfer-pricing"
+module: "5-manufacturing-distribution"
+slug: "idle-capacity"
+order: 3
+readTimeMinutes: 5
+draft: false
+tldr: >-
+  When a factory runs below its normal production capacity, whatever the reason, its fixed
+  costs get spread across fewer units, which can artificially inflate its measured cost base
+  and distort its margin. A capacity utilisation adjustment corrects for this before comparing
+  the factory's results to its peer group.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+
+## Why idle capacity distorts the numbers
+
+A factory has fixed costs (rent, equipment depreciation, baseline staffing) that don't change much whether it's running at 60% or 100% of capacity, alongside variable costs (materials, hourly labour) that scale with actual output. When output drops, say, because of a supply disruption, a demand slump, or an unplanned shutdown, those fixed costs still have to be paid, but now they're spread across far fewer units, pushing the average unit cost up sharply, even though nothing about the factory's underlying efficiency changed.
+
+This matters a great deal for a routine contract manufacturer specifically, because that profile is supposed to carry limited market risk. If a demand-side shock (something outside the factory's control) is allowed to silently inflate its cost base and shrink its margin, the factory ends up absorbing exactly the kind of market risk its functional profile says it shouldn't be bearing. The standard fix is a **capacity utilisation adjustment**: recalculating the factory's results as if it had run at a normal utilisation level, so the comparison to its (normally-operating) peer group stays fair.
+
+## Worked example
+
+Meridian's Polish factory has annual fixed costs of €4,000,000 and normally produces 2,000,000 units a year, giving a normal fixed cost per unit of €2.00. A regional component shortage (echoing the kind of real global supply disruptions the electronics industry has faced in recent years) forces the factory to run at only 70% of capacity for the year, producing just 1,400,000 units, while fixed costs stay at €4,000,000.
+
+<CalcSteps
+  title="Isolating the idle capacity cost"
+  steps={[
+    { expr: 'Normal fixed cost per unit = €4,000,000 ÷ 2,000,000', result: '€2.00' },
+    { expr: 'Unadjusted per unit at 70% = €4,000,000 ÷ 1,400,000', result: '€2.86', note: 'A 43% jump purely from lower volume, no change in efficiency.' },
+    { expr: 'Fixed cost absorbed at normal rate = 1,400,000 × €2.00', result: '€2,800,000' },
+    { expr: 'Idle capacity cost = €4,000,000 − €2,800,000', result: '€1,200,000', note: 'The unabsorbed fixed cost, generally excluded from the routine cost base.' },
+  ]}
+/>
+
+The capacity utilisation adjustment restates the cost base as if the factory had produced at its normal 2,000,000-unit volume: fixed cost per unit reverts to €2.00, and the €1,200,000 of "unabsorbed" fixed cost (the extra cost caused purely by running under capacity) is treated as an idle capacity cost, generally excluded from the routine cost base used to test the factory's Cost Plus or TNMM margin, since an independent contract manufacturer wouldn't be expected to absorb a demand-side shock outside its control without some form of compensation or adjustment.
+
+## Try it yourself
+
+A Meridian assembly line has fixed costs of €1,800,000 and a normal output of 900,000 units (normal fixed cost per unit: €2.00). This year, a shutdown limited output to 600,000 units.
+
+1. What's the unadjusted fixed cost per unit this year?
+2. What's the idle capacity cost that should be identified and excluded from the routine cost base?
+
+<CollapsibleAnswer>
+1. 1,800,000 / 600,000 = €3.00 per unit. 2. At the normal €2.00/unit rate, 600,000 units should have absorbed 600,000 × 2.00 = €1,200,000 of fixed cost. The remaining €600,000 (1,800,000 − 1,200,000) is the idle capacity cost, the extra fixed cost burden caused purely by running below normal capacity, and it would typically be excluded when testing the factory's routine manufacturing margin.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Idle capacity:** the portion of a factory's production capacity that goes unused in a given period.
+- **Capacity utilisation adjustment:** restates a factory's cost base as if it had operated at normal capacity, isolating the extra cost caused by underuse so it doesn't distort the routine margin being tested.
+
+## Sources
+
+- OECD Transfer Pricing Guidelines, Chapter II, Part II (guidance on comparability adjustments, including capacity utilisation)

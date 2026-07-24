@@ -1,0 +1,14 @@
+---
+/** A prominent, labelled formula block. Usage: <FormulaCard label="Resale Price Method">TP = Resale × (1 − Margin%)</FormulaCard> */
+interface Props {
+  label?: string;
+}
+const { label } = Astro.props;
+---
+
+<div class="not-prose my-6 overflow-x-auto rounded-lg border border-hairline border-l-4 border-l-primary bg-surface-soft px-5 py-4">
+  {label && <p class="t-caption mb-2">{label}</p>}
+  <p class="font-mono text-[0.95rem] font-medium leading-relaxed text-ink sm:text-base">
+    <slot />
+  </p>
+</div>

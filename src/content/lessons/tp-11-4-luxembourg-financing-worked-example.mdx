@@ -1,0 +1,77 @@
+---
+title: "Full Worked Example: Pricing a Luxembourg Financing Structure End to End"
+description: "One Luxembourg financing scenario run through the complete process, characterisation, method selection, and pricing, tying together Module 1's FAR analysis, Module 7's financing concepts, and this module's Luxembourg guidance."
+course: "transfer-pricing"
+module: "11-luxembourg"
+slug: "luxembourg-financing-worked-example"
+order: 4
+readTimeMinutes: 8
+draft: false
+tldr: >-
+  This lesson runs one Luxembourg financing scenario through the complete process,
+  characterisation, method selection, and pricing, tying together Module 1's FAR analysis,
+  Module 7's financing concepts, and this module's Luxembourg-specific guidance in a single
+  worked case.
+---
+
+import CollapsibleAnswer from '@/components/study/CollapsibleAnswer.astro'
+import FlowDiagram from '@/components/study/FlowDiagram.astro'
+import CalcSteps from '@/components/study/CalcSteps.astro'
+
+## The scenario
+
+Meridian Group establishes a new Luxembourg entity, Meridian Capital S.à r.l., to centralise financing for the group's European distribution subsidiaries. Meridian Capital raises €50,000,000 through a mix of a loan from Meridian AG (€35,000,000) and third-party bank debt guaranteed by Meridian AG (€15,000,000), then on-lends the combined €50,000,000 across Meridian's distribution subsidiaries in France, the Nordics, and elsewhere.
+
+<FlowDiagram
+  steps={[
+    { label: 'Meridian AG', value: '€35m', sublabel: 'group loan' },
+    { label: 'Bank (AG-guaranteed)', value: '€15m', sublabel: 'third-party debt' },
+    { label: 'Meridian Capital (LU)', value: '€50m', sublabel: 'on-lends', accent: true },
+    { label: 'FR / Nordic subs', value: '€50m', sublabel: 'borrowers' },
+  ]}
+  caption="Meridian Capital sits in the middle, the question is how much of the spread it's genuinely entitled to keep."
+/>
+
+Meridian Capital has a small team (two treasury professionals) who monitor each borrowing subsidiary's basic financial health using a standard internal scorecard, and who have limited authority to adjust lending terms slightly (up to 0.5 percentage points) based on that scorecard, but must escalate anything beyond that to German headquarters for approval, and have no authority to decline a German-approved lending instruction outright.
+
+## Step 1: Characterisation
+
+Applying Module 1's FAR framework: Meridian Capital performs more than a bare pass-through function (it monitors borrower health and has limited independent discretion within a defined band), but far less than a genuine risk-bearing intra-group bank (its real discretion is capped, and major decisions and risk ultimately rest with German headquarters, which also stands behind the third-party bank guarantee). This sits between Lesson 11.2's two categories, closer to the routine intermediary end, but with a genuine, if limited, monitoring function worth recognising.
+
+## Step 2: Method and approach
+
+Given the limited-but-real monitoring function, a pure 2% routine benchmark likely understates Meridian Capital's role, but treating it as a full risk-bearing intra-group bank would overstate it. The most defensible approach: price the base intermediation function using the routine benchmark logic from Lesson 11.2 as a floor, then support a modest additional margin reflecting the genuine (if limited) monitoring and scorecard function, benchmarked where possible against independent loan servicing or credit monitoring fee structures, similar in spirit to a Cost Plus approach (Module 2) for that specific incremental function.
+
+## Step 3: Pricing it
+
+<CalcSteps
+  title="Building the defensible remuneration"
+  steps={[
+    { expr: 'Base intermediation return = 2% (after tax) × €50,000,000', result: '€1,000,000', note: 'Grossed up for Luxembourg’s effective corporate tax rate to find the pre-tax spread.' },
+    { expr: 'Incremental monitoring function ≈ 0.10%–0.15% × assets monitored', result: '€50k–€75k', note: 'Benchmarked separately against independent loan monitoring/servicing fees.' },
+    { expr: 'Total defensible remuneration', result: '€1.05m–€1.075m', note: 'Above the bare routine floor, well short of a true risk-bearing financier.' },
+  ]}
+/>
+
+This total sits comfortably above the bare routine floor, reflecting the genuine (if limited) function Meridian Capital performs, but well short of what a true risk-bearing financier would need to earn to justify its capital exposure, because Meridian Capital isn't genuinely exposed to that level of risk.
+
+## Try it yourself
+
+Suppose Meridian Capital's actual results show it retaining a spread equivalent to €2,200,000 annually, more than double the €1,050,000–€1,075,000 defensible range calculated above.
+
+1. What would this gap suggest?
+2. What documentation (tying back to Lesson 11.3) would Meridian Capital need to prepare if it wanted to justify keeping the higher amount instead of adjusting down?
+
+<CollapsibleAnswer>
+1. Meridian Capital is likely earning more than its actual functions and risk profile justify, the kind of gap that would draw scrutiny and likely require either a downward repricing or a much stronger justification. 2. A full functional and risk analysis demonstrating it genuinely bears more risk or performs more valuable functions than described (for example, real independent credit decision-making authority, real capital exposure to losses), supported by a proper benchmarking study, since the routine intermediary characterisation in this scenario doesn't support that level of remuneration on the facts given.
+</CollapsibleAnswer>
+
+## Key terms
+
+- **Base intermediation return:** the floor-level remuneration for a routine financing pass-through function, referencing Lesson 11.2's 2% guidance.
+- **Incremental function pricing:** pricing a genuine, if limited, additional function (like monitoring) separately from the base routine return, rather than ignoring it or overstating it.
+
+## Sources
+
+- Luxembourg Administrative Circular L.I.R. n° 56/1 – 56bis/1 (on intra-group financing transactions)
+- OECD Transfer Pricing Guidance on Financial Transactions (2020)

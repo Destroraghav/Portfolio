@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect x="700" y="0" width="500" height="630" fill="#494fdf"/>
+
+  <rect x="72" y="64" width="54" height="54" rx="13" fill="#494fdf"/>
+  <text x="99" y="102" text-anchor="middle" font-size="28" font-weight="800" fill="#ffffff">J</text>
+  <text x="142" y="102" font-size="26" font-weight="700" fill="#191c1f">Jairaghav Thummala</text>
+
+  <text x="72" y="212" font-size="19" font-weight="700" letter-spacing="2.5" fill="#494fdf">FREE &#183; SELF-PACED COURSE</text>
+  <text x="68" y="300" font-size="80" font-weight="800" letter-spacing="-2" fill="#191c1f">Transfer</text>
+  <text x="68" y="384" font-size="80" font-weight="800" letter-spacing="-2" fill="#191c1f">Pricing.</text>
+  <rect x="72" y="404" width="120" height="7" rx="3" fill="#494fdf"/>
+
+  <text x="72" y="462" font-size="29" font-weight="700" fill="#191c1f">From zero to internship-ready.</text>
+  <text x="72" y="498" font-size="23" font-weight="400" fill="#5a6167">Plain English, real cases, worked numbers.</text>
+
+  <rect x="72" y="540" width="292" height="58" rx="29" fill="#191c1f"/>
+  <text x="218" y="577" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Start learning, free &#8594;</text>
+  <text x="386" y="576" font-size="20" font-weight="400" fill="#6b7177">11 modules &#183; 31 lessons</text>
+
+  <text x="748" y="98" font-size="16" font-weight="700" letter-spacing="1.5" fill="#ffffff" opacity="0.9">WHAT&#8217;S A TRANSFER PRICE?</text>
+
+  <text x="836" y="176" text-anchor="middle" font-size="13" fill="#ffffff" opacity="0.72">Country A</text>
+  <text x="1064" y="176" text-anchor="middle" font-size="13" fill="#ffffff" opacity="0.72">Country B</text>
+  <line x1="950" y1="192" x2="950" y2="474" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 7" opacity="0.6"/>
+
+  <rect x="902" y="198" width="96" height="40" rx="11" fill="#ffffff"/>
+  <text x="950" y="223" text-anchor="middle" font-size="15" font-weight="700" fill="#494fdf">Parent</text>
+  <path d="M950 238 V262 M832 262 H1068 M832 262 V300 M1068 262 V300" fill="none" stroke="#ffffff" stroke-width="1.6" opacity="0.7"/>
+
+  <rect x="772" y="300" width="120" height="94" rx="14" fill="#ffffff"/>
+  <rect x="792" y="320" width="15" height="15" rx="3" fill="#d7d9f6"/><rect x="815" y="320" width="15" height="15" rx="3" fill="#d7d9f6"/><rect x="838" y="320" width="15" height="15" rx="3" fill="#d7d9f6"/>
+  <rect x="792" y="342" width="15" height="15" rx="3" fill="#d7d9f6"/><rect x="815" y="342" width="15" height="15" rx="3" fill="#d7d9f6"/><rect x="838" y="342" width="15" height="15" rx="3" fill="#d7d9f6"/>
+  <text x="832" y="384" text-anchor="middle" font-size="13" font-weight="700" fill="#494fdf">Company A</text>
+
+  <rect x="1008" y="300" width="120" height="94" rx="14" fill="#ffffff"/>
+  <rect x="1028" y="320" width="15" height="15" rx="3" fill="#d7d9f6"/><rect x="1051" y="320" width="15" height="15" rx="3" fill="#d7d9f6"/><rect x="1074" y="320" width="15" height="15" rx="3" fill="#d7d9f6"/>
+  <rect x="1028" y="342" width="15" height="15" rx="3" fill="#d7d9f6"/><rect x="1051" y="342" width="15" height="15" rx="3" fill="#d7d9f6"/><rect x="1074" y="342" width="15" height="15" rx="3" fill="#d7d9f6"/>
+  <text x="1068" y="384" text-anchor="middle" font-size="13" font-weight="700" fill="#494fdf">Company B</text>
+
+  <path d="M896 418 H1002" stroke="#ffffff" stroke-width="1.6" opacity="0.7" marker-end="url(#aw)"/>
+  <path d="M1004 442 H898" stroke="#ffffff" stroke-width="1.6" opacity="0.7" marker-end="url(#aw)"/>
+  <text x="838" y="422" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.7">goods</text>
+  <text x="1064" y="446" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.7">payment</text>
+
+  <rect x="902" y="325" width="96" height="44" rx="12" fill="#191c1f"/>
+  <text x="950" y="354" text-anchor="middle" font-size="22" font-weight="800" fill="#ffffff">? price</text>
+
+  <text x="748" y="586" font-size="15" font-weight="700" fill="#ffffff" opacity="0.85">jairaghav.netlify.app/study/transfer-pricing</text>
+
+  <defs>
+    <marker id="aw" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0 0 L6 3.5 L0 7 z" fill="#ffffff" opacity="0.7"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,80 @@
+---
+/**
+ * Share buttons for a course/lesson. Static-site friendly: LinkedIn, X, and
+ * WhatsApp use share-intent URLs (no backend); copy-link uses the clipboard API.
+ * Usage: <ShareRow url="https://.../study/transfer-pricing/" text="A free..." />
+ */
+interface Props {
+  url: string;
+  text: string;
+  label?: string;
+}
+const { url, text, label = 'Know someone learning tax? Send them this.' } = Astro.props;
+
+const u = encodeURIComponent(url);
+const t = encodeURIComponent(text);
+const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
+const x = `https://twitter.com/intent/tweet?text=${t}&url=${u}`;
+const whatsapp = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+---
+
+<div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
+  <span class="text-base font-semibold text-ink">{label}</span>
+  <div class="flex items-center gap-2.5">
+    <a
+      href={linkedin}
+      target="_blank"
+      rel="noopener"
+      aria-label="Share on LinkedIn"
+      class="grid h-11 w-11 place-items-center rounded-full border border-hairline bg-canvas text-ink transition-colors hover:bg-surface-soft"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 002.5 6a2.5 2.5 0 005 0 2.5 2.5 0 00-2.52-2.5zM3 8.98h4v12H3v-12zM9 8.98h3.8v1.64h.05c.53-1 1.83-2.05 3.76-2.05 4.02 0 4.76 2.65 4.76 6.1v6.31h-4v-5.6c0-1.33-.02-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.7H9v-12z"></path></svg>
+    </a>
+    <a
+      href={x}
+      target="_blank"
+      rel="noopener"
+      aria-label="Share on X"
+      class="grid h-11 w-11 place-items-center rounded-full border border-hairline bg-canvas text-ink transition-colors hover:bg-surface-soft"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" class="h-[18px] w-[18px]" aria-hidden="true"><path d="M18.9 2H22l-7.1 8.1L23 22h-6.6l-5.2-6.8L5.2 22H2l7.6-8.7L1.6 2h6.8l4.7 6.2L18.9 2zm-1.2 18h1.8L7.4 3.8H5.5L17.7 20z"></path></svg>
+    </a>
+    <a
+      href={whatsapp}
+      target="_blank"
+      rel="noopener"
+      aria-label="Share on WhatsApp"
+      class="grid h-11 w-11 place-items-center rounded-full border border-hairline bg-canvas text-ink transition-colors hover:bg-surface-soft"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 2a8 8 0 11-4.2 14.8l-.3-.2-2.8.9.9-2.7-.2-.3A8 8 0 0112 4zm4.3 10.7c-.2.6-1.2 1.1-1.7 1.1-.4 0-1 .1-3-1s-3.3-3.4-3.4-3.6c-.1-.2-.7-1-.7-1.9s.4-1.3.6-1.5c.2-.2.4-.2.5-.2h.4c.2 0 .3 0 .5.4l.7 1.6c.1.2 0 .4 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5l.9 1.4c.5.7 1 1 1.2 1.1l.5.2c.1 0 .3 0 .4-.1l.6-.7c.2-.2.3-.2.5-.1l1.5.7c.2.1.4.2.4.3.1.1.1.4 0 .9z"></path></svg>
+    </a>
+    <button
+      type="button"
+      data-share-copy
+      data-url={url}
+      aria-label="Copy link"
+      class="grid h-11 w-11 place-items-center rounded-full border border-hairline bg-canvas text-ink transition-colors hover:bg-surface-soft"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M6 15H5a2 2 0 01-2-2V5a2 2 0 012-2h8a2 2 0 012 2v1"></path></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-share-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const url = btn.getAttribute('data-url') || location.href;
+      const original = btn.innerHTML;
+      try {
+        await navigator.clipboard.writeText(url);
+      } catch {
+        /* clipboard blocked; still give feedback */
+      }
+      btn.innerHTML =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5"><path d="M5 12l4 4L19 7"/></svg>';
+      setTimeout(() => {
+        btn.innerHTML = original;
+      }, 1400);
+    });
+  });
+</script>

@@ -48,33 +48,72 @@ const whatsapp = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
     >
       <svg viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5" aria-hidden="true"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 2a8 8 0 11-4.2 14.8l-.3-.2-2.8.9.9-2.7-.2-.3A8 8 0 0112 4zm4.3 10.7c-.2.6-1.2 1.1-1.7 1.1-.4 0-1 .1-3-1s-3.3-3.4-3.4-3.6c-.1-.2-.7-1-.7-1.9s.4-1.3.6-1.5c.2-.2.4-.2.5-.2h.4c.2 0 .3 0 .5.4l.7 1.6c.1.2 0 .4 0 .5l-.3.4-.3.3c-.1.1-.2.3 0 .5l.9 1.4c.5.7 1 1 1.2 1.1l.5.2c.1 0 .3 0 .4-.1l.6-.7c.2-.2.3-.2.5-.1l1.5.7c.2.1.4.2.4.3.1.1.1.4 0 .9z"></path></svg>
     </a>
-    <button
-      type="button"
-      data-share-copy
-      data-url={url}
-      aria-label="Copy link"
-      class="grid h-11 w-11 place-items-center rounded-full border border-hairline bg-canvas text-ink transition-colors hover:bg-surface-soft"
-    >
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M6 15H5a2 2 0 01-2-2V5a2 2 0 012-2h8a2 2 0 012 2v1"></path></svg>
-    </button>
+    <span class="relative inline-flex">
+      <button
+        type="button"
+        data-share-copy
+        data-url={url}
+        aria-label="Copy link"
+        class="grid h-11 w-11 place-items-center rounded-full border border-hairline bg-canvas text-ink transition-colors hover:bg-surface-soft"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M6 15H5a2 2 0 01-2-2V5a2 2 0 012-2h8a2 2 0 012 2v1"></path></svg>
+      </button>
+      <span
+        data-copy-toast
+        style="opacity:0"
+        class="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-canvas-dark px-2.5 py-1 text-xs font-semibold text-on-dark transition-opacity duration-150"
+        >Copied!</span
+      >
+    </span>
   </div>
 </div>
 
 <script>
-  document.querySelectorAll('[data-share-copy]').forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      const url = btn.getAttribute('data-url') || location.href;
-      const original = btn.innerHTML;
+  (() => {
+    const fallbackCopy = (text: string) => {
       try {
-        await navigator.clipboard.writeText(url);
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        return ok;
       } catch {
-        /* clipboard blocked; still give feedback */
+        return false;
       }
+    };
+    const copy = async (text: string) => {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+      } catch {
+        /* fall through */
+      }
+      return fallbackCopy(text);
+    };
+    // Delegated: attaches once, works no matter when the button renders.
+    document.addEventListener('click', async (e) => {
+      const target = e.target as HTMLElement;
+      const btn = target.closest('[data-share-copy]') as HTMLElement | null;
+      if (!btn) return;
+      await copy(btn.getAttribute('data-url') || location.href);
+      const toast = btn.parentElement?.querySelector('[data-copy-toast]') as HTMLElement | null;
+      if (toast) {
+        toast.style.opacity = '1';
+        setTimeout(() => (toast.style.opacity = '0'), 1400);
+      }
+      const original = btn.innerHTML;
       btn.innerHTML =
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5"><path d="M5 12l4 4L19 7"/></svg>';
       setTimeout(() => {
         btn.innerHTML = original;
       }, 1400);
     });
-  });
+  })();
 </script>

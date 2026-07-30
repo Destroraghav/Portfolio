@@ -9,6 +9,8 @@ interface Props {
   description?: string;
   /** Path to an OG image under /public, optional. */
   image?: string;
+  /** Alt text for the share image. */
+  imageAlt?: string;
   /** Set true on article/work pages for og:type=article. */
   article?: boolean;
 }
@@ -17,12 +19,16 @@ const {
   title,
   description = SITE.description,
   image = '/og-default.png',
+  imageAlt,
   article = false,
 } = Astro.props;
 
 const pageTitle = title ? `${title} - ${fullName}` : `${fullName} - ${SITE.tagline}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).toString();
 const ogImage = new URL(image, Astro.site ?? SITE.url).toString();
+// All share cards are 1200x630 PNGs. Dimensions help LinkedIn render the image
+// (without them it often shows a title-only card).
+const ogImageAlt = imageAlt ?? pageTitle;
 ---
 
 <!doctype html>
@@ -48,12 +54,18 @@ const ogImage = new URL(image, Astro.site ?? SITE.url).toString();
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <slot name="head" />
   </head>

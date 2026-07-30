@@ -117,7 +117,12 @@ const steps = [
 ];
 ---
 
-<BaseLayout title={d.title} description={d.description} image={ogImage}>
+<BaseLayout
+  title={d.title}
+  description={d.description}
+  image={ogImage}
+  imageAlt={ogImage ? 'Transfer Pricing — a free, self-paced course. 11 modules, from zero.' : undefined}
+>
   <!-- HERO -->
   <Container class="py-16 sm:py-20">
     <a href="/study" class="inline-flex items-center gap-1.5 text-sm text-mute hover:text-ink">

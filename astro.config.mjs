@@ -19,5 +19,12 @@ export default defineConfig({
     // @ts-expect-error — Tailwind's Vite plugin is typed against a different
     // Vite copy than Astro's bundled one (duplicate install); harmless at runtime.
     plugins: [tailwindcss()],
+    build: {
+      // Never inline JS. Astro otherwise inlines small hoisted <script>s straight
+      // into the HTML, which the strict CSP (script-src 'self', no 'unsafe-inline')
+      // then blocks. Forcing external /_astro/*.js keeps every client script working
+      // under the strict policy.
+      assetsInlineLimit: 0,
+    },
   },
 });

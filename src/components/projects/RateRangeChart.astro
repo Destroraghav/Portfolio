@@ -1,0 +1,78 @@
+---
+/**
+ * Hero exhibit: the arm's length credit-spread conclusion. Shows the defensible
+ * spread band, the concluded spread, and the single-name market observations
+ * that corroborate it. Spreads in basis points over the EUR risk-free rate.
+ */
+interface Observation {
+  bps: number;
+  label: string;
+  kind?: 'match' | 'weak';
+}
+interface Props {
+  min?: number;
+  max?: number;
+  bandLow?: number;
+  bandHigh?: number;
+  concluded?: number;
+  riskFree?: number; // percent, for the all-in label
+  observations?: Observation[];
+  caption?: string;
+}
+const {
+  min = 40,
+  max = 95,
+  bandLow = 70,
+  bandHigh = 89,
+  concluded = 78,
+  riskFree = 2.051,
+  observations = [
+    { bps: 79.4, label: 'VINCI, closest match', kind: 'match' },
+    { bps: 47.3, label: 'Schneider Electric', kind: 'weak' },
+  ],
+  caption,
+} = Astro.props;
+
+const X0 = 70;
+const X1 = 650;
+const W = X1 - X0;
+const AXIS = 128;
+const x = (bps: number) => X0 + ((Math.min(max, Math.max(min, bps)) - min) / (max - min)) * W;
+const allIn = (bps: number) => (riskFree + bps / 100).toFixed(3);
+---
+
+<figure class="not-prose my-8 overflow-x-auto rounded-lg border border-hairline bg-surface-soft p-4 sm:p-6">
+  <svg viewBox="0 0 720 210" class="mx-auto block h-auto w-full max-w-[700px]" role="img" aria-label={`Arm's length spread band ${bandLow} to ${bandHigh} basis points, concluded at ${concluded} bps, corroborated by market observations.`}>
+    <!-- defensible band -->
+    <rect x={x(bandLow)} y={AXIS - 22} width={x(bandHigh) - x(bandLow)} height="44" rx="6" fill="var(--color-primary)" fill-opacity="0.12"></rect>
+    <line x1={x(bandLow)} y1={AXIS - 26} x2={x(bandLow)} y2={AXIS + 26} stroke="var(--color-primary)" stroke-width="1.5" stroke-opacity="0.5"></line>
+    <line x1={x(bandHigh)} y1={AXIS - 26} x2={x(bandHigh)} y2={AXIS + 26} stroke="var(--color-primary)" stroke-width="1.5" stroke-opacity="0.5"></line>
+    <text x={x(bandLow)} y={AXIS + 42} text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="var(--color-stone)">70 bps · A1/A+</text>
+    <text x={x(bandHigh)} y={AXIS + 42} text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="var(--color-stone)">89 bps · A3/A-</text>
+
+    <!-- axis -->
+    <line x1={X0} y1={AXIS} x2={X1} y2={AXIS} stroke="var(--color-hairline-strong)" stroke-width="1.5"></line>
+
+    <!-- observations -->
+    {observations.map((o) => (
+      <>
+        <circle cx={x(o.bps)} cy={AXIS} r="6" fill={o.kind === 'match' ? 'var(--color-success)' : 'var(--color-stone)'}></circle>
+        <text x={x(o.bps)} y={AXIS - 16} text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill={o.kind === 'match' ? 'var(--color-success)' : 'var(--color-body)'}>{o.bps} bps</text>
+        <text x={x(o.bps)} y={AXIS + 60} text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="var(--color-mute)">{o.label}</text>
+      </>
+    ))}
+
+    <!-- concluded marker -->
+    <line x1={x(concluded)} y1={AXIS - 40} x2={x(concluded)} y2={AXIS + 12} stroke="var(--color-primary)" stroke-width="2"></line>
+    <circle cx={x(concluded)} cy={AXIS} r="7" fill="var(--color-primary)" stroke="var(--color-canvas)" stroke-width="2"></circle>
+    <text x={x(concluded)} y={AXIS - 48} text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="var(--color-primary)">Concluded {concluded} bps</text>
+    <text x={x(concluded)} y={20} text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="var(--color-body)">All-in arm's length rate <tspan font-weight="700" fill="var(--color-ink)">{allIn(concluded)}%</tspan></text>
+  </svg>
+
+  <div class="mt-2 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs text-mute">
+    <span class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-4 rounded-sm bg-primary/15"></span>Defensible band (rating sensitivity)</span>
+    <span class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-2.5 rounded-full bg-primary"></span>Concluded</span>
+    <span class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-2.5 rounded-full" style="background:var(--color-success)"></span>Closest market comparable</span>
+  </div>
+  {caption && <figcaption class="mt-3 text-center text-sm text-mute">{caption}</figcaption>}
+</figure>

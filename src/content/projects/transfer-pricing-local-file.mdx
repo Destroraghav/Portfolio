@@ -1,0 +1,138 @@
+---
+title: "Transfer Pricing Local File: Pricing an Intra-Group Loan"
+description: "A full OECD Chapter X local file pricing a EUR 50 million cross-border intra-group loan, from accurate delineation through to a benchmarked arm's length interest rate, with the Luxembourg and Indian tax analysis that surrounds it."
+summary: "An end-to-end transfer pricing local file: delineating, credit-rating and benchmarking a EUR 50m Luxembourg-to-India intra-group loan down to a defensible arm's length rate."
+date: 2026-09-13
+type: "Technical project"
+status: "complete"
+featured: true
+tags: ["Transfer Pricing", "Financial Transactions", "OECD Chapter X", "Luxembourg", "Benchmarking"]
+skills:
+  - "Functional analysis (FAR)"
+  - "Accurate delineation of financial transactions"
+  - "Intra-group loan pricing"
+  - "Credit risk assessment & synthetic ratings"
+  - "Comparability analysis & benchmarking"
+  - "OECD Transfer Pricing Guidelines, Chapter X"
+  - "Luxembourg Circular 56/1 (financing companies)"
+  - "Transfer pricing documentation (Local File)"
+  - "Financial-database research & Excel modelling"
+downloadFile: "/projects/transfer-pricing-local-file/Transfer-Pricing-Local-File.pdf"
+downloadName: "Jairaghav Thummala - Transfer Pricing Local File.pdf"
+downloadMeta: "PDF · 48 pages · OECD Local File format"
+heroImage: "/og-transfer-pricing-project.png"
+meta:
+  - { label: "Author", value: "Sole author" }
+  - { label: "Framework", value: "OECD Ch. X · Lux 56/1 · India" }
+  - { label: "Document", value: "48-page local file" }
+atAGlance:
+  - { label: "Transaction analysed", value: "EUR 50m 3-year intra-group term loan, a Luxembourg financing company to an Indian manufacturer, senior unsecured" }
+  - { label: "Method & tested party", value: "CUP with the borrower tested; synthetic A2 / A rating from 4.36x EBIT interest coverage" }
+  - { label: "Arm's length result", value: "78 bps credit spread → 2.831% all-in rate (defensible range 2.751%–2.941%); closest market comparable at 79.4 bps" }
+  - { label: "Conclusion", value: "Interest is arm's length. No India Section 94B disallowance; treaty withholding capped at 10%; ECB-compliant" }
+related:
+  href: "/study/transfer-pricing"
+  label: "See the Transfer Pricing course"
+  note: "Part of sustained work in the field, an 11-module course I built alongside this."
+seoTitle: "Transfer Pricing Local File Example: Intra-Group Loan Benchmarking"
+seoDescription: "A worked OECD Chapter X transfer pricing local file: delineating, credit-rating and benchmarking a EUR 50m cross-border intra-group loan to an arm's length interest rate, with Luxembourg and Indian tax analysis."
+---
+
+import LoanStructureDiagram from '@/components/projects/LoanStructureDiagram.astro'
+import RateRangeChart from '@/components/projects/RateRangeChart.astro'
+import FlowDiagram from '@/components/study/FlowDiagram.astro'
+
+## The brief
+
+Forgeline Industries, an Indian manufacturer, drew a EUR 50 million term loan from Meridian Lux Finance, its group's Luxembourg financing company, to fund a capacity-expansion programme in forgings and electric-vehicle components. Because the two are associated enterprises, the interest rate is not simply whatever the group chooses. It has to be shown to be arm's length.
+
+That obligation has three sources at once, which is what makes a financing transaction like this interesting to document. Indian law requires contemporaneous transfer pricing documentation (Sections 92 to 92F, with Section 92D and Rule 10D). The OECD Local File standard (Annex II to Chapter V) sets the structure. And because a euro loan from a non-resident lender is an External Commercial Borrowing, India's exchange-control framework applies too, so the pricing has to satisfy a financial regulator as well as a tax authority. This local file is the document that carries all three.
+
+<LoanStructureDiagram caption="The controlled transaction: a Luxembourg financing company lends to an Indian operating subsidiary, both wholly owned by the same parent." />
+
+A note on the data, stated plainly because data governance is part of the craft. The two entities are fictional. The financials behind the borrower are real: they are the FY2025 audited consolidated accounts of Bharat Forge Ltd., an NSE-listed manufacturer, used as a stand-in and cited throughout. That keeps every ratio and credit metric grounded in genuine, published numbers while making no claim about any real taxpayer's affairs. Nothing in the analysis reproduces licensed database content; all sources are public and individually referenced.
+
+## How I approached it
+
+The analysis follows the workflow of a real financing local file. Each step below notes not just what was done but the judgment it turned on, because choosing between two defensible approaches, and being able to justify the choice, is the actual job.
+
+### 1. Accurately delineating the loan
+
+Chapter X asks a prior question before pricing: is the instrument really debt? Every indicator pointed one way. Fixed maturity, unconditional interest not contingent on profit, senior unsecured ranking, enforceable creditor remedies, EBIT interest coverage of 4.36x, and a borrower that had just repaid INR 12.5 billion of debt out of operating cash flow in the year before drawdown. **Judgment:** respect the full EUR 50 million as debt, with no part recharacterised as equity.
+
+### 2. Functional analysis: who bears what
+
+|  | Lender (Luxembourg) | Borrower (India) |
+| --- | --- | --- |
+| Functions | Sources and deploys funds; credit assessment; approval; ongoing monitoring | Deploys funds into assets; debt service; covenant compliance; ECB reporting |
+| Assets | Financial capital, held at risk for the term | Manufacturing assets, workforce, technical capability |
+| Key risks | Credit risk, interest-rate risk, liquidity risk | Currency risk (partly hedged by export receipts), operational risk |
+
+**Judgment:** credit risk sits with the Luxembourg lender, which performs the credit assessment and monitoring and bears the exposure against its own equity. That makes it a genuine risk-bearing financier entitled to a risk-adjusted return, not a risk-free one, and places it outside the intermediary simplification in Luxembourg's Circular 56/1.
+
+### 3. Rating the borrower
+
+No agency rating existed for the instrument, so I derived a synthetic one from the borrower's financials using a published interest-coverage-to-rating mapping, cross-checked against leverage metrics.
+
+<FlowDiagram
+  steps={[
+    { label: 'EBIT interest coverage', value: '4.36x' },
+    { label: 'Synthetic rating', value: 'A2 / A' },
+    { label: 'Credit spread', value: '78 bps', accent: true },
+  ]}
+  caption="Interest coverage of 4.36x maps to A2 / A; leverage metrics (2.49x debt/EBITDA, 0.72x debt/equity) corroborate an investment-grade profile."
+/>
+
+**Judgment:** apply no implicit-support uplift. The borrower is investment grade on its own merits, and declining the uplift takes the position *less* favourable to the Indian interest deduction, which is the more defensible stance to hold before the tax authority.
+
+### 4. Choosing the method
+
+CUP, applied with external market data. Debt markets price instruments by rating, currency, tenor and issue date, which are exactly the comparability factors for a loan, so observed pricing on comparable instruments is the most direct measure of an arm's length rate. Cost-of-funds, CDS spreads, economic modelling and bank opinions were each considered and rejected, the last because Chapter X (paragraph 10.107) does not treat bank opinions as evidence of arm's length terms: an opinion is not an actual offer to lend.
+
+### 5. Searching and screening
+
+I screened 158 instruments across 24 European corporate issuers on rating (A3 to A1), EUR denomination, a 2-to-4-year tenor, senior unsecured ranking and 2025 issuance, and recorded every rejection with its reason. A comparables search that reports only its accepted set, without the rejection rationale, cannot be tested by a reviewer.
+
+| Accepted comparable | Rating | Tenor | Issued | Spread |
+| --- | --- | --- | --- | --- |
+| VINCI S.A. (closest match) | A3 / A | 3.0y | 7 Apr 2025 | 79.4 bps |
+| Schneider Electric SE | A2 / A | 4.0y | 2 Sep 2025 | 47.3 bps |
+
+**Judgment:** measure each observed spread against the risk-free rate on its *own* issue date and tenor, taken from the same ECB curve used for the tested loan. That strips out movements in the level of interest rates over the search window and isolates the credit spread, which is the thing being benchmarked, putting every observation on the same footing as the tested transaction.
+
+### 6. The arm's length range
+
+With only two clean comparables, a statistical quartile range would be false precision, so I built the range from the rating sensitivity (one notch either way) and used the market observations to test it rather than to define it.
+
+<RateRangeChart caption="The concluded 78 bps sits within 1.4 bps of VINCI, an A-rated three-year EUR senior unsecured issue priced seven days after the valuation date. Schneider Electric, a weaker match on tenor and timing, sits below the band." />
+
+<FlowDiagram
+  steps={[
+    { label: 'EUR 3-year risk-free', value: '2.051%' },
+    { label: 'Credit spread', value: '+0.78%' },
+    { label: "Arm's length rate", value: '2.831%', accent: true },
+  ]}
+  caption="Risk-free reference rate (ECB AAA curve, 31 March 2025) plus the benchmarked credit spread."
+/>
+
+### 7. The two-sided and tax picture
+
+A rate that is arm's length for the borrower still has to survive everything around it. The Luxembourg lender's return was tested against Circular 56/1: substance requirements, equity commensurate with the credit risk assumed, and why the intermediary simplification does not apply to a genuine risk-bearing financier. On the Indian side, three provisions interact with the price. Section 94B (thin capitalisation) is engaged but produces no disallowance, as the interest is roughly 0.47% of EBITDA against a 30% cap. Withholding tax is capped at 10% of the gross interest under Article 11(2) of the India-Luxembourg treaty, subject to the treaty-entitlement conditions. And the facility complies with the 2026 External Commercial Borrowings framework on lender eligibility, minimum maturity, end use and pricing.
+
+## Judgment calls
+
+The decisions a reviewer would test for depth, each stated as the call made, the alternative rejected, and why.
+
+- **CUP over a cost-of-funds approach.** Cost-of-funds measures the lender's economics, not the borrower's credit risk, and Chapter X treats it as a fallback where comparables are absent. Comparable market pricing was available, so the more direct measure was used.
+- **No implicit-support uplift.** An uplift would have lowered the rate and the Indian deduction. Declining it is both supportable on the borrower's stand-alone strength and the more conservative, more defensible position.
+- **A rating-sensitivity range, not a two-point quartile.** Two comparables corroborate a spread but cannot support a statistical range. Presenting a quartile from two data points would have overstated the precision; the sensitivity band across adjacent rating notches is the honest construction.
+- **Country risk disclosed, not buried.** No country-risk notch-down was applied to the Indian borrower; a euro-denominated obligation is benchmarked against the euro market, and the borrower's export earnings partly mitigate transfer risk. Because a notch-down would widen the spread, the decision is recorded openly as a limitation rather than assumed away.
+
+## Scope and limitations
+
+Handled as part of the work, not as a disclaimer. An experienced reviewer distrusts an analysis that claims none.
+
+- **Illustrative, with real numbers.** Anonymised entities; genuine FY2025 audited financials (Bharat Forge) behind the borrower. Not a client deliverable and no assertion about a real taxpayer.
+- **Built without commercial databases.** No Bloomberg, Capital IQ, Refinitiv, TP Catalyst or Amadeus. All inputs are public and individually sourced (ECB yield curve, NSE filings, a published rating-spread mapping, primary-market bond data).
+- **What that costs, stated precisely.** The synthetic rating is a coverage-based proxy rather than a full credit model; only two comparables cleared screening where a full database would return eight to fifteen and support a proper interquartile range; country risk is not quantified; the credit view rests on a single year.
+- **What a live engagement would add.** Standalone-entity financials, a quantitative credit model run across a multi-year period, a curated comparable set with a statistical range, and a quantified lender margin for the Luxembourg side of the file.

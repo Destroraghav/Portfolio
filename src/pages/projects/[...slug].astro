@@ -3,6 +3,8 @@ import { getCollection, render } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+import Button from '../../components/Button.astro';
 import Tag from '../../components/Tag.astro';
 
 export const getStaticPaths = (async () => {
@@ -18,15 +20,22 @@ const d = entry.data;
 const date = d.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 
-<BaseLayout title={d.title} description={d.description} article>
+<BaseLayout
+  title={d.seoTitle ?? d.title}
+  description={d.seoDescription ?? d.description}
+  image={d.heroImage}
+  imageAlt={d.heroImage ? d.title : undefined}
+  article
+>
   <Container class="py-12 sm:py-16">
     <a href="/projects" class="inline-flex items-center gap-1.5 text-sm text-mute hover:text-ink">
       <span aria-hidden="true">←</span> All projects
     </a>
 
-    <article class="mx-auto mt-6 max-w-[72ch]">
+    <article class="mx-auto mt-6 max-w-[74ch]">
+      <!-- Masthead -->
       <div class="flex flex-wrap items-center gap-2.5">
-        <Tag variant="default">Project</Tag>
+        <Tag variant="default">{d.type ?? 'Project'}</Tag>
         {d.status === 'in-progress' && <Tag variant="feature">In progress</Tag>}
         <time datetime={d.date.toISOString()} class="t-caption">{date}</time>
       </div>
@@ -34,16 +43,113 @@ const date = d.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long'
       <h1 class="mt-5 t-display-md text-balance">{d.title}</h1>
       <p class="mt-4 t-body-lg">{d.description}</p>
 
-      <hr class="mt-8 border-hairline" />
+      {
+        d.meta.length > 0 && (
+          <dl class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+            {d.meta.map((m) => (
+              <div class="flex items-baseline gap-1.5">
+                <dt class="t-caption">{m.label}</dt>
+                <dd class="text-sm font-medium text-ink">{m.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
 
+      {
+        (d.downloadFile || d.related) && (
+          <div class="mt-7 flex flex-wrap items-center gap-3">
+            {d.downloadFile && (
+              <Button href={d.downloadFile} variant="dark" size="lg" download={d.downloadName ?? true}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-[18px] w-[18px]" aria-hidden="true">
+                  <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+                </svg>
+                Download the full local file
+              </Button>
+            )}
+            {d.related && (
+              <a href={d.related.href} class="inline-flex items-center gap-1.5 text-[0.95rem] font-semibold text-ink hover:text-primary">
+                {d.related.label}
+                <span aria-hidden="true" class="transition-transform">→</span>
+              </a>
+            )}
+          </div>
+        )
+      }
+      {d.downloadFile && d.downloadMeta && <p class="mt-2 t-caption">{d.downloadMeta}</p>}
+
+      <!-- At a glance -->
+      {
+        d.atAGlance.length > 0 && (
+          <div class="mt-9 rounded-lg border border-hairline bg-surface-soft p-6">
+            <Eyebrow>At a glance</Eyebrow>
+            <dl class="mt-4 grid gap-x-8 gap-y-4 sm:grid-cols-2">
+              {d.atAGlance.map((row) => (
+                <div class="border-t border-hairline pt-3">
+                  <dt class="t-caption">{row.label}</dt>
+                  <dd class="mt-1 text-[0.95rem] font-medium leading-snug text-ink">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )
+      }
+
+      <hr class="mt-10 border-hairline" />
+
+      <!-- Body -->
       <div class="prose mt-8">
         <Content />
       </div>
 
+      <!-- Skills demonstrated -->
+      {
+        d.skills.length > 0 && (
+          <section class="mt-12 border-t border-hairline pt-8">
+            <Eyebrow>Skills demonstrated</Eyebrow>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {d.skills.map((s) => (
+                <li>
+                  <span class="inline-flex rounded-full border border-hairline bg-canvas px-3 py-1.5 text-sm text-body">{s}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
+
+      <!-- Download (repeat) + related -->
+      {
+        (d.downloadFile || d.related) && (
+          <div class="mt-12 rounded-lg border border-hairline bg-surface-soft p-6 sm:flex sm:items-center sm:justify-between sm:gap-6">
+            <div>
+              <p class="t-heading-sm text-ink">{d.downloadFile ? 'Read the full analysis' : 'Related'}</p>
+              {d.related?.note && <p class="mt-1 text-sm text-mute">{d.related.note}</p>}
+            </div>
+            <div class="mt-4 flex flex-wrap items-center gap-3 sm:mt-0">
+              {d.downloadFile && (
+                <Button href={d.downloadFile} variant="dark" download={d.downloadName ?? true}>
+                  Download PDF
+                </Button>
+              )}
+              {d.related && (
+                <a href={d.related.href} class="inline-flex items-center gap-1.5 text-[0.95rem] font-semibold text-ink hover:text-primary">
+                  {d.related.label} <span aria-hidden="true">→</span>
+                </a>
+              )}
+            </div>
+          </div>
+        )
+      }
+
       {
         d.tags.length > 0 && (
           <ul class="mt-10 flex flex-wrap gap-1.5 border-t border-hairline pt-6">
-            {d.tags.map((t) => <li><Tag variant="outline">{t}</Tag></li>)}
+            {d.tags.map((t) => (
+              <li>
+                <Tag variant="outline">{t}</Tag>
+              </li>
+            ))}
           </ul>
         )
       }

@@ -7,7 +7,11 @@ import PostCard from '../../components/PostCard.astro';
 
 const projects = (await getCollection('projects'))
   .filter((e) => (import.meta.env.PROD ? !e.data.draft : true))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  // Featured first, then most recent.
+  .sort((a, b) => {
+    if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+    return b.data.date.getTime() - a.data.date.getTime();
+  });
 ---
 
 <BaseLayout
@@ -29,9 +33,9 @@ const projects = (await getCollection('projects'))
           {projects.map((p) => (
             <PostCard
               href={`/projects/${p.id}`}
-              eyebrow="Project"
+              eyebrow={p.data.type ?? 'Project'}
               title={p.data.title}
-              description={p.data.description}
+              description={p.data.summary ?? p.data.description}
               date={p.data.date}
               tags={p.data.tags}
               badge={p.data.status === 'in-progress' ? 'In progress' : undefined}

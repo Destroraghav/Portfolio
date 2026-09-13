@@ -68,6 +68,23 @@ const projects = defineCollection({
       status: z.enum(['in-progress', 'complete']).default('complete'),
       draft: z.boolean().default(false),
       heroImage: z.string().optional(),
+      // Optional rich-project fields. When present, the detail page renders a
+      // full case-study masthead (meta row, at-a-glance box, download, skills).
+      // Absent -> the simple article layout still applies.
+      summary: z.string().optional(), // index card + card teaser
+      type: z.string().optional(), // e.g. "Technical project"
+      featured: z.boolean().default(false),
+      skills: z.array(z.string()).default([]),
+      downloadFile: z.string().optional(), // public path to the document
+      downloadName: z.string().optional(), // filename shown on save
+      downloadMeta: z.string().optional(), // e.g. "PDF · 44 pages"
+      meta: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
+      atAGlance: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
+      related: z
+        .object({ href: z.string(), label: z.string(), note: z.string().optional() })
+        .optional(),
+      seoTitle: z.string().optional(),
+      seoDescription: z.string().optional(),
     }),
 });
 

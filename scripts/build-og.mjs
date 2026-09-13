@@ -13,7 +13,10 @@ import { dirname, join } from 'node:path';
  */
 const here = dirname(fileURLToPath(import.meta.url));
 
-const cards = [{ svg: 'og/transfer-pricing.svg', png: '../public/og-transfer-pricing.png' }];
+const cards = [
+  { svg: 'og/transfer-pricing.svg', png: '../public/og-transfer-pricing.png' },
+  { svg: 'og/transfer-pricing-project.svg', png: '../public/og-transfer-pricing-project.png' },
+];
 
 for (const card of cards) {
   const svg = readFileSync(join(here, card.svg));

@@ -7,9 +7,10 @@ import PostCard from '../../components/PostCard.astro';
 
 const projects = (await getCollection('projects'))
   .filter((e) => (import.meta.env.PROD ? !e.data.draft : true))
-  // Featured first, then most recent.
+  // Featured first, then explicit order (lower first), then most recent.
   .sort((a, b) => {
     if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+    if (a.data.order !== b.data.order) return a.data.order - b.data.order;
     return b.data.date.getTime() - a.data.date.getTime();
   });
 ---

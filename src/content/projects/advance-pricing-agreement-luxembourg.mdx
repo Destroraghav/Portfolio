@@ -1,0 +1,128 @@
+---
+title: "Advance Pricing Agreement Request: Pricing a Loan Before It's Drawn"
+description: "A unilateral advance pricing agreement request under Luxembourg's décision anticipée procedure (paragraph 29a), asking the tax administration to confirm, before a proposed intra-group loan is drawn, that its pricing methodology produces an arm's length rate."
+summary: "A unilateral Luxembourg advance pricing agreement request: confirming, before drawdown, that a proposed EUR 50m intra-group loan's pricing methodology and 70 to 89 bps range are arm's length."
+date: 2026-09-14
+type: "Technical project"
+status: "complete"
+featured: true
+order: 2
+tags: ["Transfer Pricing", "Advance Pricing Agreement", "Luxembourg", "Financial Transactions", "OECD Chapter X"]
+skills:
+  - "Advance pricing agreements & rulings"
+  - "Luxembourg décision anticipée (para 29a)"
+  - "Circular 56/1 substance & equity at risk"
+  - "Transfer pricing methodology design"
+  - "Critical-assumption drafting"
+  - "Arm's length range construction"
+  - "Bilateral / MAP awareness"
+  - "Cross-border double taxation"
+  - "OECD Transfer Pricing Guidelines, Chapter X"
+downloadFile: "/projects/advance-pricing-agreement-luxembourg/Advance-Pricing-Agreement-Request.pdf"
+downloadName: "Jairaghav Thummala - Advance Pricing Agreement Request.pdf"
+downloadMeta: "PDF · 28 pages · unilateral APA request"
+heroImage: "/og-apa-request.png"
+companion:
+  href: "/projects/transfer-pricing-local-file"
+  label: "the Transfer Pricing Local File that prices the existing facility"
+meta:
+  - { label: "Author", value: "Sole author" }
+  - { label: "Framework", value: "Para 29a · Circular 56/1 · OECD Ch. X" }
+  - { label: "Document", value: "28-page request" }
+atAGlance:
+  - { label: "What's requested", value: "Advance confirmation that a proposed EUR 50m intra-group loan's pricing methodology produces an arm's length rate, for Luxembourg tax years 2027 to 2030" }
+  - { label: "How", value: "A methodology and a range, not a fixed rate: R = reference rate B + spread S, with S confirmed within 70 to 89 bps" }
+  - { label: "Procedure", value: "Unilateral advance tax decision (décision anticipée) under para 29a + Circular 56/1; four-year term against a five-year maximum" }
+  - { label: "The honest limit", value: "Binds Luxembourg alone. No rollback, and no protection for the Indian borrower; the double-taxation exposure is stated openly" }
+related:
+  href: "/study/transfer-pricing"
+  label: "See the Transfer Pricing course"
+  note: "Part of sustained work in the field, an 11-module course I built alongside these."
+seoTitle: "Luxembourg Advance Pricing Agreement Request Example (Intra-Group Loan)"
+seoDescription: "A worked unilateral advance pricing agreement request under Luxembourg's décision anticipée procedure: confirming a proposed intra-group loan's pricing methodology and arm's length range in advance, with critical assumptions, term and double-taxation limits."
+---
+
+import FacilityCompanionDiagram from '@/components/projects/FacilityCompanionDiagram.astro'
+import RateRangeChart from '@/components/projects/RateRangeChart.astro'
+import FlowDiagram from '@/components/study/FlowDiagram.astro'
+
+## The brief
+
+The Local File in [my first project](/projects/transfer-pricing-local-file) documented the pricing of an intra-group loan *after* it was drawn. This is the forward-looking counterpart. It asks the Luxembourg tax administration to confirm, *before* a proposed loan is entered into, that the methodology used to price it produces an arm's length rate.
+
+That advance certainty is what an advance pricing agreement gives. Luxembourg has no dedicated APA programme, so it is obtained as a **décision anticipée**, a unilateral advance tax decision under paragraph 29a of the Abgabenordnung, with the extra content that Circular 56/1 requires for intra-group financing.
+
+One feature of paragraph 29a shapes the entire request: an advance decision has **no retroactive effect**. It can only cover a situation that has not yet produced its tax consequences. The loan priced in the Local File was already drawn, so it is out of reach. The request therefore concerns *Facility B*, a proposed second facility on materially identical terms, which is exactly what lets the delineation, rating and benchmarking work from the Local File be carried across rather than repeated.
+
+<FacilityCompanionDiagram caption="Same borrower, same terms, same methodology. The only differences are the drawdown date and the reference rate the facility will price at, which is what makes advance confirmation both possible and necessary." />
+
+As with the Local File, the entities are fictional and the borrower's financials are the real audited FY2025 accounts of Bharat Forge Ltd. This request is illustrative and has not been filed with any authority.
+
+## What the request asks to confirm
+
+The confirmation sought is deliberately a confirmation of a **methodology and a range**, not a fixed rate: that the CUP method is appropriate, that a rate built as a reference rate plus a spread of 70 to 89 basis points is arm's length, that the lender is entitled to the full risk-adjusted return, and that this holds for tax years 2027 to 2030 subject to the critical assumptions.
+
+<FlowDiagram
+  steps={[
+    { label: 'Reference rate B', value: 'ECB 3Y AAA', sublabel: 'observed at drawdown' },
+    { label: 'Credit spread S', value: '70 to 89 bps', sublabel: 'rating-derived, corroborated' },
+    { label: 'Confirmed rate R', value: 'B + S', accent: true },
+  ]}
+  caption="The pricing rule submitted for confirmation. The spread is fixed by methodology now; the reference rate is left to be observed when the facility is actually drawn."
+/>
+
+Why a range and a methodology rather than a fixed number? Two reasons, and both matter. The risk-free component simply is not knowable in advance: the loan draws on 1 April 2027, and the three-year euro reference rate on that date cannot be observed in 2026. And a transfer pricing conclusion is properly a range, not a point, because independent parties in comparable circumstances would not all agree an identical price. Confirming a single figure would attribute to the arm's length principle a precision it does not have.
+
+<RateRangeChart caption="The spread S is confirmed within 70 to 89 bps (the adjacent rating notches around the A2/A central case). The band is corroborated by the Local File's market evidence: the closest comparable priced at 79.4 bps, within 1.4 bps of the central 78." />
+
+## How the rate gets set at drawdown
+
+Because the rate is fixed only when the facility is drawn, the request proposes a precise sequence, so the administration can verify after the event that the rate applied was the rate the methodology produces. Proposing that verification step, rather than leaving the application of a confirmed methodology undocumented, is itself part of the submission.
+
+<FlowDiagram
+  steps={[
+    { label: 'Ahead of pricing', sublabel: 'Coverage ratio → rating → spread S, corroborated against the market' },
+    { label: 'Pricing date', sublabel: 'Observe reference rate B; fix R = B + S in the agreement', accent: true },
+    { label: 'Within 30 days', sublabel: 'Memorandum recording each step, retained for the tax office' },
+  ]}
+/>
+
+## Critical assumptions
+
+The confirmation is predicated on ten critical assumptions. Each is drawn narrowly enough to be tested against an observable fact, and each is paired with the consequence of its failure. A vague assumption, such as "market conditions do not change materially", is useless to either side because it can never be shown to have been met or breached.
+
+| Ref | Assumption | If it fails |
+| --- | --- | --- |
+| CA1 | Borrower's interest coverage stays between 3.00x and 6.50x | Spread falls outside 70 to 89 bps; a fresh request is needed |
+| CA2 | Ownership unchanged; the two stay associated, lender stays the group financier | The implicit-support basis changes; confirmation ends from that date |
+| CA3 | Facility terms unchanged (principal, currency, tenor, ranking, no security, covenants) | The comparability basis fails; confirmation terminates for affected periods |
+| CA4 | No group guarantee, keep-well or other credit support | Credit risk borne changes; rating and spread must be re-performed |
+| CA5 | Lender keeps satisfying the Circular 56/1 substance conditions | Credit risk can't be allocated to it; entitlement drops to a risk-free return |
+| CA6 | Equity at risk maintained at the analysed level | Part of the return is reallocated away from the lender |
+| CA7 | Facility stays ECB-compliant; no regulator-forced change to tenor or pricing | The transaction analysed changes; confirmation ends for affected periods |
+| CA8 | No material change to Art. 56/56bis, Circular 56/1, OECD Ch. X or the treaty | A change in law independently ends the decision |
+| CA9 | The ECB rate series and the rating-to-spread table stay published as they are | A substitute of equivalent character is agreed before pricing |
+| CA10 | The facts stated stay complete and accurate through drawdown | The decision does not bind if the facts prove inaccurate or the deal differs |
+
+## Term, rollback, and the limits of a unilateral decision
+
+This is the part I most wanted to get right, because it is where an honest request differs from an optimistic one.
+
+- **Four years, not the five available.** The facility lives for three years across four Luxembourg tax periods, so a fifth year would cover a period in which nothing exists to apply the agreement to. There is also a discipline point: every extra year of coverage is another year all ten assumptions must hold, with no added certainty in return.
+- **No rollback, because none exists.** Paragraph 29a is prospective only. This is set against India, whose APA programme (Sections 92CC and 92CD) expressly allows rollback for up to four preceding years. A group across the two jurisdictions therefore faces an asymmetry: India's side of the same transaction can be covered retrospectively, Luxembourg's cannot.
+- **A unilateral decision binds Luxembourg alone.** It gives the Indian borrower no protection on the deductibility of the interest. If India concluded a lower rate was arm's length, the result is economic double taxation the Luxembourg confirmation would not relieve. The request records this openly, sets out the routes that *would* address it (a bilateral APA or a later mutual agreement procedure), and explains why the unilateral route is nonetheless the one chosen given the signing timeline.
+
+For completeness, the request also covers the procedure (filed to the *bureau d'imposition sociétés* for the *Commission des décisions anticipées*), the statutory fee of EUR 3,000 to 10,000, and the automatic exchange of the ruling to EU member states as a cross-border ruling under Directive 2015/2376.
+
+## Judgment calls
+
+- **A methodology and a range, not a fixed rate.** The rate cannot be known until drawdown, and an arm's length answer is a range in any case. Confirming the *rule* gives the certainty needed to commit funds while leaving the rate to conditions observable when the deal is actually done.
+- **Coverage matched to the transaction, not the statutory maximum.** Fewer assumption-years, no loss of useful certainty.
+- **No rollback sought, and the double-tax exposure accepted on the record.** Rather than treat a unilateral ruling as if it solved both sides, the request states precisely what it does not cover and why that was judged acceptable here.
+- **Critical assumptions built to be testable.** CA1 is tied to the same interest-coverage band that defines the range, so the assumption and the range are defined by reference to the same figures rather than independently.
+
+## Scope and limitations
+
+- **Illustrative, not filed.** Fictional entities, real Bharat Forge FY2025 financials, no agreement exists or is pending. A live filing would add the full structure chart and ultimate beneficial ownership, omitted here because the entities are invented.
+- **Indicative inputs, flagged as such.** The equity-at-risk figure uses an indicative probability of default, loss-given-default and capital multiple; a real request would substitute current published agency default and recovery studies and an assessment of the lender's whole portfolio.
+- **Unilateral by design, with the cost stated.** A bilateral APA would remove the double-taxation exposure and, with India's rollback, could even reach the existing facility, but it is not compatible with the signing timeline. The request holds the mutual agreement procedure in reserve instead.

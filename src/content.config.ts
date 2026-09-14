@@ -74,6 +74,8 @@ const projects = defineCollection({
       summary: z.string().optional(), // index card + card teaser
       type: z.string().optional(), // e.g. "Technical project"
       featured: z.boolean().default(false),
+      order: z.number().default(99), // lower sorts first among featured
+      companion: z.object({ href: z.string(), label: z.string() }).optional(),
       skills: z.array(z.string()).default([]),
       downloadFile: z.string().optional(), // public path to the document
       downloadName: z.string().optional(), // filename shown on save

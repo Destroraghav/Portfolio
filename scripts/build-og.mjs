@@ -16,6 +16,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const cards = [
   { svg: 'og/transfer-pricing.svg', png: '../public/og-transfer-pricing.png' },
   { svg: 'og/transfer-pricing-project.svg', png: '../public/og-transfer-pricing-project.png' },
+  { svg: 'og/apa-request.svg', png: '../public/og-apa-request.png' },
 ];
 
 for (const card of cards) {

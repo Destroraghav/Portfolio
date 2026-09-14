@@ -1,0 +1,47 @@
+---
+/**
+ * Exhibit: why the request concerns a proposed facility, not the existing one.
+ * Facility A (documented after drawdown, in the Local File) vs Facility B
+ * (confirmed before drawdown, in this request). Same terms carried across.
+ */
+interface Props {
+  caption?: string;
+}
+const { caption } = Astro.props;
+---
+
+<figure class="not-prose my-8 overflow-x-auto rounded-lg border border-hairline bg-surface-soft p-4 sm:p-6">
+  <svg viewBox="0 0 720 240" class="mx-auto block h-auto w-full max-w-[680px]" role="img" aria-label="Facility A was priced and then documented in the Local File after drawdown. Facility B is proposed and its pricing is confirmed in advance in this request. The same terms and methodology carry across.">
+    <!-- Facility A (existing) -->
+    <rect x="24" y="40" width="286" height="150" rx="14" fill="var(--color-canvas)" stroke="var(--color-hairline)"></rect>
+    <text x="48" y="72" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="var(--color-stone)">EXISTING</text>
+    <text x="48" y="98" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="var(--color-ink)">Facility A</text>
+    <text x="48" y="122" font-family="Inter, sans-serif" font-size="12.5" fill="var(--color-body)">EUR 50m · drawn 1 Apr 2025</text>
+    <text x="48" y="144" font-family="Inter, sans-serif" font-size="12.5" fill="var(--color-body)">Priced, then documented</text>
+    <rect x="48" y="158" width="130" height="22" rx="11" fill="var(--color-surface-soft)" stroke="var(--color-hairline)"></rect>
+    <text x="113" y="173" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="var(--color-stone)">Local File · Project 1</text>
+
+    <!-- Facility B (proposed) -->
+    <rect x="410" y="40" width="286" height="150" rx="14" fill="var(--color-canvas)" stroke="var(--color-primary)" stroke-width="2"></rect>
+    <text x="434" y="72" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="var(--color-primary)">PROPOSED</text>
+    <text x="434" y="98" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="var(--color-ink)">Facility B</text>
+    <text x="434" y="122" font-family="Inter, sans-serif" font-size="12.5" fill="var(--color-body)">EUR 50m · drawdown 1 Apr 2027</text>
+    <text x="434" y="144" font-family="Inter, sans-serif" font-size="12.5" fill="var(--color-body)">Confirmed, then drawn</text>
+    <rect x="434" y="158" width="120" height="22" rx="11" fill="var(--color-primary)"></rect>
+    <text x="494" y="173" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="var(--color-on-primary)">This request</text>
+
+    <!-- connector -->
+    <path d="M312 115 H406" fill="none" stroke="var(--color-hairline-strong)" stroke-width="1.6" marker-end="url(#fc-arrow)"></path>
+    <text x="360" y="106" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="var(--color-body)">same terms,</text>
+    <text x="360" y="132" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="var(--color-body)">same methodology</text>
+
+    <text x="360" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="var(--color-stone)">Para 29a has no retroactive effect, so the existing loan cannot be covered.</text>
+
+    <defs>
+      <marker id="fc-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+        <path d="M0 0 L7 4 L0 8 z" fill="var(--color-hairline-strong)"></path>
+      </marker>
+    </defs>
+  </svg>
+  {caption && <figcaption class="mt-3 text-center text-sm text-mute">{caption}</figcaption>}
+</figure>

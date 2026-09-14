@@ -75,7 +75,7 @@ const date = d.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long'
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-[18px] w-[18px]" aria-hidden="true">
                   <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
                 </svg>
-                Download the full local file
+                {d.downloadLabel ?? 'Download the full document'}
               </Button>
             )}
             {d.related && (

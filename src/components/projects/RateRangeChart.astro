@@ -16,6 +16,7 @@ interface Props {
   bandHigh?: number;
   concluded?: number;
   riskFree?: number; // percent, for the all-in label
+  showAllIn?: boolean; // set false where the all-in rate would mislead (e.g. a future/unknown rate)
   observations?: Observation[];
   caption?: string;
 }
@@ -26,6 +27,7 @@ const {
   bandHigh = 89,
   concluded = 78,
   riskFree = 2.051,
+  showAllIn = true,
   observations = [
     { bps: 79.4, label: 'VINCI, closest match', kind: 'match' },
     { bps: 47.3, label: 'Schneider Electric', kind: 'weak' },
@@ -42,7 +44,7 @@ const allIn = (bps: number) => (riskFree + bps / 100).toFixed(3);
 ---
 
 <figure class="not-prose my-8 overflow-x-auto rounded-lg border border-hairline bg-surface-soft p-4 sm:p-6">
-  <svg viewBox="0 0 720 210" class="mx-auto block h-auto w-full max-w-[700px]" role="img" aria-label={`Arm's length spread band ${bandLow} to ${bandHigh} basis points, concluded at ${concluded} bps, corroborated by market observations.`}>
+  <svg viewBox="0 0 720 210" class="mx-auto block h-auto w-full min-w-[640px] max-w-[700px]" role="img" aria-label={`Arm's length spread band ${bandLow} to ${bandHigh} basis points, concluded at ${concluded} bps, corroborated by market observations.`}>
     <!-- defensible band -->
     <rect x={x(bandLow)} y={AXIS - 22} width={x(bandHigh) - x(bandLow)} height="44" rx="6" fill="var(--color-primary)" fill-opacity="0.12"></rect>
     <line x1={x(bandLow)} y1={AXIS - 26} x2={x(bandLow)} y2={AXIS + 26} stroke="var(--color-primary)" stroke-width="1.5" stroke-opacity="0.5"></line>
@@ -66,7 +68,9 @@ const allIn = (bps: number) => (riskFree + bps / 100).toFixed(3);
     <line x1={x(concluded)} y1={AXIS - 40} x2={x(concluded)} y2={AXIS + 12} stroke="var(--color-primary)" stroke-width="2"></line>
     <circle cx={x(concluded)} cy={AXIS} r="7" fill="var(--color-primary)" stroke="var(--color-canvas)" stroke-width="2"></circle>
     <text x={x(concluded)} y={AXIS - 48} text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="var(--color-primary)">Concluded {concluded} bps</text>
-    <text x={x(concluded)} y={20} text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="var(--color-body)">All-in arm's length rate <tspan font-weight="700" fill="var(--color-ink)">{allIn(concluded)}%</tspan></text>
+    {showAllIn && (
+      <text x={x(concluded)} y={20} text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="var(--color-body)">All-in arm's length rate <tspan font-weight="700" fill="var(--color-ink)">{allIn(concluded)}%</tspan></text>
+    )}
   </svg>
 
   <div class="mt-2 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs text-mute">

@@ -79,6 +79,7 @@ const projects = defineCollection({
       skills: z.array(z.string()).default([]),
       downloadFile: z.string().optional(), // public path to the document
       downloadName: z.string().optional(), // filename shown on save
+      downloadLabel: z.string().optional(), // hero button text, e.g. "Download the full request"
       downloadMeta: z.string().optional(), // e.g. "PDF · 44 pages"
       meta: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
       atAGlance: z.array(z.object({ label: z.string(), value: z.string() })).default([]),

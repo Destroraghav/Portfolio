@@ -1,0 +1,64 @@
+---
+/**
+ * Exhibit: the Luxembourg PE acquisition structure. A fund funds a SOPARFI
+ * holding chain (shareholder loan + CPECs + equity), which funds Bidco (loan +
+ * equity) alongside a third-party senior facility; Bidco acquires the target.
+ */
+interface Props {
+  caption?: string;
+}
+const { caption } = Astro.props;
+---
+
+<figure class="not-prose my-8 overflow-x-auto rounded-lg border border-hairline bg-surface-soft p-4 sm:p-6">
+  <svg viewBox="0 0 720 384" class="mx-auto block h-auto w-full min-w-[660px] max-w-[700px]" role="img" aria-label="A Luxembourg buyout fund funds Ardenne Lux Holdings with a EUR 120m shareholder loan, EUR 20m CPECs and EUR 25m equity; Lux Holdings funds Ardenne Bidco with a EUR 90m loan and EUR 75m equity; Bidco also draws a EUR 150m third-party senior facility and acquires the Dutch target.">
+    <!-- Fund -->
+    <rect x="260" y="14" width="200" height="50" rx="12" fill="var(--color-ink)"></rect>
+    <text x="360" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="12.5" font-weight="700" fill="var(--color-on-dark)">Ardenne Capital Partners IV</text>
+    <text x="360" y="52" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#c9c9c9">Luxembourg buyout fund (RAIF)</text>
+
+    <path d="M360 64 V104" fill="none" stroke="var(--color-primary)" stroke-width="1.6" marker-end="url(#as-arrow)"></path>
+    <text x="476" y="76" font-family="Inter, sans-serif" font-size="10.5" fill="var(--color-body)"><tspan font-weight="700" fill="var(--color-primary)">TT1</tspan> shareholder loan · EUR 120m</text>
+    <text x="476" y="92" font-family="Inter, sans-serif" font-size="10.5" fill="var(--color-body)"><tspan font-weight="700" fill="var(--color-primary)">TT2</tspan> CPECs · EUR 20m</text>
+    <text x="476" y="108" font-family="Inter, sans-serif" font-size="10.5" fill="var(--color-mute)">Ordinary equity · EUR 25m</text>
+
+    <!-- Lux Holdings -->
+    <rect x="260" y="110" width="200" height="54" rx="12" fill="var(--color-canvas)" stroke="var(--color-primary)" stroke-width="2"></rect>
+    <text x="360" y="133" text-anchor="middle" font-family="Inter, sans-serif" font-size="12.5" font-weight="700" fill="var(--color-ink)">Ardenne Lux Holdings</text>
+    <text x="360" y="150" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="var(--color-primary)">Luxembourg SOPARFI · holding</text>
+
+    <path d="M360 164 V204" fill="none" stroke="var(--color-stone)" stroke-width="1.6" marker-end="url(#as-arrow-g)"></path>
+    <text x="476" y="180" font-family="Inter, sans-serif" font-size="10.5" fill="var(--color-body)"><tspan font-weight="700" fill="var(--color-ink)">TT3</tspan> intra-group loan · EUR 90m</text>
+    <text x="476" y="196" font-family="Inter, sans-serif" font-size="10.5" fill="var(--color-mute)">Ordinary equity · EUR 75m</text>
+
+    <!-- Bidco -->
+    <rect x="260" y="210" width="200" height="54" rx="12" fill="var(--color-canvas)" stroke="var(--color-hairline)"></rect>
+    <text x="360" y="233" text-anchor="middle" font-family="Inter, sans-serif" font-size="12.5" font-weight="700" fill="var(--color-ink)">Ardenne Bidco</text>
+    <text x="360" y="250" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="var(--color-mute)">Luxembourg · acquisition vehicle</text>
+
+    <!-- senior facility note -->
+    <path d="M244 237 H260" fill="none" stroke="var(--color-hairline-strong)" stroke-width="1.4" marker-end="url(#as-arrow-g)"></path>
+    <text x="34" y="234" font-family="Inter, sans-serif" font-size="10.5" font-weight="600" fill="var(--color-ink)">+ EUR 150m senior facility</text>
+    <text x="34" y="250" font-family="Inter, sans-serif" font-size="10" fill="var(--color-mute)">third-party bank syndicate</text>
+
+    <path d="M360 264 V298" fill="none" stroke="var(--color-hairline-strong)" stroke-width="1.6" marker-end="url(#as-arrow-g)"></path>
+    <text x="476" y="286" font-family="Inter, sans-serif" font-size="10.5" fill="var(--color-mute)">acquires 100%</text>
+
+    <!-- Target -->
+    <rect x="260" y="298" width="200" height="50" rx="12" fill="var(--color-surface-soft)" stroke="var(--color-hairline)"></rect>
+    <text x="360" y="319" text-anchor="middle" font-family="Inter, sans-serif" font-size="12.5" font-weight="700" fill="var(--color-ink)">Valberg Actuation</text>
+    <text x="360" y="336" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="var(--color-mute)">Netherlands · operating group (target)</text>
+
+    <text x="360" y="372" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="var(--color-stone)">Priority, senior to junior:  Senior facility  ·  TT3  ·  TT1  ·  CPECs  ·  Ordinary equity</text>
+
+    <defs>
+      <marker id="as-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+        <path d="M0 0 L7 4 L0 8 z" fill="var(--color-primary)"></path>
+      </marker>
+      <marker id="as-arrow-g" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+        <path d="M0 0 L7 4 L0 8 z" fill="var(--color-stone)"></path>
+      </marker>
+    </defs>
+  </svg>
+  {caption && <figcaption class="mt-3 text-center text-sm text-mute">{caption}</figcaption>}
+</figure>

@@ -17,6 +17,7 @@ const cards = [
   { svg: 'og/transfer-pricing.svg', png: '../public/og-transfer-pricing.png' },
   { svg: 'og/transfer-pricing-project.svg', png: '../public/og-transfer-pricing-project.png' },
   { svg: 'og/apa-request.svg', png: '../public/og-apa-request.png' },
+  { svg: 'og/pe-acquisition-financing.svg', png: '../public/og-pe-acquisition-financing.png' },
 ];
 
 for (const card of cards) {

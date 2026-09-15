@@ -1,0 +1,51 @@
+---
+/**
+ * Exhibit: one or more arm's length ranges on a shared axis, each with the
+ * contracted rate marked. Used to show the TT1 and TT3 ranges together so the
+ * gap between them (the priced structural subordination) is visible.
+ */
+interface Row {
+  label: string;
+  low: number;
+  high: number;
+  value: number; // contracted rate
+}
+interface Props {
+  min?: number;
+  max?: number;
+  unit?: string;
+  rows: Row[];
+  caption?: string;
+}
+const { min = 7.8, max = 10.1, unit = '%', rows, caption } = Astro.props;
+
+const X0 = 150;
+const X1 = 660;
+const W = X1 - X0;
+const x = (v: number) => X0 + ((Math.min(max, Math.max(min, v)) - min) / (max - min)) * W;
+const rowY = (i: number) => 42 + i * 56;
+const AXIS = 42 + rows.length * 56 - 20;
+const fmt = (v: number) => `${v.toFixed(2)}${unit}`;
+---
+
+<figure class="not-prose my-8 overflow-x-auto rounded-lg border border-hairline bg-surface-soft p-4 sm:p-6">
+  <svg viewBox={`0 0 720 ${AXIS + 40}`} class="mx-auto block h-auto w-full min-w-[600px] max-w-[700px]" role="img" aria-label={rows.map((r) => `${r.label}: range ${fmt(r.low)} to ${fmt(r.high)}, contracted ${fmt(r.value)}.`).join(' ')}>
+    {rows.map((r, i) => (
+      <>
+        <text x="16" y={rowY(i) + 4} font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="var(--color-ink)">{r.label}</text>
+        <rect x={x(r.low)} y={rowY(i) - 11} width={x(r.high) - x(r.low)} height="22" rx="5" fill="var(--color-primary)" fill-opacity="0.12"></rect>
+        <text x={x(r.low) - 6} y={rowY(i) + 4} text-anchor="end" font-family="Inter, sans-serif" font-size="10" fill="var(--color-stone)">{fmt(r.low)}</text>
+        <text x={x(r.high) + 6} y={rowY(i) + 4} font-family="Inter, sans-serif" font-size="10" fill="var(--color-stone)">{fmt(r.high)}</text>
+        <line x1={x(r.value)} y1={rowY(i) - 18} x2={x(r.value)} y2={rowY(i) + 14} stroke="var(--color-primary)" stroke-width="2"></line>
+        <circle cx={x(r.value)} cy={rowY(i)} r="6" fill="var(--color-primary)" stroke="var(--color-canvas)" stroke-width="1.5"></circle>
+        <text x={x(r.value)} y={rowY(i) - 24} text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="var(--color-primary)">{fmt(r.value)}</text>
+      </>
+    ))}
+
+    <line x1={X0} y1={AXIS} x2={X1} y2={AXIS} stroke="var(--color-hairline-strong)" stroke-width="1"></line>
+    <text x={X0} y={AXIS + 18} text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="var(--color-mute)">{fmt(min)}</text>
+    <text x={X1} y={AXIS + 18} text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="var(--color-mute)">{fmt(max)}</text>
+    <text x={(X0 + X1) / 2} y={AXIS + 18} text-anchor="middle" font-family="Inter, sans-serif" font-size="10" fill="var(--color-mute)">arm's length range · contracted rate marked</text>
+  </svg>
+  {caption && <figcaption class="mt-3 text-center text-sm text-mute">{caption}</figcaption>}
+</figure>

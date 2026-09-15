@@ -1,0 +1,138 @@
+---
+title: "Financing a Luxembourg Private Equity Buyout: A Transfer Pricing Analysis"
+description: "A full Chapter X and Luxembourg-domestic-law analysis of the intra-group financing in a private equity buyout: delineating a shareholder loan and CPECs as debt or equity, pricing them by CUP against the deal's own third-party senior facility, and working through the Luxembourg tax that follows."
+summary: "A private equity acquisition financed through a Luxembourg SOPARFI chain: delineating a shareholder loan (debt) and CPECs (equity), pricing the loan at 9.45% by CUP, and the Luxembourg tax that follows."
+date: 2026-09-15
+type: "Technical project"
+status: "complete"
+featured: true
+order: 3
+tags: ["Transfer Pricing", "Private Equity", "Luxembourg", "Debt vs Equity", "OECD Chapter X"]
+skills:
+  - "Private equity acquisition financing"
+  - "Debt / equity delineation"
+  - "Hybrid instruments (CPECs)"
+  - "Credit rating & structural notching"
+  - "Sponsor implicit-support analysis"
+  - "CUP benchmarking (internal + external comparables)"
+  - "Luxembourg tax: Art 168bis, participation exemption, Art 168ter"
+  - "Circular 56/1 & net wealth tax"
+  - "OECD Transfer Pricing Guidelines, Chapter X"
+downloadFile: "/projects/pe-acquisition-financing/PE-Acquisition-Financing-TP-Analysis.pdf"
+downloadName: "Jairaghav Thummala - PE Acquisition Financing TP Analysis.pdf"
+downloadLabel: "Download the full analysis"
+downloadMeta: "PDF · 27 pages · OECD Ch. X + Luxembourg tax"
+heroImage: "/og-pe-acquisition-financing.png"
+meta:
+  - { label: "Author", value: "Sole author" }
+  - { label: "Framework", value: "Art 56/56bis · OECD Ch. X · Lux tax" }
+  - { label: "Document", value: "27-page analysis" }
+atAGlance:
+  - { label: "The structure", value: "A EUR 850m PE fund's buyout, financed through a Luxembourg SOPARFI chain: a EUR 120m shareholder loan, EUR 20m CPECs, and a EUR 90m downstream loan" }
+  - { label: "Delineation", value: "Shareholder loan delineated as debt; CPECs as equity, on the economic-reality test and Luxembourg case law" }
+  - { label: "Arm's length result", value: "Shareholder loan priced at 9.45% within an 8.85% to 9.95% range, via CUP corroborated by the deal's own third-party senior facility; no sponsor implicit-support uplift" }
+  - { label: "Luxembourg tax", value: "Article 168bis interest limitation, participation exemption and exit recapture, hybrid-mismatch screen, Circular 56/1 equity at risk, net wealth tax" }
+related:
+  href: "/study/transfer-pricing"
+  label: "See the Transfer Pricing course"
+  note: "Part of sustained work in the field, an 11-module course I built alongside these."
+seoTitle: "Private Equity Acquisition Financing: A Luxembourg Transfer Pricing Analysis"
+seoDescription: "A worked transfer pricing analysis of the intra-group financing in a Luxembourg private equity buyout: delineating a shareholder loan and CPECs as debt or equity, pricing by CUP against a third-party senior facility, and the Luxembourg tax treatment."
+---
+
+import AcquisitionStructure from '@/components/projects/AcquisitionStructure.astro'
+import RangeBars from '@/components/projects/RangeBars.astro'
+import FlowDiagram from '@/components/study/FlowDiagram.astro'
+
+## The brief
+
+A Luxembourg private equity fund buys the Valberg actuation group through a two-tier holding chain: a top Luxembourg holding company (a SOPARFI), an acquisition vehicle (Bidco), and the Dutch operating target. The sponsor funds the chain with a mix of a shareholder loan, convertible preferred equity certificates and ordinary equity, and Bidco also draws a third-party senior facility.
+
+<AcquisitionStructure caption="The financing to be analysed: a shareholder loan (TT1) and CPECs (TT2) from the fund into Lux Holdings, a downstream loan (TT3) into Bidco, and a third-party senior facility. Everything above the senior facility is structurally subordinated to it." />
+
+The work is two questions, in order. First, characterisation: is each instrument really debt, or is it equity dressed as debt? In Luxembourg that question is decided on economic reality, and getting it wrong is more expensive than a mispriced rate. Second, for the instruments that are debt, pricing: what rate would independent parties have agreed?
+
+The entities are fictitious. The target's financials are the real audited FY2025 figures of an unnamed listed European manufacturer of actuation and industrial-brake systems, reproduced unadjusted. This is an illustrative study, not filed with any authority and not tax advice.
+
+## Delineating debt from equity
+
+This comes first because in Luxembourg, requalifying a loan as equity does not merely reduce a rate. It denies the interest deduction entirely, removes the liability from the net wealth tax base, and turns payments into deemed distributions under Article 164(3). Characterisation is decided by economic reality, not legal form: the Administrative Court has upheld the requalification of interest-free shareholder loans as equity, and has held that the 85/15 debt-to-equity ratio used as administrative practice is not legally binding in either direction. What governs is whether an independent party would have advanced funds on the terms.
+
+| | TT1 shareholder loan | TT2 CPECs |
+| --- | --- | --- |
+| Maturity | 9-year bullet, fixed | 30 years; converts to shares on insolvency |
+| Payment | Unconditional 9.45%, accruing | Yield only if reserves exist and the board resolves |
+| Enforcement | Acceleration on default | None; cannot accelerate or petition |
+| Ranking | Ahead of the CPECs and the shares | Behind everything; ahead of ordinary shares only |
+| Conclusion | **Debt** (6 of 8 indicators) | **Equity** (every indicator) |
+
+**Judgment.** TT1 is debt. Its two weaker features, interest that accrues rather than being paid in cash and proceeds partly funding an equity participation, are recorded rather than glossed over, but neither is decisive: accruing interest is common in arm's length junior debt, and funding participations is what a holding company does. TT2 is equity, and the recommendation is **not to re-paper it as a loan** to win the deduction: that deduction is largely absorbed by the interest limitation below, and a convertible instrument carries materially more hybrid-mismatch risk than a plain loan.
+
+## Credit assessment, and why a sponsor is not a parent
+
+The holding company has no assets but the shares in and receivable from Bidco, so it is rated the way holding-company debt always is: rate the consolidated group (**B+** on a scorecard), notch down for the issuer's structural position (**B**), then notch again for the instrument's terms (**B-**).
+
+The distinctive step is what is *not* done. Chapter X asks whether group membership lifts the borrower's credit. For a corporate parent it usually does. A private equity sponsor is different, in four ways that each cut against an uplift:
+
+- **Finite fund life.** The fund has a ten-year term; the loan matures in year nine, deep in the fund's realisation phase, when it has neither the mandate nor often the commitments to inject fresh capital.
+- **Ring-fenced reputation.** A fund holds a portfolio of separately financed structures with no cross-guarantees; one company's default does not contaminate the sponsor's ability to raise debt for the others.
+- **Contractual limits on support.** The limited partnership agreement caps exposure to any one company at 20% of commitments; the ability to support is limited by contract, not just by will.
+- **An option, not an obligation.** Sponsor equity is economically a call option on enterprise value; below the strike, the rational course is to walk away, not to inject capital that would accrue to creditors.
+
+**Judgment.** No implicit-support uplift. The borrower is assessed on the standalone credit of the group it heads.
+
+## Pricing: CUP, two ways
+
+The comparable uncontrolled price method is applied twice and reconciled. The primary application matches the instrument's rating to observed euro high-yield spreads; the secondary builds up from the deal's own third-party senior facility, which is the stronger evidence because it is a genuine independent price for credit risk on the same enterprise at the same date.
+
+<FlowDiagram
+  steps={[
+    { label: '9-year euro benchmark', value: '3.10%' },
+    { label: 'B- credit spread', value: '+585 bps' },
+    { label: 'Illiquidity premium', value: '+50 bps' },
+    { label: 'Rate (primary)', value: '9.45%', accent: true },
+  ]}
+  caption="Primary application: the B category spread (350 bps) plus one notch to B- (235 bps), over the derived nine-year benchmark, plus an illiquidity premium for a privately placed instrument."
+/>
+
+| Build-up over the 9-year benchmark | Primary (rating-matched) | Secondary (from senior facility) |
+| --- | --- | --- |
+| Starting point | B category spread 350 bps | Senior margin 335 bps |
+| Adjustments | + notch to B- (235 bps) | + loss of security (125) + structural subordination (175) |
+| Liquidity / tenor | + illiquidity 50 bps | + tenor 50 bps |
+| Indicated rate | **9.45%** | **9.95%** |
+
+The two reconcile within 50 bps. The senior facility's own all-in cost (5.65%) sits right on the market average for euro single-B term loans that quarter, which is what makes it a reliable internal comparable.
+
+<RangeBars
+  rows={[
+    { label: 'TT1 shareholder loan', low: 8.85, high: 9.95, value: 9.45 },
+    { label: 'TT3 downstream loan', low: 8.05, high: 9.05, value: 8.55 },
+  ]}
+  caption="The 90 bps gap between the two contracted rates is the priced measure of TT1's structural subordination: it sits a level further from the operating assets, behind the Bidco-level debt."
+/>
+
+**Judgment.** The internal comparable anchors the conclusion; the external application corroborates it. A two-notch alternative (to CCC+) was tested and rejected: it implies a default probability that 4.49x cash interest cover at the operating level does not support, and it prices outside the range at which junior capital was actually available to comparable mid-market credits.
+
+## What it means for Luxembourg tax
+
+Pricing is only half the picture; the structure has to survive the Luxembourg rules that sit on top of it.
+
+- **Interest limitation (Article 168bis).** Exceeding borrowing costs of EUR 3.64m against a EUR 3m safe harbour leave EUR 0.64m disallowed, carried forward. It bites only marginally, and only because the downstream loan (TT3) is there: without it, the full EUR 11.34m would be exceeding borrowing costs and roughly EUR 8.34m would be disallowed every year. The equity escape clause could remove the disallowance and should be modelled.
+- **Participation exemption (Article 166) and exit recapture.** Dividends and gains on the Bidco holding are exempt; the flip side is that expenses connected to that exempt income are recaptured on exit, on the order of EUR 6.8m over a five-year hold. Something to model in the exit analysis, not discover at sale.
+- **Hybrid-mismatch screen (Article 168ter).** Low risk for the plain loan; materially higher for a thirty-year convertible with a discretionary yield. A second, independent reason to leave the CPECs as equity.
+- **Circular 56/1 and net wealth tax.** The holding company carries on a financing activity, so Circular 56/1 applies; the intermediary simplification is not elected (the position is not back-to-back), and an analytical equity-at-risk of EUR 4.83m is required against EUR 25m held, comfortably adequate.
+
+## Judgment calls
+
+- **CPECs as equity, and don't re-paper them.** The marginal deduction is largely absorbed by the interest limitation, and the hybrid-mismatch exposure on a convertible outweighs it.
+- **No sponsor implicit-support uplift.** A finite-life, ring-fenced, contractually-constrained, option-holding sponsor is not a corporate parent.
+- **The deal's own senior facility as the primary CUP anchor.** A real third-party price on the same enterprise beats an index every time one exists.
+- **Single-notch central case.** The two-notch CCC+ alternative is tested and rejected as unsupported by the operating cash cover.
+- **The downstream loan as a structuring lever.** Deploying EUR 90m as debt rather than equity is what keeps the interest limitation manageable, a structuring consequence of the pricing, recorded as such.
+
+## Scope and limitations
+
+- **Illustrative, not advice.** Not filed with any authority and not tax advice. Fictitious entities; the target's figures are the real audited FY2025 accounts of an unnamed listed European manufacturer, reproduced unadjusted.
+- **Indicative rating.** Derived by applying published rating-agency methodology to the figures; not a rating issued by an agency and carrying none of that meaning.
+- **Public inputs only.** No proprietary database; the nine-year benchmark point (3.10%) is derived rather than observed and is flagged as such wherever it appears. A change to any instrument term would require the analysis to be revisited.

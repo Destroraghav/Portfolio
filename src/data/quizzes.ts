@@ -667,7 +667,7 @@ export const quizzes: Record<string, QuizItem[]> = {
     },
     {
       question:
-        'The factory’s final cleaned Return on Total Costs of 9.2%, compared to a benchmark range of 6.1%–9.2%, means:',
+        'The factory’s final cleaned Return on Total Costs of 9.2%, compared to a benchmark range of 6.1%-9.2%, means:',
       options: [
         'An adjustment is definitely required',
         'The result falls at the top of, but still inside, the accepted range, so no adjustment is needed',

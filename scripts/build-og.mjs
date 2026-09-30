@@ -18,6 +18,7 @@ const cards = [
   { svg: 'og/transfer-pricing-project.svg', png: '../public/og-transfer-pricing-project.png' },
   { svg: 'og/apa-request.svg', png: '../public/og-apa-request.png' },
   { svg: 'og/pe-acquisition-financing.svg', png: '../public/og-pe-acquisition-financing.png' },
+  { svg: 'og/the-yogurt-bet.svg', png: '../public/images/blog/the-yogurt-bet-hero.png' },
 ];
 
 for (const card of cards) {

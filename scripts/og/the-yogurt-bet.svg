@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif">
+  <rect width="1200" height="630" fill="#ffffff"/>
+
+  <!-- subject motif: a yogurt cup on a soft disc -->
+  <circle cx="960" cy="315" r="188" fill="#f4f4f4"/>
+  <!-- spoon -->
+  <path d="M1052 196 L992 300" stroke="#494fdf" stroke-width="7" stroke-linecap="round"/>
+  <ellipse cx="1060" cy="188" rx="17" ry="26" transform="rotate(28 1060 188)" fill="none" stroke="#494fdf" stroke-width="6"/>
+  <!-- cup -->
+  <path d="M884 258 L1036 258 L1016 452 L904 452 Z" fill="#ffffff" stroke="#191c1f" stroke-width="6" stroke-linejoin="round"/>
+  <ellipse cx="960" cy="258" rx="76" ry="16" fill="#ffffff" stroke="#191c1f" stroke-width="6"/>
+  <!-- yogurt swirl -->
+  <path d="M930 256 q30 -20 60 0" fill="none" stroke="#494fdf" stroke-width="5" stroke-linecap="round"/>
+  <!-- label band -->
+  <rect x="900" y="330" width="120" height="60" rx="8" fill="#494fdf"/>
+  <text x="960" y="368" text-anchor="middle" font-size="22" font-weight="800" fill="#ffffff" letter-spacing="1">GREEK</text>
+
+  <!-- text -->
+  <text x="80" y="150" font-size="20" font-weight="700" letter-spacing="2.4" fill="#494fdf">CASE STUDY &#183; CORPORATE VC</text>
+  <text x="76" y="258" font-size="82" font-weight="800" letter-spacing="-2.5" fill="#191c1f">The Yogurt Bet</text>
+  <rect x="80" y="282" width="130" height="8" rx="4" fill="#494fdf"/>
+
+  <text x="80" y="352" font-size="27" font-weight="400" fill="#40474d">How Danone failed in India three times,</text>
+  <text x="80" y="388" font-size="27" font-weight="400" fill="#40474d">then bet on a Mumbai yogurt startup.</text>
+
+  <text x="80" y="486" font-size="21" font-weight="700" fill="#191c1f">Jairaghav Thummala</text>
+  <text x="80" y="514" font-size="18" font-weight="400" fill="#6b7177">Analyse with Jai  &#183;  about 12 min read</text>
+</svg>

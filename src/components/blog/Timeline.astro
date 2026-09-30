@@ -1,0 +1,26 @@
+---
+/**
+ * A vertical dated timeline. Reads cleanly on mobile.
+ * Usage: <Timeline events={[{ date: "Jan 2019", label: "Series C" }]} />
+ */
+interface Event {
+  date: string;
+  label: string;
+}
+interface Props {
+  events: Event[];
+}
+const { events } = Astro.props;
+---
+
+<ol class="not-prose my-8 space-y-5 border-l border-hairline pl-6">
+  {
+    events.map((e) => (
+      <li class="relative">
+        <span class="absolute -left-[30px] top-1 h-3 w-3 rounded-full border-2 border-canvas bg-primary" />
+        <p class="text-xs font-semibold uppercase tracking-wide text-primary">{e.date}</p>
+        <p class="mt-0.5 text-[0.975rem] leading-relaxed text-body">{e.label}</p>
+      </li>
+    ))
+  }
+</ol>

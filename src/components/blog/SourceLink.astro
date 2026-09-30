@@ -1,0 +1,51 @@
+---
+/**
+ * An attributed reference to an external source (image, video, podcast, deck).
+ * The site's CSP self-hosts assets only, and third-party press images are used
+ * by link with credit rather than re-hosted, so a planned figure renders as a
+ * card that opens the original in a new tab, keeping the credit line intact.
+ * Usage: <SourceLink kind="image" label="..." credit="Inc42" href="https://..." />
+ */
+interface Props {
+  label: string;
+  href: string;
+  credit?: string;
+  note?: string;
+  kind?: 'image' | 'headline' | 'video' | 'podcast' | 'deck';
+}
+const { label, href, credit, note, kind = 'image' } = Astro.props;
+
+const verb: Record<string, string> = {
+  image: 'View source',
+  headline: 'Read the article',
+  video: 'Watch on YouTube',
+  podcast: 'Listen to the episode',
+  deck: 'Open',
+};
+const icons: Record<string, string> = {
+  image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M4 17l4.5-4.5L14 18l3-3 3 3"/>',
+  headline: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/>',
+  video: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/>',
+  podcast: '<circle cx="12" cy="10" r="3"/><path d="M12 13v4M9 20h6M6.5 12a5.5 5.5 0 019-4M17.5 12a5.5 5.5 0 00-2-4.2"/>',
+  deck: '<path d="M6 3h9l5 5v13a1 1 0 01-1 1H6a1 1 0 01-1-1V4a1 1 0 011-1z"/><path d="M14 3v6h6"/>',
+};
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="not-prose group my-6 flex items-start gap-4 rounded-lg border border-hairline bg-canvas p-4 transition-colors hover:bg-surface-soft sm:p-5"
+>
+  <span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary/8 text-primary">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-5 w-5" aria-hidden="true" set:html={icons[kind]} />
+  </span>
+  <span class="min-w-0 flex-1">
+    <span class="block text-[0.975rem] font-semibold leading-snug text-ink group-hover:text-primary">{label}</span>
+    {note && <span class="mt-0.5 block text-sm text-mute">{note}</span>}
+    <span class="mt-1.5 block text-xs text-stone">
+      {credit && <span>{credit} · </span>}{verb[kind]}
+      <span aria-hidden="true"> →</span>
+    </span>
+  </span>
+</a>
